@@ -26,11 +26,11 @@ const CERTIFICATIONS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#f5f5f4] text-[var(--foreground)]">
+    <footer className="bg-[var(--bg-paper)] text-[var(--foreground)]">
       {/* Certifications – prominent band */}
       <section className="border-b border-[var(--border)] px-4 py-12 sm:py-16">
         <div className="mx-auto max-w-6xl">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+          <p className="section-label section-label-with-rule text-center">
             Certifications & affiliations
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-8 sm:gap-12 lg:gap-16">
@@ -58,7 +58,7 @@ export default function Footer() {
                     href={cert.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2 focus:ring-offset-[#f5f5f4] rounded-xl"
+                    className="group focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2 focus:ring-offset-[var(--bg-paper)] rounded-xl"
                     title={cert.name}
                   >
                     {content}

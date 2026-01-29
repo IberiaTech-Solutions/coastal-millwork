@@ -59,7 +59,7 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end sm:gap-8">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-[var(--foreground)] sm:text-3xl">
+            <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
               Notable & Current Projects
             </h2>
             <p className="mt-3 max-w-xl text-sm text-[var(--muted)]">
@@ -76,7 +76,7 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
 
         {/* Filter pills */}
         <div className="mt-8">
-          <p className="mb-3 text-xs font-medium uppercase tracking-wider text-[var(--muted)]">
+          <p className="section-label mb-3">
             Contract scope
           </p>
           <div className="flex flex-wrap gap-2">

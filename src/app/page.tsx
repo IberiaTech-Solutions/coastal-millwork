@@ -158,7 +158,7 @@ export default function Home() {
               <div className="aspect-[4/3] w-full overflow-hidden bg-[var(--border)]">
                 <Image src={item.image} alt={item.alt} width={360} height={270} className="h-full w-full object-cover" />
               </div>
-              <h2 className="mt-6 text-xl font-semibold tracking-tight text-[var(--foreground)] group-hover:underline">
+              <h2 className="mt-6 text-xl font-semibold tracking-[-0.025em] text-[var(--foreground)] group-hover:underline">
                 {item.title}
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
@@ -189,10 +189,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sectors – grid of buttons like LS3P */}
+      {/* Sectors – grid of buttons */}
       <section className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+          <h2 className="section-label section-label-with-rule text-center">
             Sectors We Serve
           </h2>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
@@ -212,7 +212,7 @@ export default function Home() {
       {/* Awards & Recognition */}
       <section className="border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+          <h2 className="section-label section-label-with-rule text-center">
             Awards & Recognition
           </h2>
           <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-6">
@@ -236,38 +236,53 @@ export default function Home() {
 
       <NotableProjects projects={PROJECTS} />
 
-      {/* Products and Services – bullet list from old site */}
+      {/* Products and Services – modern grid */}
       <section className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="section-label section-label-with-rule text-center">
             Products and Services
           </h2>
-          <ul className="mt-10 space-y-2 text-[var(--foreground)] leading-relaxed">
-            <li>Comprehensive architectural design and development</li>
-            <li>Premium grade, factory transparent and opaque finishes</li>
-            <li>Complete installation service for all product categories</li>
-            <li>Custom architectural feature assemblies</li>
-            <li>Trim and moldings (millwork)</li>
-            <li>Plastic laminate and wood cabinetry</li>
-            <li>Plastic laminate and wood countertops</li>
-            <li>Sheet paneling and wood veneers</li>
+          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              "Comprehensive architectural design and development",
+              "Premium grade, factory transparent and opaque finishes",
+              "Complete installation service for all product categories",
+              "Custom architectural feature assemblies",
+              "Trim and moldings (millwork)",
+              "Plastic laminate and wood cabinetry",
+              "Plastic laminate and wood countertops",
+              "Sheet paneling and wood veneers",
+            ].map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/80 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] shadow-sm backdrop-blur-sm transition hover:border-[var(--foreground)]/20 hover:shadow"
+              >
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
+                <span className="leading-snug">{item}</span>
+              </li>
+            ))}
           </ul>
-          <p className="mt-10 text-center">
-            <Link href="/products" className="text-sm font-medium text-[var(--accent)] hover:underline">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/products"
+              className="rounded-full border-2 border-[var(--foreground)] bg-transparent px-6 py-2.5 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--foreground)] hover:text-white"
+            >
               Products
             </Link>
-            <span className="mx-2 text-[var(--muted)]">·</span>
-            <Link href="/services" className="text-sm font-medium text-[var(--accent)] hover:underline">
+            <Link
+              href="/services"
+              className="rounded-full border-2 border-[var(--foreground)] bg-transparent px-6 py-2.5 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--foreground)] hover:text-white"
+            >
               Services
             </Link>
-          </p>
+          </div>
         </div>
       </section>
 
       {/* Bottom CTA – About + Contact */}
       <section className="bg-white px-4 py-20 sm:py-28">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-2xl font-semibold tracking-tight text-[var(--foreground)] sm:text-3xl">
+          <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
             Design excellence. Proactive management. No surprises.
           </h2>
           <p className="mt-6 text-[var(--muted)]">
