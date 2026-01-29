@@ -19,6 +19,11 @@ Use **JPG** or **WebP** for photos; **PNG** for graphics that need transparency.
 - `fabrication.jpg` – Beam saw and CNC / shop
 - `installation.jpg` – Installation / field
 
+**Awards & Recognition**
+- `AWI-Award.jpg` – AWI Award of Excellence (already in use)
+- `choate-construction-logo.png` – Choate Construction logo (Subcontractor of the Quarter 2019). Get from [choateco.com](https://choateco.com/) (e.g. right-click logo in header/footer, save as).
+- `design-solutions-logo.png` – Design Solutions Magazine logo (AWI journal). Get from [awinet.org/design-solutions](https://awinet.org/design-solutions/) or AWI brand materials.
+
 ---
 
 ## `about/`

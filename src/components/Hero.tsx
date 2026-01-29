@@ -40,8 +40,8 @@ export default function Hero({ taglines, images, subtitle, scrollToId = "feature
   return (
     <section
       id="slideshow"
-      className="relative h-[calc(100vh-72px)] w-full overflow-hidden border-b border-[var(--border)] min-h-[280px]"
-      style={{ height: "calc(100dvh - 72px)" }}
+      className="relative h-[calc(100vh-108px)] w-full overflow-hidden border-b border-[var(--border)] min-h-[280px]"
+      style={{ height: "calc(100dvh - 108px)" }}
       aria-label="Hero slideshow"
     >
       {/* Background images – fill section height */}

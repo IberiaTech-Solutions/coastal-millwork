@@ -7,6 +7,10 @@
   --border: #e5e7eb;
   --accent: #1a1a1a;
   --accent-hover: #374151;
+  /* Architectural / design backgrounds */
+  --bg-warm: #f8f7f5;
+  --bg-cool: #f6f7f9;
+  --bg-paper: #f5f4f2;
 }
 
 @theme inline {
@@ -21,6 +25,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+/* When top bar is hidden on scroll, reduce main padding to match shorter header */
+body.top-bar-hidden main {
+  padding-top: 4.5rem; /* 72px – logo/nav row only */
 }
 
 /* Design studio – editorial typography */
@@ -54,4 +63,31 @@ h1, h2, h3 {
 }
 .animate-bounce-down {
   animation: bounce-down 2s ease-in-out infinite;
+}
+
+/* Architectural / design section backgrounds */
+.bg-intro {
+  background-color: var(--bg-warm);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.bg-quote {
+  background: linear-gradient(180deg, var(--bg-cool) 0%, var(--background) 100%);
+}
+
+.bg-stripes {
+  background: repeating-linear-gradient(
+    -72deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.02) 2px,
+    rgba(0, 0, 0, 0.02) 4px
+  );
+  background-color: var(--bg-paper);
+}
+
+.bg-section-alt {
+  background-color: var(--bg-cool);
 }
