@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Coastal Millwork & Supply — Website Redesign
 
-## Getting Started
+A simple **Next.js** redesign of [coastalmillworkandsupply.com](https://www.coastalmillworkandsupply.com/home.html), built with React, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Why Next.js
+
+- **Simple** — Same React experience; file-based routing means no manual router setup.
+- **SEO** — Server/static rendering helps local and commercial search visibility.
+- **One command** — `npm run dev` and you’re running locally.
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build for production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## What’s included
 
-To learn more about Next.js, take a look at the following resources:
+- **Layout** — Sticky header (address/phone strip, logo, nav, mobile menu), footer with contact and quick links.
+- **Home** — Hero, intro, mission, facility placeholder, notable projects (with scope tiers: bold/red/orange/green), awards, products & services, highlights.
+- **Placeholder pages** — About, Our Team, Products, Services, Projects Gallery, FAQs, Contact (with address, phone, fax, Maps/Directions link).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding your logo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Replace the text “Coastal Millwork & Supply” in `src/components/Header.tsx` with an `<Image>` (from `next/image`) pointing to your logo file in `public/`, or keep the text and style it as needed.
 
-## Deploy on Vercel
+## Design
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Warm neutrals (cream background, brown/gray text) suited to millwork/wood.
+- Responsive: top strip and nav collapse to a hamburger on small screens.
+- No dark mode; single, professional theme.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Optional next steps
+
+- Add a real facility image in the home intro section.
+- Expand Projects Gallery with images and filters.
+- Add Maps/Directions (e.g. Google Maps embed or link) on the Contact page.
+- Add certification/partner logos in the footer.
+- Populate About, Team, FAQs, etc. with final copy and images.
