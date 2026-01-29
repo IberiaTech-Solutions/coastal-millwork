@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const PRODUCT_CATEGORIES = [
   "Premium Grade, Factory Transparent and Opaque Finishes",
@@ -49,87 +50,123 @@ const HIGHLIGHTS = [
 
 export default function ProductsPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16">
-      <h1 className="text-3xl font-semibold text-[var(--foreground)]">Products</h1>
-
-      {/* Page menu */}
-      <nav className="mt-8 flex flex-wrap gap-4 text-sm" aria-label="Page menu">
-        <a href="#typical-product-categories" className="font-medium text-[var(--accent)] hover:underline">
-          Typical Product Categories
-        </a>
-        <a href="#typical-construction-genres" className="font-medium text-[var(--accent)] hover:underline">
-          Typical Construction Genres
-        </a>
-      </nav>
-
-      <p className="mt-10 text-[var(--foreground)] leading-relaxed">
-        Coastal Millwork and Supply (CMS) offers the design, manufacture, and installation of virtually any type of interior finish product. Being in the &lsquo;custom&rsquo; genre, we are usually involved in developing new types of finished products with varying material types. No one in our industry has the resources to accomplish this quite like the CMS staff. From decorative metals to radius polymers to AWI Premium, high-end shop finishing, CMS can provide products with any type of integrated finishes based on the AWI standards of custom architectural millwork.
-      </p>
-      <p className="mt-6 text-[var(--muted)] leading-relaxed">
-        We offer a full line of solid-surface designs and capabilities by utilizing our full-size polymer oven.
-      </p>
-
-      <figure className="mt-10">
-        <div className="aspect-video w-full overflow-hidden rounded-lg bg-[var(--border)]">
-          <Image src="/images/products/executive-work-space_480x305.jpg" alt="Executive work space" width={480} height={305} className="h-full w-full object-cover" />
+    <div>
+      {/* Page hero */}
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="section-label section-label-with-rule">Products</p>
+          <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
+            Custom design, manufacture, and installation of interior finish products
+          </h1>
         </div>
-        <figcaption className="mt-2 text-sm text-[var(--muted)]">
-          Executive work space
-        </figcaption>
-      </figure>
+      </section>
 
-      <p className="mt-8 text-[var(--muted)] leading-relaxed">
-        CMS does not offer a &lsquo;product line&rsquo; of cabinetry. With a mission focused on project management, CMS is a custom manufacturer starting with product design engineering through site installation and all points in between. Over the years, we have branched into integrating specialty finishes by incorporating metal work, glazing, acrylics, polymers, and other specialty products, into our design and manufacturing experience.
-      </p>
-
-      <p className="mt-6 text-[var(--foreground)] font-medium">Of importance to note, CMS is:</p>
-      <ul className="mt-3 list-disc space-y-2 pl-6 text-[var(--muted)] leading-relaxed">
-        <li>a member and participant in good standing of the AWI-QCP program and an AWI premium-certified millwork contractor; and,</li>
-        <li>a distinctly specified fabricator and installer for commercial Corian contracting in the state of South Carolina per DuPont Corian specifications.</li>
-      </ul>
+      {/* Lead + image */}
+      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl">
+          <nav className="mb-10 flex flex-wrap gap-4 text-sm" aria-label="Page menu">
+            <a href="#typical-product-categories" className="font-medium text-[var(--accent)] hover:underline">
+              Typical Product Categories
+            </a>
+            <a href="#typical-construction-genres" className="font-medium text-[var(--accent)] hover:underline">
+              Typical Construction Genres
+            </a>
+          </nav>
+          <p className="text-lg leading-relaxed text-[var(--foreground)] sm:text-xl">
+            Coastal Millwork and Supply (CMS) offers the design, manufacture, and installation of virtually any type of interior finish product. Being in the &lsquo;custom&rsquo; genre, we are usually involved in developing new types of finished products with varying material types. No one in our industry has the resources to accomplish this quite like the CMS staff. From decorative metals to radius polymers to AWI Premium, high-end shop finishing, CMS can provide products with any type of integrated finishes based on the AWI standards of custom architectural millwork.
+          </p>
+          <p className="mt-6 text-[var(--muted)] leading-relaxed">
+            We offer a full line of solid-surface designs and capabilities by utilizing our full-size polymer oven.
+          </p>
+          <figure className="mt-10">
+            <div className="aspect-video w-full overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
+              <Image src="/images/products/executive-work-space_480x305.jpg" alt="Executive work space" width={480} height={305} className="h-full w-full object-cover" />
+            </div>
+            <figcaption className="mt-3 text-sm text-[var(--muted)]">
+              executive work space
+            </figcaption>
+          </figure>
+          <p className="mt-8 text-[var(--muted)] leading-relaxed">
+            CMS does not offer a &lsquo;product line&rsquo; of cabinetry. With a mission focused on project management, CMS is a custom manufacturer starting with product design engineering through site installation and all points in between. Over the years, we have branched into integrating specialty finishes by incorporating metal work, glazing, acrylics, polymers, and other specialty products, into our design and manufacturing experience.
+          </p>
+          <p className="mt-8 text-[var(--foreground)] font-semibold">Of importance to note, CMS is:</p>
+          <ul className="mt-3 space-y-2 text-[var(--muted)] leading-relaxed">
+            {[
+              "a member and participant in good standing of the AWI-QCP program and an AWI premium-certified millwork contractor; and,",
+              "a distinctly specified fabricator and installer for commercial Corian contracting in the state of South Carolina per DuPont Corian specifications.",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* Typical Product Categories */}
-      <section id="typical-product-categories" className="mt-14 scroll-mt-24">
-        <h2 className="text-2xl font-semibold text-[var(--foreground)]">Typical Product Categories</h2>
-        <figure className="mt-6">
-          <div className="aspect-video w-full rounded-lg bg-[var(--border)] flex items-center justify-center text-sm text-[var(--muted)]">
-            Pine Lakes Country Club
-          </div>
-          <figcaption className="mt-2 text-sm text-[var(--muted)]">
-            Pine Lakes Country Club
-          </figcaption>
-        </figure>
-        <ul className="mt-6 list-disc space-y-2 pl-6 text-[var(--muted)] leading-relaxed">
-          {PRODUCT_CATEGORIES.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+      <section id="typical-product-categories" className="scroll-mt-24 border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="section-label section-label-with-rule text-center">Typical Product Categories</h2>
+          <p className="mt-10 text-center text-sm font-medium text-[var(--muted)]">Pine Lakes Country Club</p>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {PRODUCT_CATEGORIES.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/80 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] shadow-sm backdrop-blur-sm"
+              >
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
+                <span className="leading-snug">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* Typical Construction Genres */}
-      <section id="typical-construction-genres" className="mt-14 scroll-mt-24">
-        <h2 className="text-2xl font-semibold text-[var(--foreground)]">Typical Construction Genres</h2>
-        <figure className="mt-6">
-          <div className="aspect-video w-full rounded-lg bg-[var(--border)] flex items-center justify-center text-sm text-[var(--muted)]">
-            Beaufort City Hall
-          </div>
-          <figcaption className="mt-2 text-sm text-[var(--muted)]">
-            Beaufort City Hall
-          </figcaption>
-        </figure>
-        <ul className="mt-6 list-disc space-y-2 pl-6 text-[var(--muted)] leading-relaxed">
-          {CONSTRUCTION_GENRES.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+      <section id="typical-construction-genres" className="scroll-mt-24 border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="section-label section-label-with-rule text-center">Typical Construction Genres</h2>
+          <p className="mt-10 text-center text-sm font-medium text-[var(--muted)]">Beaufort City Hall</p>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {CONSTRUCTION_GENRES.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3.5 text-sm font-medium text-[var(--foreground)] shadow-sm"
+              >
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
+                <span className="leading-snug">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
-      <section className="mt-14 border-t border-[var(--border)] pt-12">
-        <ul className="grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
-          {HIGHLIGHTS.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+      {/* Highlights */}
+      <section className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="section-label section-label-with-rule text-center">Highlights</h2>
+          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {HIGHLIGHTS.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/80 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] shadow-sm backdrop-blur-sm"
+              >
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
+                <span className="leading-snug">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-white px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <Link href="/services" className="inline-flex items-center rounded-full border-2 border-[var(--foreground)] bg-transparent px-6 py-2.5 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--foreground)] hover:text-white">
+            Services →
+          </Link>
+        </div>
       </section>
     </div>
   );

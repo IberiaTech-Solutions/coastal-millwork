@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const HIGHLIGHTS = [
   "Largest Architectural Design Engineering Staff in the Southeast",
@@ -12,93 +13,133 @@ const HIGHLIGHTS = [
 
 export default function ServicesPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16">
-      <h1 className="text-3xl font-semibold text-[var(--foreground)]">Services</h1>
+    <div>
+      {/* Page hero */}
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="section-label section-label-with-rule">Services</p>
+          <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
+            Design, development, submittals, production, and installation
+          </h1>
+        </div>
+      </section>
 
       {/* Design Assist, Design Build, and Design Consultation */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-[var(--foreground)]">
-          Design Assist, Design Build, and Design Consultation
-        </h2>
-        <p className="mt-6 text-[var(--muted)] leading-relaxed">
-          Coastal Millwork and Supply (CMS) offers a complete package of design consultations. Our five-man engineering team holds degrees in design and architecture, and combined with our experienced project management staff, we can help any owner, designer, and general contractor through design and development … and even concept. We offer advice in design function optimization and product longevity in combination to the desired aesthetics. This is critical in managing expectations, reducing process costs, and maximizing long-term value. This value-added benefit also helps provide accurate budgets for our scope of work early in the project.
-        </p>
-        <figure className="mt-8">
-          <div className="aspect-video w-full overflow-hidden rounded-lg bg-[var(--border)]">
-            <Image src="/images/services/working-at-desk_480x320.jpg" alt="Design engineer at work." width={480} height={320} className="h-full w-full object-cover" />
-          </div>
-          <figcaption className="mt-2 text-sm text-[var(--muted)]">
-            Design engineer at work.
-          </figcaption>
-        </figure>
-        <p className="mt-6 text-[var(--muted)] leading-relaxed">
-          Even without design assist, CMS is very collaborative in these same areas through the shop drawing phase.
-        </p>
+      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl">
+          <p className="section-label">Design & consultation</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
+            Design Assist, Design Build, and Design Consultation
+          </h2>
+          <p className="mt-8 text-[var(--muted)] leading-relaxed">
+            Coastal Millwork and Supply (CMS) offers a complete package of design consultations. Our five-man engineering team holds degrees in design and architecture, and combined with our experienced project management staff, we can help any owner, designer, and general contractor through design and development … and even concept. We offer advice in design function optimization and product longevity in combination to the desired aesthetics. This is critical in managing expectations, reducing process costs, and maximizing long-term value. This value-added benefit also helps provide accurate budgets for our scope of work early in the project.
+          </p>
+          <figure className="mt-10">
+            <div className="aspect-video w-full overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
+              <Image src="/images/services/working-at-desk_480x320.jpg" alt="Design engineer at work." width={480} height={320} className="h-full w-full object-cover" />
+            </div>
+            <figcaption className="mt-3 text-sm text-[var(--muted)]">
+              Design engineer at work.
+            </figcaption>
+          </figure>
+          <p className="mt-8 text-[var(--muted)] leading-relaxed">
+            Even without design assist, CMS is very collaborative in these same areas through the shop drawing phase.
+          </p>
+        </div>
       </section>
 
       {/* Value Engineering */}
-      <section className="mt-14">
-        <h2 className="text-2xl font-semibold text-[var(--foreground)]">Value Engineering</h2>
-        <p className="mt-6 text-[var(--muted)] leading-relaxed">
-          Meeting the needs of cost-conscious owners has become a very important benefit in today&apos;s economy. Using the same resources as in design consultation, CMS can work to find reliable, concept-similar options for any project.
-        </p>
+      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="section-label section-label-with-rule text-center">Value Engineering</h2>
+          <p className="mt-10 text-[var(--muted)] leading-relaxed">
+            Meeting the needs of cost-conscious owners has become a very important benefit in today&apos;s economy. Using the same resources as in design consultation, CMS can work to find reliable, concept-similar options for any project.
+          </p>
+        </div>
       </section>
 
       {/* Submittals */}
-      <section className="mt-14">
-        <h2 className="text-2xl font-semibold text-[var(--foreground)]">Submittals</h2>
-        <p className="mt-6 text-[var(--muted)] leading-relaxed">
-          No millwork contractor in our region spends as much time and resources on this stage of the project than CMS. We recognize that our final submittals become the road map for any project&apos;s success and the more proactive, collaborative, and detailed this function is, the higher the level of success the final project reaches.
-        </p>
-        <p className="mt-6 text-[var(--muted)] leading-relaxed">
-          CMS has a strict submittal SOP and the process is highly managed. Our primary goal is identifying all obstacles and potential issues concerning not only our scope, but adjacent trade scopes, as well. Collaboration begins immediately. We provide a complete submittal package of all physical selections, shop drawings, and any hardware and equipment specifications in our scope.
-        </p>
-        <p className="mt-6 text-[var(--muted)] leading-relaxed">
-          Additionally, our submittal software is an integral part of our production programming as one complete software package. There is no additional programming or translating to another equipment code. It is all written with the submittal package and any subsequent changes to it adjust automatically. This means you get exactly what is detailed in the shop submittals without any interaction at the production level. This also allows for a very fast production cycle for tight and compressed schedules.
-        </p>
+      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="section-label section-label-with-rule text-center">Submittals</h2>
+          <p className="mt-10 text-[var(--muted)] leading-relaxed">
+            No millwork contractor in our region spends as much time and resources on this stage of the project than CMS. We recognize that our final submittals become the road map for any project&apos;s success and the more proactive, collaborative, and detailed this function is, the higher the level of success the final project reaches.
+          </p>
+          <p className="mt-6 text-[var(--muted)] leading-relaxed">
+            CMS has a strict submittal SOP and the process is highly managed. Our primary goal is identifying all obstacles and potential issues concerning not only our scope, but adjacent trade scopes, as well. Collaboration begins immediately. We provide a complete submittal package of all physical selections, shop drawings, and any hardware and equipment specifications in our scope.
+          </p>
+          <p className="mt-6 text-[var(--muted)] leading-relaxed">
+            Additionally, our submittal software is an integral part of our production programming as one complete software package. There is no additional programming or translating to another equipment code. It is all written with the submittal package and any subsequent changes to it adjust automatically. This means you get exactly what is detailed in the shop submittals without any interaction at the production level. This also allows for a very fast production cycle for tight and compressed schedules.
+          </p>
+        </div>
       </section>
 
       {/* Production */}
-      <section className="mt-14">
-        <h2 className="text-2xl font-semibold text-[var(--foreground)]">Production</h2>
-        <p className="mt-6 text-[var(--muted)] leading-relaxed">
-          State of the art, top-of-the-line production equipment partnered with a veteran plant staff is the backbone of our production. Combine that with our submittal/production software and you are ensured unsurpassed quality that always meets or exceeds AWI specifications. In fact, all casework products are constructed per AWI-Premium standards, regardless of contract grade.
-        </p>
-        <figure className="mt-8">
-          <div className="aspect-[3/4] w-full max-w-sm overflow-hidden rounded-lg bg-[var(--border)]">
-            <Image src="/images/services/exterior-store-fronts_360x480.jpg" alt="Exterior store fronts" width={360} height={480} className="h-full w-full object-cover" />
-          </div>
-          <figcaption className="mt-2 text-sm text-[var(--muted)]">
-            Exterior store fronts
-          </figcaption>
-        </figure>
+      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="section-label section-label-with-rule text-center">Production</h2>
+          <p className="mt-10 text-[var(--muted)] leading-relaxed">
+            State of the art, top-of-the-line production equipment partnered with a veteran plant staff is the backbone of our production. Combine that with our submittal/production software and you are ensured unsurpassed quality that always meets or exceeds AWI specifications. In fact, all casework products are constructed per AWI-Premium standards, regardless of contract grade.
+          </p>
+          <figure className="mt-10">
+            <div className="aspect-[3/4] w-full max-w-sm overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
+              <Image src="/images/services/exterior-store-fronts_360x480.jpg" alt="exterior store fronts" width={360} height={480} className="h-full w-full object-cover" />
+            </div>
+            <figcaption className="mt-3 text-sm text-[var(--muted)]">
+              exterior store fronts
+            </figcaption>
+          </figure>
+        </div>
       </section>
 
-      {/* Project Management */}
-      <section className="mt-14">
-        <h2 className="text-2xl font-semibold text-[var(--foreground)]">Project Management</h2>
-        <p className="mt-6 text-[var(--muted)] leading-relaxed">
-          Our project managers (PMs) are the conductors of the CMS orchestra, so to speak. Every project is assigned into a team managed by the project managers. The teams meet on each project individually once a week. The PMs are responsible for all submittal oversight, contractor collaborations/coordination, site condition management, safety SOP and compliance, and installation.
-        </p>
+      {/* Project Management + Installation */}
+      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl">
+          <p className="section-label">Project Management</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
+            Project Management
+          </h2>
+          <p className="mt-8 text-[var(--muted)] leading-relaxed">
+            Our project managers (PMs) are the conductors of the CMS orchestra, so to speak. Every project is assigned into a team managed by the project managers. The teams meet on each project individually once a week. The PMs are responsible for all submittal oversight, contractor collaborations/coordination, site condition management, safety SOP and compliance, and installation.
+          </p>
+          <p className="section-label mt-14">Installation</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
+            Installation
+          </h2>
+          <p className="mt-8 text-[var(--muted)] leading-relaxed">
+            Often seen as the face of the company, our highly skilled, professional install teams are the best in the business. Highly integrated into the whole team model from the start of the project, our installation professionals know exactly how to complete any product design or dynamic. Well versed in AWI standards and always focused on safety, our teams work long hours and are dedicated to completing projects on time with minimal, if any, punch lists.
+          </p>
+          <p className="mt-6 text-[var(--muted)] leading-relaxed">
+            As part of the team, our install crews are not required to &lsquo;figure things out in the field.&rsquo; They are consulted early in the development so that installation meets all the expectations.
+          </p>
+        </div>
       </section>
 
-      {/* Installation */}
-      <section className="mt-14">
-        <h2 className="text-2xl font-semibold text-[var(--foreground)]">Installation</h2>
-        <p className="mt-6 text-[var(--muted)] leading-relaxed">
-          Often seen as the face of the company, our highly skilled, professional install teams are the best in the business. Highly integrated into the whole team model from the start of the project, our installation professionals know exactly how to complete any product design or dynamic. Well versed in AWI standards and always focused on safety, our teams work long hours and are dedicated to completing projects on time with minimal, if any, punch lists.
-        </p>
-        <p className="mt-6 text-[var(--muted)] leading-relaxed">
-          As part of the team, our install crews are not required to &lsquo;figure things out in the field.&rsquo; They are consulted early in the development so that installation meets all the expectations.
-        </p>
+      {/* Highlights */}
+      <section className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="section-label section-label-with-rule text-center">Highlights</h2>
+          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {HIGHLIGHTS.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/80 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] shadow-sm backdrop-blur-sm"
+              >
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
+                <span className="leading-snug">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
-      <section className="mt-14 border-t border-[var(--border)] pt-12">
-        <ul className="grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
-          {HIGHLIGHTS.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+      {/* CTA */}
+      <section className="bg-white px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <Link href="/contact" className="inline-flex items-center rounded-full border-2 border-[var(--foreground)] bg-transparent px-6 py-2.5 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--foreground)] hover:text-white">
+            Contact Us →
+          </Link>
+        </div>
       </section>
     </div>
   );
