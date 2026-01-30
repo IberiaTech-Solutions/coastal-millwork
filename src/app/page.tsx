@@ -294,7 +294,7 @@ export default function Home() {
                 className="card-float flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/90 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] backdrop-blur-sm transition hover:border-[var(--foreground)]/20"
               >
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
-                <span className={`leading-snug ${item === "Comprehensive architectural design and development" ? "anchor-line text-base" : ""}`}>
+                <span className="leading-snug">
                   {item}
                 </span>
               </li>

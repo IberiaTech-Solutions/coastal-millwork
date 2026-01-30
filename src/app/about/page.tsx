@@ -121,10 +121,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Figure 1 – constrained width, content breaks, blockquote */}
-      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-20 sm:py-24">
+      {/* Experience & Scope – framed supporting context (credibility evidence) */}
+      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-20 sm:py-24" aria-label="Experience and scope">
         <div className="mx-auto max-w-2xl">
-          <figure>
+          <p className="section-label mt-0">Experience & Scope</p>
+          <figure className="mt-6">
             <div className="aspect-video w-full overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
               <Image src="/images/about/shop-interior-1_480x320.jpg" alt="Plant staff working the beam saw." width={480} height={320} className="h-full w-full object-cover" />
             </div>
@@ -132,34 +133,39 @@ export default function AboutPage() {
               Plant staff working the beam saw.
             </figcaption>
           </figure>
-          <p className="mt-8 text-[var(--muted)] leading-relaxed">
-            Serving only the commercial construction industry, we have successfully completed over 700 premium, high profile interior projects while partnered with some of the premier general contractors and design teams in South Carolina and the country, including in: New York, NY; Washington, DC; Dallas, Texas; San Diego, CA; and, Atlanta, GA.
-          </p>
-          <div className="about-prose-block mt-8">
+          <div className="about-experience-block mt-8">
             <p className="mt-0">
+              Serving only the commercial construction industry, we have successfully completed over 700 premium, high profile interior projects while partnered with some of the premier general contractors and design teams in South Carolina and the country, including in: New York, NY; Washington, DC; Dallas, Texas; San Diego, CA; and, Atlanta, GA.
+            </p>
+            <p>
               From the beginning, one of our company&apos;s primary objectives has been to develop the management procedures and design engineering expertise required to complete large, logistically difficult projects with complicated design concepts within contractor schedules. We have successfully completed projects up to $7 million with dozens between $1–$4 million dollars plus projects under our belt.
             </p>
-            <hr className="rule-hairline mt-10 mb-10" aria-hidden />
-            <blockquote className="about-callout mt-0">
-              We are constantly evaluating our performance based on our mission and growing our capabilities.
-            </blockquote>
-            <p className="mt-6">
+            <p>
               All our experience is being utilized in developing better methods in project management going forward.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Capabilities + figure 2 – constrained width, content breaks, blockquote */}
+      {/* Capability confidence – pulled statement (larger, left rule) */}
       <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-2xl">
-          <p className="text-[var(--muted)] leading-relaxed">
+          <blockquote className="about-capability-confidence mt-0">
             CMS takes great pride in tackling the most complex project designs and has never failed on any project, regardless of size, environment or complexity. We have the human resources and mechanical capabilities to perform any task required. Offering expert guidance in means and methods to achieve any design intent by incorporating pragmatic experience and AWI standards so that any functional design can handle the wear and tear of its environment for decades.
-          </p>
-          <p className="mt-6 text-[var(--muted)] leading-relaxed">
+          </blockquote>
+          <p className="mt-6 max-w-2xl text-sm text-[var(--muted)] leading-relaxed">
             CMS maintains a long and successful history as an active participant and premium-certified member of the AWI-QCP program, is listed as the DuPont Corian specified and preferred commercial solid surface fabricator and installer for the state of South Carolina (per Dupont Corian specifications documents).
           </p>
-          <hr className="rule-hairline mt-10 mb-10" aria-hidden />
+        </div>
+      </section>
+
+      {/* Facility & Process – operational (technical, purposeful) */}
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24" aria-label="Facility and process">
+        <div className="mx-auto max-w-2xl">
+          <p className="section-label mt-0">Facility & Process</p>
+          <p className="mt-6 text-[var(--muted)] leading-relaxed">
+            CMS calls home a 40,000-square-foot, state-of-the-art facility. We regularly invest in new equipment to ensure we are utilizing the most optimal, precise, and advanced production methods as possible. We use the latest Microvellum software package, with AutoCAD overlay, for all submittal and manufacturing engineering. This premium software highly automates production with the highest degree of precision. This creates for a very fast, high-quality production line for custom standard products alike.
+          </p>
           <figure className="mt-10">
             <div className="aspect-video w-full overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
               <Image src="/images/about/shop-interior-2_480x320.jpg" alt="Beam saw and CNC on the fly." width={480} height={320} className="h-full w-full object-cover" />
@@ -168,24 +174,21 @@ export default function AboutPage() {
               Beam saw and CNC on the fly.
             </figcaption>
           </figure>
-          <div className="about-prose-block mt-8">
-            <p className="mt-0">
-              CMS calls home a 40,000-square-foot, state-of-the-art facility. We regularly invest in new equipment to ensure we are utilizing the most optimal, precise, and advanced production methods as possible. We use the latest Microvellum software package, with AutoCAD overlay, for all submittal and manufacturing engineering. This premium software highly automates production with the highest degree of precision. This creates for a very fast, high-quality production line for custom standard products alike.
-            </p>
-            <hr className="rule-hairline mt-10 mb-10" aria-hidden />
-            <blockquote className="about-callout mt-0">
-              Our shop submittals become the story for how the project flows—we use them to uncover red flags, obstacles, and expectation conflicts.
-            </blockquote>
-            <p className="mt-6">
-              They are designed to create a complete picture of our scope products and the adjacent components of an elevation.
-            </p>
-          </div>
+          <blockquote className="about-callout mt-10 mb-0">
+            Our shop submittals become the story for how the project flows—we use them to uncover red flags, obstacles, and expectation conflicts.
+          </blockquote>
+          <p className="mt-6 text-[var(--muted)] leading-relaxed">
+            They are designed to create a complete picture of our scope products and the adjacent components of an elevation.
+          </p>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Reflective note + CTA */}
       <section className="bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
+          <p className="about-reflective-note">
+            We are constantly evaluating our performance based on our mission and growing our capabilities.
+          </p>
           <Link href="/contact" className="inline-flex items-center rounded-full border-2 border-[var(--foreground)] bg-transparent px-6 py-2.5 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--foreground)] hover:text-white">
             Contact Us →
           </Link>
