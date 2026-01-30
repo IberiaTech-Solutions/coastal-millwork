@@ -36,25 +36,29 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <p className="text-sm text-[var(--muted)]">* Required</p>
 
-      {/* Type of inquiry + contextual guidance */}
+      {/* Type of inquiry – segmented control + contextual guidance */}
       <div>
-        <label htmlFor="inquiry-type" className="block text-sm font-medium text-[var(--foreground)]">
+        <label id="inquiry-type-label" className="block text-sm font-medium text-[var(--foreground)]">
           Type of inquiry
         </label>
-        <select
-          id="inquiry-type"
-          name="inquiryType"
-          value={inquiryType}
-          onChange={(e) => setInquiryType(e.target.value as (typeof INQUIRY_TYPES)[number]["value"])}
-          className="mt-1 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm text-[var(--foreground)] focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
-          aria-label="Type of inquiry"
+        <input type="hidden" name="inquiryType" value={inquiryType} />
+        <div
+          className="mt-2 segmented-control segmented-control--form"
+          role="group"
+          aria-labelledby="inquiry-type-label"
         >
           {INQUIRY_TYPES.map(({ value, label }) => (
-            <option key={value} value={value}>
+            <button
+              key={value}
+              type="button"
+              onClick={() => setInquiryType(value)}
+              aria-pressed={inquiryType === value}
+              aria-label={label}
+            >
               {label}
-            </option>
+            </button>
           ))}
-        </select>
+        </div>
         {selectedGuidance && (
           <p className="mt-2 text-xs font-medium text-[var(--muted)]">
             {selectedGuidance}
@@ -71,7 +75,7 @@ export default function ContactForm() {
           name="name"
           type="text"
           required
-          className="mt-1 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-[var(--foreground)] placeholder:text-[var(--muted)]/70 focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
+          className="form-field mt-2"
           placeholder="Your name"
         />
       </div>
@@ -85,7 +89,7 @@ export default function ContactForm() {
           name="email"
           type="email"
           required
-          className="mt-1 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-[var(--foreground)] placeholder:text-[var(--muted)]/70 focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
+          className="form-field mt-2"
           placeholder="your@email.com"
         />
       </div>
@@ -101,7 +105,7 @@ export default function ContactForm() {
           inputMode="numeric"
           pattern="[0-9]{10}"
           maxLength={10}
-          className="mt-1 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-[var(--foreground)] placeholder:text-[var(--muted)]/70 focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
+          className="form-field mt-2"
           placeholder="10 digits only (no hyphens or braces)"
         />
         <p className="mt-1 text-xs text-[var(--muted)]">
@@ -117,7 +121,7 @@ export default function ContactForm() {
           id="company"
           name="company"
           type="text"
-          className="mt-1 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-[var(--foreground)] placeholder:text-[var(--muted)]/70 focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
+          className="form-field mt-2"
           placeholder="Name of business or organization"
         />
       </div>
@@ -131,7 +135,7 @@ export default function ContactForm() {
           name="subject"
           type="text"
           required
-          className="mt-1 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-[var(--foreground)] placeholder:text-[var(--muted)]/70 focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
+          className="form-field mt-2"
           placeholder="Subject"
         />
       </div>
@@ -145,14 +149,11 @@ export default function ContactForm() {
           name="message"
           required
           rows={5}
-          className="mt-1 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-[var(--foreground)] placeholder:text-[var(--muted)]/70 focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
+          className="form-field form-field-textarea mt-2"
           placeholder="Your message"
         />
       </div>
 
-      <p className="text-xs leading-relaxed text-[var(--muted)]">
-        Inquiries go directly to our project team. We respond within one business day.
-      </p>
       <p className="text-xs text-[var(--muted)]">
         Disclaimer: Under no circumstances will your information ever be given to or sold to any other individual, business, or entity.
       </p>

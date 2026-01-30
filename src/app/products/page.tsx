@@ -124,20 +124,20 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Visual samples – materials & finishes (anchor) */}
+      {/* Materials & finishes – tight 2x2 grid, museum-label captions */}
       <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-4xl">
           <h2 className="section-label text-center">Materials & finishes</h2>
           <p className="mt-2 text-center text-sm text-[var(--muted)]">
             Sample work across custom millwork, casework, and integrated materials
           </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="materials-gallery mt-8 grid grid-cols-2 gap-5 sm:gap-6">
             {VISUAL_SAMPLES.map(({ src, alt, caption }) => (
               <figure key={src} className="group overflow-hidden rounded-lg border border-[var(--border)] bg-white shadow-sm transition hover:border-[var(--foreground)]/20 hover:shadow-md">
                 <div className="aspect-[4/3] overflow-hidden bg-[var(--border)]">
                   <Image src={src} alt={alt} width={480} height={360} className="h-full w-full object-cover transition group-hover:scale-[1.02]" />
                 </div>
-                <figcaption className="px-3 py-2.5 text-xs font-medium text-[var(--muted)]">
+                <figcaption className="materials-gallery-caption">
                   {caption}
                 </figcaption>
               </figure>
@@ -147,25 +147,27 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Typical Product Categories – card grouping, step markers, anchors */}
+      {/* Typical Product Categories – sticky tabs on desktop, aligned list bullets */}
       <section id="typical-product-categories" className="scroll-mt-24 border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
-        <div className="mx-auto max-w-4xl">
-          <p className="section-label section-label-with-rule text-center">Categories</p>
-          <h2 className="mt-4 text-center text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
-            Typical product categories
-          </h2>
-          <nav className="mt-8 flex flex-wrap justify-center gap-2 text-xs" aria-label="Jump to category">
-            {PRODUCT_GROUPS.map(({ label }) => (
-              <a
-                key={label}
-                href={`#product-${label.toLowerCase().replace(/\s+&\s+/g, "-").replace(/\s+/g, "-")}`}
-                className="rounded-full border border-[var(--border)] bg-[var(--background)] px-3 py-1.5 font-medium text-[var(--muted)] transition hover:border-[var(--foreground)]/40 hover:text-[var(--foreground)]"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-          <div className="mt-12 space-y-8">
+        <div className="mx-auto max-w-4xl lg:flex lg:gap-12">
+          <aside className="product-category-nav mb-10 lg:mb-0 lg:w-56 lg:shrink-0 lg:pt-2">
+            <p className="section-label section-label-with-rule text-center lg:text-left">Categories</p>
+            <h2 className="mt-4 text-center text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl lg:text-left">
+              Typical product categories
+            </h2>
+            <nav className="product-category-tabs mt-8 flex flex-wrap justify-center gap-2 text-xs lg:mt-10 lg:justify-start lg:flex-col lg:gap-1" aria-label="Jump to category">
+              {PRODUCT_GROUPS.map(({ label }) => (
+                <a
+                  key={label}
+                  href={`#product-${label.toLowerCase().replace(/\s+&\s+/g, "-").replace(/\s+/g, "-")}`}
+                  className="rounded-full border border-[var(--border)] bg-[var(--background)] px-3 py-1.5 font-medium text-[var(--muted)] transition hover:border-[var(--foreground)]/40 hover:text-[var(--foreground)] lg:rounded-md lg:px-3 lg:py-2"
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
+          </aside>
+          <div className="lg:min-w-0 lg:flex-1 space-y-8">
             {PRODUCT_GROUPS.map(({ label, items }, i) => (
               <div
                 key={label}
@@ -179,12 +181,12 @@ export default function ProductsPage() {
                   <h3 className="section-label text-[var(--foreground)]/90">{label}</h3>
                 </div>
                 <hr className="rule-design rule-design--thick mt-2 mb-6" aria-hidden />
-                <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list">
+                <ul className="product-category-list grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list">
                   {items.map((item) => (
-                    <li key={item}>
+                    <li key={item} className="product-category-item">
                       <div className="card-float flex items-start gap-3 rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3.5 text-sm font-medium text-[var(--foreground)] transition">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
-                        <span className="leading-snug">{item}</span>
+                        <span className="product-category-bullet shrink-0" aria-hidden />
+                        <span className="min-w-0 leading-snug">{item}</span>
                       </div>
                     </li>
                   ))}

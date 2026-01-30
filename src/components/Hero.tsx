@@ -99,7 +99,7 @@ export default function Hero({
               {taglines[lineIndex]}
             </h1>
           </div>
-          <p className="mt-6 text-[11px] font-normal tracking-wide text-white/50 sm:text-xs lg:mt-7">
+          <p className="hero-data-rail mt-7 text-[10px] font-normal tracking-[0.12em] text-white/45 sm:mt-8 sm:text-[11px] lg:mt-9">
             {metric}
           </p>
         </div>

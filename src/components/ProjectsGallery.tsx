@@ -17,6 +17,7 @@ const TIER_LABELS: Record<ProjectTier | "all", string> = {
   4: ">$10M",
 };
 
+// Same colored pills as home page (NotableProjects): All dark, then amber/slate/amber/emerald
 const TIER_PILL_ACTIVE: Record<ProjectTier | "all", string> = {
   all: "border-[var(--foreground)] bg-[var(--foreground)] text-white shadow-sm",
   0: "border-[var(--foreground)] bg-[var(--foreground)] text-white shadow-sm",
@@ -77,78 +78,85 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
   return (
     <>
     <div className="mx-auto max-w-6xl">
-      {/* Filter bar – minimal chrome, gallery not database */}
-      <div className="mb-14 flex flex-wrap items-center gap-4 border-b border-[var(--border-drafting)] pb-10 sm:mb-16 sm:gap-5 sm:pb-12">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--muted)]">Value</span>
-          <button
-            type="button"
-            onClick={() => setValueFilter("all")}
-            className={`cursor-pointer rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider transition focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/20 focus:ring-offset-1 ${
-              valueFilter === "all" ? TIER_PILL_ACTIVE.all : TIER_PILL_INACTIVE.all
-            }`}
-          >
-            All
-          </button>
-          {availableTiers.map((tier) => (
-            <button
-              key={tier}
-              type="button"
-              onClick={() => setValueFilter(tier)}
-              className={`cursor-pointer rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider transition focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/20 focus:ring-offset-1 ${
-                valueFilter === tier ? TIER_PILL_ACTIVE[tier] : TIER_PILL_INACTIVE[tier]
-              }`}
-            >
-              {TIER_LABELS[tier]}
-            </button>
-          ))}
-        </div>
-        {availableSectors.length > 0 && (
-          <div className="flex items-center gap-2">
-            <label htmlFor="sector-filter" className="sr-only">Sector</label>
-            <select
-              id="sector-filter"
-              value={sectorFilter}
-              onChange={(e) => setSectorFilter(e.target.value as SectorFilterValue)}
-              className="rounded border border-[var(--border)]/80 bg-transparent py-1.5 pl-2 pr-6 text-[11px] font-medium text-[var(--muted)] focus:border-[var(--foreground)]/30 focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/10"
-              aria-label="Filter by sector"
-            >
-              <option value="all">All sectors</option>
-              {availableSectors.map((sector) => (
-                <option key={sector} value={sector}>
-                  {sector}
-                </option>
+      {/* Filter bar – Value segments, Sector select, count + search */}
+      <div className="filter-bar mb-14 border-b border-[var(--border-drafting)] pb-10 sm:mb-16 sm:pb-12">
+        <div className="filter-bar-inner flex flex-wrap items-end gap-x-8 gap-y-6 sm:gap-x-10">
+          <div className="filter-group flex flex-wrap items-baseline gap-3">
+            <span className="filter-label">Value</span>
+            <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by contract value">
+              <button
+                type="button"
+                onClick={() => setValueFilter("all")}
+                aria-pressed={valueFilter === "all"}
+                className={`rounded-full border-2 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition focus:outline-none focus:ring-2 focus:ring-offset-1 ${
+                  valueFilter === "all" ? TIER_PILL_ACTIVE.all : TIER_PILL_INACTIVE.all
+                } ${valueFilter === "all" ? "focus:ring-[var(--foreground)]" : "focus:ring-[var(--accent)]"}`}
+              >
+                All
+              </button>
+              {availableTiers.map((tier) => (
+                <button
+                  key={tier}
+                  type="button"
+                  onClick={() => setValueFilter(tier)}
+                  aria-pressed={valueFilter === tier}
+                  className={`rounded-full border-2 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition focus:outline-none focus:ring-2 focus:ring-offset-1 ${
+                    valueFilter === tier ? TIER_PILL_ACTIVE[tier] : TIER_PILL_INACTIVE[tier]
+                  } ${valueFilter === tier ? "focus:ring-[var(--foreground)]" : "focus:ring-[var(--accent)]"}`}
+                >
+                  {TIER_LABELS[tier]}
+                </button>
               ))}
-            </select>
+            </div>
           </div>
-        )}
-        <div className="ml-auto flex items-center gap-3">
-          <span className="text-[11px] tabular-nums text-[var(--muted)]">
-            {filtered.length} project{filtered.length !== 1 ? "s" : ""}
-          </span>
-          <div className="relative w-36 sm:w-44">
-            <label htmlFor="projects-search" className="sr-only">Search</label>
-            <input
-              id="projects-search"
-              type="search"
-              placeholder="Search"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded border border-[var(--border)]/80 bg-transparent py-1.5 pl-2.5 pr-7 text-[11px] text-[var(--foreground)] placeholder:text-[var(--muted)] focus:border-[var(--foreground)]/30 focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/10"
-              aria-label="Search projects"
-            />
-            <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[var(--muted)]" aria-hidden>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.35-4.35" />
-              </svg>
+          {availableSectors.length > 0 && (
+            <div className="filter-group flex flex-wrap items-baseline gap-3">
+              <span className="filter-label">Sector</span>
+              <label htmlFor="sector-filter" className="sr-only">Filter by sector</label>
+              <select
+                id="sector-filter"
+                value={sectorFilter}
+                onChange={(e) => setSectorFilter(e.target.value as SectorFilterValue)}
+                className="filter-select"
+                aria-label="Filter by sector"
+              >
+                <option value="all">All sectors</option>
+                {availableSectors.map((sector) => (
+                  <option key={sector} value={sector}>
+                    {sector}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+          <div className="filter-bar-end ml-auto flex items-baseline gap-5 pt-0.5">
+            <span className="filter-count text-[11px] tabular-nums text-[var(--muted)]">
+              {filtered.length} project{filtered.length !== 1 ? "s" : ""}
             </span>
+            <div className="relative w-28 sm:w-36">
+              <label htmlFor="projects-search" className="sr-only">Search projects</label>
+              <input
+                id="projects-search"
+                type="search"
+                placeholder="Search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="input-underline pr-6"
+                aria-label="Search projects"
+              />
+              <span className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-[var(--muted)]" aria-hidden>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+              </span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Gallery grid – more cards per row, smaller cards */}
-      <AnimateSection as="div" className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-10 lg:gap-12">
+      {/* Gallery grid – 1 / 2 / 3 / 4 per row, portfolio card content */}
+      <AnimateSection as="div" className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-10 lg:gap-12">
         {filtered.map((project) => {
           const coverSrc = projectImageUrl(project, project.coverImage);
           const scaleLabel = project.tier === 0 ? "—" : TIER_LABELS[project.tier];
@@ -158,7 +166,7 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
               href={`/projects/${project.slug}`}
               className="group block overflow-hidden rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2"
             >
-              {/* Image: gentle zoom on hover, soft overlay reveal */}
+              {/* Image: gentle zoom on hover */}
               <div className="relative aspect-[4/5] overflow-hidden bg-[var(--border)]/50">
                 <ImageReveal className="absolute inset-0 h-full w-full">
                   <Image
@@ -167,30 +175,29 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
                     width={400}
                     height={500}
                     className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                   />
                 </ImageReveal>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" aria-hidden />
-                <span className="absolute bottom-3 left-3 right-3 text-[11px] font-medium text-white opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100">
-                  View project →
-                </span>
               </div>
-              {/* Location + type hierarchy – compact for smaller cards */}
+              {/* Card: location (small), title (dominant), sector + value (quiet), subtle link */}
               <div className="px-4 py-4 sm:px-5 sm:py-5">
-                <p className="text-sm font-medium tracking-wide text-[var(--foreground)]">
+                <p className="text-xs text-[var(--muted)]">
                   {project.location}
                 </p>
-                <h2 className="mt-1 text-lg font-semibold tracking-tight text-[var(--foreground)] group-hover:text-[var(--accent)]">
+                <h2 className="mt-0.5 text-lg font-semibold tracking-tight text-[var(--foreground)] group-hover:text-[var(--accent)] sm:text-xl">
                   {project.title}
                 </h2>
-                <p className="mt-1.5 text-[10px] font-medium uppercase tracking-wider text-[var(--muted)]">
+                <p className="mt-1 text-[10px] font-medium uppercase tracking-wider text-[var(--muted)]/90">
                   {project.sector}
                   {scaleLabel !== "—" && (
-                    <span className="ml-1.5 normal-case tracking-normal text-[var(--foreground)]/60">
+                    <span className="ml-1.5 normal-case tracking-normal text-[var(--muted)]">
                       · {scaleLabel}
                     </span>
                   )}
                 </p>
+                <span className="mt-3 inline-block text-xs text-[var(--muted)] transition group-hover:text-[var(--accent)]">
+                  View project →
+                </span>
               </div>
             </Link>
           );

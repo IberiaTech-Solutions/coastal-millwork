@@ -126,10 +126,10 @@ export default function Home() {
         scrollToId="intro"
       />
 
-      {/* Intro – spacious, text-heavy; 2026 pattern: light → darker, dense → spacious */}
-      <AnimateSection as="section" id="intro" className="scroll-mt-24 border-b border-[var(--border)] bg-intro px-4 py-32 sm:py-40">
+      {/* Intro – mission callout + paragraph; 2026: callout block, more whitespace around quote */}
+      <AnimateSection as="section" id="intro" className="scroll-mt-24 border-b border-[var(--border)] bg-intro px-4 py-36 sm:py-48">
         <div className="mx-auto max-w-4xl">
-          <p className="pull-quote">
+          <p className="mission-callout">
             Our primary mission is to &ldquo;provide the highest level of comprehensive, pre-project design integration and pro-active construction management in the production and installation of premium finished, architectural wood and interior specialty products.&rdquo;
           </p>
           <hr className="rule-design rule-design--thick mt-14 mb-14 sm:mt-16 sm:mb-16" aria-hidden />
@@ -144,7 +144,7 @@ export default function Home() {
         </div>
       </AnimateSection>
 
-      {/* Process sections – step indicators, alternating layout, animate independently */}
+      {/* Process sections – equal heights, same image ratio, identical padding; hover scale + arrow nudge */}
       <section id="services" className="section-overlap-up scroll-mt-24 border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 pb-20 pt-18 sm:pb-24 sm:pt-22">
         <div className="mx-auto max-w-6xl">
           <div className="mb-14 text-center sm:mb-16">
@@ -156,7 +156,7 @@ export default function Home() {
             </div>
             <hr className="rule-design rule-design--thick rule-design--center mt-6" aria-hidden />
           </div>
-          <div className="space-y-12 sm:space-y-16">
+          <div className="grid gap-10 sm:gap-12 lg:grid-cols-1">
             {FEATURED.map((item, index) => {
               const step = String(index + 1).padStart(2, "0");
               const imageFirst = index % 2 === 0;
@@ -168,15 +168,15 @@ export default function Home() {
                     </p>
                     <Link
                       href={item.href}
-                      className={`card-float group flex flex-col gap-6 rounded-lg bg-white p-8 transition hover:bg-white lg:flex-row lg:items-stretch lg:gap-10 lg:p-10 ${!imageFirst ? "lg:flex-row-reverse" : ""}`}
+                      className={`card-float capability-card group flex flex-col gap-6 rounded-lg bg-white p-8 transition hover:bg-white lg:flex-row lg:items-stretch lg:gap-10 lg:p-10 ${!imageFirst ? "lg:flex-row-reverse" : ""}`}
                     >
-                      <div className={`relative flex-1 overflow-hidden rounded-lg bg-[var(--border)] ${index === 1 ? "aspect-square max-w-sm lg:max-w-xs" : "aspect-[4/3] lg:min-w-[280px] lg:max-w-sm"}`}>
+                      <div className="relative aspect-[4/3] min-h-[200px] flex-1 overflow-hidden rounded-lg bg-[var(--border)] lg:min-w-[280px] lg:max-w-sm">
                         <ImageReveal className="absolute inset-0 h-full w-full">
                           <Image
                             src={item.image}
                             alt={item.alt}
                             fill
-                            className="object-cover"
+                            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
                             sizes="(max-width: 1024px) 100vw, 320px"
                           />
                         </ImageReveal>
@@ -188,7 +188,7 @@ export default function Home() {
                         <p className="mt-3 text-[var(--muted)] leading-relaxed sm:text-base">
                           {item.description}
                         </p>
-                        <span className="mt-5 inline-block text-sm font-medium text-[var(--foreground)] group-hover:underline">
+                        <span className="capability-card-arrow mt-5 inline-block text-sm font-medium text-[var(--foreground)] group-hover:underline">
                           Learn more →
                         </span>
                       </div>
@@ -201,20 +201,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mission – manifesto moment: bigger text, more isolation, less UI */}
-      <AnimateSection as="section" className="border-b border-[var(--border)] bg-band px-4 py-40 sm:py-56">
+      {/* "Not being the concern" – hero moment: bigger type, more negative space, no clutter */}
+      <AnimateSection as="section" className="border-b border-[var(--border)] bg-band px-4 py-48 sm:py-64">
         <div className="mx-auto max-w-3xl text-center">
-          <blockquote className="manifesto-quote">
+          <blockquote className="manifesto-quote manifesto-quote--hero">
             We are committed to &ldquo;not being the concern&rdquo; for any General Contractor or Design Team—and our track record and reputation have come from that commitment.
           </blockquote>
-          <p className="mt-12 text-[11px] font-normal text-[var(--muted)]/80 sm:text-xs">
-            From medical upfits to projects with multimillion dollar scope values.
-          </p>
-          <p className="mt-3">
-            <Link href="/about" className="text-[11px] font-medium text-[var(--accent)] hover:underline sm:text-xs">
-              About Us →
-            </Link>
-          </p>
         </div>
       </AnimateSection>
 
@@ -228,7 +220,7 @@ export default function Home() {
             <AnimateLine className="!mt-0.5 !block" />
           </div>
           <hr className="rule-design rule-design--thick rule-design--center mt-6" aria-hidden />
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:gap-6">
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 lg:gap-6">
             {SECTORS.map(({ label, href }) => (
               <Link
                 key={label}
@@ -255,7 +247,7 @@ export default function Home() {
             <AnimateLine className="!mt-0.5 !block" />
           </div>
           <hr className="rule-design rule-design--thick rule-design--center mt-6" aria-hidden />
-          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-10 xl:grid-cols-5 xl:gap-8">
+          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-10 xl:grid-cols-5 xl:gap-8 awards-gallery">
             {AWARDS.map((award) => (
               <AwardCard
                 key={award.name}

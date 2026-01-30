@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const NAV_LINKS = [
@@ -15,6 +16,7 @@ const NAV_LINKS = [
 const SCROLL_HIDE_THRESHOLD = 60;
 
 export default function Header() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [topBarHidden, setTopBarHidden] = useState(false);
 
@@ -37,20 +39,20 @@ export default function Header() {
       {/* Top bar – hides on scroll */}
       <div
         className="overflow-hidden border-b border-[var(--border)]/60 bg-[var(--background)] transition-[max-height,opacity] duration-300 ease-out"
-        style={{ maxHeight: topBarHidden ? 0 : 48, opacity: topBarHidden ? 0 : 1 }}
+        style={{ maxHeight: topBarHidden ? 0 : 40, opacity: topBarHidden ? 0 : 1 }}
       >
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-2 text-xs text-[var(--muted)] lg:px-8">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-1.5 px-4 py-1.5 text-[11px] tracking-tight text-[var(--muted)] lg:px-8">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <a href="/maps" className="hover:text-[var(--foreground)]">
               1025 W 5th N St, Summerville, SC 29483
             </a>
             <span className="hidden sm:inline" aria-hidden>·</span>
-            <span className="flex items-center gap-x-3">
+            <span className="flex items-center gap-x-2">
               <a href="tel:+18438739192" className="hover:text-[var(--foreground)]">Ph: 843.873.9192</a>
               <span className="hidden sm:inline">Fax: 843.873.9296</span>
             </span>
           </div>
-          <p className="hidden font-medium text-[var(--foreground)]/90 md:block">
+          <p className="hidden text-[var(--foreground)]/80 md:block">
             Award-winning, full-service millwork contractor · AWI-QCP Premium Certified
           </p>
         </div>
@@ -68,15 +70,20 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
-          {NAV_LINKS.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-sm font-medium tracking-[0.05em] text-[var(--muted)] transition hover:text-[var(--foreground)]"
-            >
-              {label}
-            </Link>
-          ))}
+          {NAV_LINKS.map(({ href, label }) => {
+            const isActive = pathname === href || (href !== "/" && pathname?.startsWith(href));
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`pb-0.5 text-sm font-medium tracking-[0.05em] transition hover:text-[var(--foreground)] ${
+                  isActive ? "border-b border-[var(--foreground)]/30 text-[var(--foreground)]" : "text-[var(--muted)]"
+                }`}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </nav>
 
         <button

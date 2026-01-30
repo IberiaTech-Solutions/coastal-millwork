@@ -17,41 +17,43 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Process strip – visual anchor, scanability */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-8 sm:py-10" aria-label="Our process">
-        <div className="mx-auto max-w-4xl">
-          <nav className="process-strip" aria-label="Process steps">
-            <span>Design & consultation</span>
-            <span className="process-strip-sep" aria-hidden>·</span>
-            <span>Value engineering</span>
-            <span className="process-strip-sep" aria-hidden>·</span>
-            <span>Submittals</span>
-            <span className="process-strip-sep" aria-hidden>·</span>
-            <span>Production</span>
-            <span className="process-strip-sep" aria-hidden>·</span>
-            <span>Project management</span>
-            <span className="process-strip-sep" aria-hidden>·</span>
-            <span>Installation</span>
-          </nav>
+      {/* Service rail – jump links, single row, no scroll (compact) */}
+      <section className="border-b border-[var(--border)] bg-white px-4 py-6 sm:py-8" aria-label="Our process">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-center text-[10px] font-semibold uppercase tracking-wider text-[var(--muted)]">Our process</p>
+          <p className="mt-1 text-center text-xs text-[var(--muted)]">From design through install</p>
+          <nav className="service-rail service-rail--links mt-4" aria-label="Jump to process step">
+              <Link href="#design-consultation" className="service-rail-item">Design & consultation</Link>
+              <span className="service-rail-arrow" aria-hidden>→</span>
+              <Link href="#value-engineering" className="service-rail-item">Value engineering</Link>
+              <span className="service-rail-arrow" aria-hidden>→</span>
+              <Link href="#submittals" className="service-rail-item">Submittals</Link>
+              <span className="service-rail-arrow" aria-hidden>→</span>
+              <Link href="#production" className="service-rail-item">Production</Link>
+              <span className="service-rail-arrow" aria-hidden>→</span>
+              <Link href="#project-management" className="service-rail-item">Project management</Link>
+              <span className="service-rail-arrow" aria-hidden>→</span>
+              <Link href="#installation" className="service-rail-item">Installation</Link>
+            </nav>
         </div>
       </section>
 
-      {/* Design Assist, Design Build, and Design Consultation */}
-      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
+      {/* 01 Design & consultation */}
+      <section id="design-consultation" className="scroll-mt-24 border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl space-y-10">
           <div className="service-group">
-            <div className="flex flex-wrap items-baseline gap-2">
-              <span className="step-marker" aria-hidden>01</span>
-              <p className="section-label">Design & consultation</p>
-            </div>
-            <hr className="rule-design rule-design--thick mt-2 mb-4" aria-hidden />
-            <div className="flex items-center gap-3">
-              <span className="service-heading-bar" aria-hidden />
-              <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
+            <div className="service-section-header">
+              <div className="flex flex-wrap items-baseline gap-2">
+                <span className="step-marker" aria-hidden>01</span>
+                <h2 className="section-label text-[var(--foreground)]/90">Design & consultation</h2>
+              </div>
+              <p className="mt-2 text-lg font-semibold tracking-tight text-[var(--foreground)]/90 sm:text-xl">
                 Design Assist, Design Build, and Design Consultation
-              </h2>
+              </p>
             </div>
-          <p className="mt-8 text-[var(--muted)] leading-relaxed">
+            <hr className="rule-design rule-design--thick" aria-hidden />
+            <hr className="rule-hairline" aria-hidden />
+          <p className="text-[var(--muted)] leading-relaxed">
             Coastal Millwork and Supply (CMS) offers a complete package of design consultations. Our five-man engineering team holds degrees in design and architecture, and combined with our experienced project management staff, we can help any owner, designer, and general contractor through design and development … and even concept. We offer advice in design function optimization and product longevity in combination to the desired aesthetics. This is critical in managing expectations, reducing process costs, and maximizing long-term value. This value-added benefit also helps provide accurate budgets for our scope of work early in the project.
           </p>
           <figure className="mt-10">
@@ -69,18 +71,18 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Value Engineering */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
+      {/* 02 Value engineering */}
+      <section id="value-engineering" className="scroll-mt-24 border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <div className="service-group">
-            <div className="flex flex-wrap items-baseline gap-2">
-              <span className="step-marker" aria-hidden>02</span>
+            <div className="service-section-header">
+              <div className="flex flex-wrap items-baseline gap-2">
+                <span className="step-marker" aria-hidden>02</span>
+                <h2 className="section-label text-[var(--foreground)]/90">Value engineering</h2>
+              </div>
             </div>
-            <div className="flex items-center gap-3 mt-2">
-              <span className="service-heading-bar" aria-hidden />
-              <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">Value Engineering</h2>
-            </div>
-            <hr className="rule-design rule-design--thick mt-3 mb-6" aria-hidden />
+            <hr className="rule-design rule-design--thick" aria-hidden />
+            <hr className="rule-hairline" aria-hidden />
             <p className="text-[var(--muted)] leading-relaxed">
               Meeting the needs of cost-conscious owners has become a very important benefit in today&apos;s economy. Using the same resources as in design consultation, CMS can work to find reliable, concept-similar options for any project.
             </p>
@@ -88,18 +90,18 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Submittals */}
-      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
+      {/* 03 Submittals */}
+      <section id="submittals" className="scroll-mt-24 border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <div className="service-group">
-            <div className="flex flex-wrap items-baseline gap-2">
-              <span className="step-marker" aria-hidden>03</span>
+            <div className="service-section-header">
+              <div className="flex flex-wrap items-baseline gap-2">
+                <span className="step-marker" aria-hidden>03</span>
+                <h2 className="section-label text-[var(--foreground)]/90">Submittals</h2>
+              </div>
             </div>
-            <div className="flex items-center gap-3 mt-2">
-              <span className="service-heading-bar" aria-hidden />
-              <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">Submittals</h2>
-            </div>
-            <hr className="rule-design rule-design--thick mt-3 mb-6" aria-hidden />
+            <hr className="rule-design rule-design--thick" aria-hidden />
+            <hr className="rule-hairline" aria-hidden />
           <p className="text-[var(--muted)] leading-relaxed">
             No millwork contractor in our region spends as much time and resources on this stage of the project than CMS. We recognize that our final submittals become the road map for any project&apos;s success and the more proactive, collaborative, and detailed this function is, the higher the level of success the final project reaches.
           </p>
@@ -122,18 +124,18 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Production */}
-      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
+      {/* 04 Production */}
+      <section id="production" className="scroll-mt-24 border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <div className="service-group">
-            <div className="flex flex-wrap items-baseline gap-2">
-              <span className="step-marker" aria-hidden>04</span>
+            <div className="service-section-header">
+              <div className="flex flex-wrap items-baseline gap-2">
+                <span className="step-marker" aria-hidden>04</span>
+                <h2 className="section-label text-[var(--foreground)]/90">Production</h2>
+              </div>
             </div>
-            <div className="flex items-center gap-3 mt-2">
-              <span className="service-heading-bar" aria-hidden />
-              <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">Production</h2>
-            </div>
-            <hr className="rule-design rule-design--thick mt-3 mb-6" aria-hidden />
+            <hr className="rule-design rule-design--thick" aria-hidden />
+            <hr className="rule-hairline" aria-hidden />
           <p className="text-[var(--muted)] leading-relaxed">
             State of the art, top-of-the-line production equipment partnered with a veteran plant staff is the backbone of our production. Combine that with our submittal/production software and you are ensured unsurpassed quality that always meets or exceeds AWI specifications. In fact, all casework products are constructed per AWI-Premium standards, regardless of contract grade.
           </p>
@@ -149,36 +151,32 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Project Management + Installation – two groups with divider */}
+      {/* 05 Project management + 06 Installation */}
       <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl space-y-10">
-          <div className="service-group">
-            <div className="flex flex-wrap items-baseline gap-2">
-              <span className="step-marker" aria-hidden>05</span>
+          <div id="project-management" className="scroll-mt-24 service-group">
+            <div className="service-section-header">
+              <div className="flex flex-wrap items-baseline gap-2">
+                <span className="step-marker" aria-hidden>05</span>
+                <h2 className="section-label text-[var(--foreground)]/90">Project management</h2>
+              </div>
             </div>
-            <div className="flex items-center gap-3 mt-2">
-              <span className="service-heading-bar" aria-hidden />
-              <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
-                Project Management
-              </h2>
-            </div>
-            <hr className="rule-design rule-design--thick mt-3 mb-6" aria-hidden />
+            <hr className="rule-design rule-design--thick" aria-hidden />
+            <hr className="rule-hairline" aria-hidden />
             <p className="text-[var(--muted)] leading-relaxed">
               Our project managers (PMs) are the conductors of the CMS orchestra, so to speak. Every project is assigned into a team managed by the project managers. The teams meet on each project individually once a week. The PMs are responsible for all submittal oversight, contractor collaborations/coordination, site condition management, safety SOP and compliance, and installation.
             </p>
           </div>
           <hr className="rule-design rule-design--thick rule-design--center" aria-hidden />
-          <div className="service-group">
-            <div className="flex flex-wrap items-baseline gap-2">
-              <span className="step-marker" aria-hidden>06</span>
+          <div id="installation" className="scroll-mt-24 service-group">
+            <div className="service-section-header">
+              <div className="flex flex-wrap items-baseline gap-2">
+                <span className="step-marker" aria-hidden>06</span>
+                <h2 className="section-label text-[var(--foreground)]/90">Installation</h2>
+              </div>
             </div>
-            <div className="flex items-center gap-3 mt-2">
-              <span className="service-heading-bar" aria-hidden />
-              <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
-                Installation
-              </h2>
-            </div>
-            <hr className="rule-design rule-design--thick mt-3 mb-6" aria-hidden />
+            <hr className="rule-design rule-design--thick" aria-hidden />
+            <hr className="rule-hairline" aria-hidden />
             <p className="text-[var(--muted)] leading-relaxed">
               Often seen as the face of the company, our highly skilled, professional install teams are the best in the business. Highly integrated into the whole team model from the start of the project, our installation professionals know exactly how to complete any product design or dynamic. Well versed in AWI standards and always focused on safety, our teams work long hours and are dedicated to completing projects on time with minimal, if any, punch lists.
             </p>

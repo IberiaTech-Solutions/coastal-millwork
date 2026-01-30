@@ -1,4 +1,4 @@
-import FAQItem from "@/components/FAQItem";
+import FAQsSection from "@/components/FAQsSection";
 
 const FAQ_GROUPS = [
   {
@@ -82,29 +82,8 @@ export default function FAQsPage() {
         </div>
       </section>
 
-      {/* FAQ groups – clear headers, more spacing between blocks */}
-      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-28" aria-label="FAQ by topic">
-        <div className="mx-auto max-w-3xl space-y-16">
-          {FAQ_GROUPS.map((group) => (
-            <div key={group.title} className="faq-group">
-              <header className="faq-group-header">
-                <h2 className="faq-group-title">{group.title}</h2>
-                <hr className="rule-design rule-design--thick mt-3 mb-0" aria-hidden />
-              </header>
-              <div className="faq-group-list">
-                {group.faqs.map((faq) => (
-                  <FAQItem
-                    key={faq.q}
-                    question={faq.q}
-                    answer={faq.a}
-                    list={"list" in faq ? faq.list : undefined}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* FAQ groups – search, accordions, more spacing between groups */}
+      <FAQsSection groups={FAQ_GROUPS} />
 
       <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 py-18 pb-24 sm:py-20 sm:pb-28">
         <ul className="grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">

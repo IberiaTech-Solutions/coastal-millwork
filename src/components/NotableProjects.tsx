@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import CountUp from "@/components/CountUp";
 import AnimateHeading from "@/components/AnimateHeading";
 
 export type ProjectTier = 1 | 2 | 3 | 4;
@@ -48,6 +47,10 @@ const TIER_LABEL_STYLES: Record<ProjectTier, string> = {
 /** Curated gallery: show this many items at once (exhibits, not index). */
 const GALLERY_PREVIEW_COUNT = 6;
 
+/** Fallback copy so we never render "0+ projects in 0 years" (CountUp starts at 0). */
+const HERO_PROJECTS_COUNT = 800;
+const HERO_YEARS_COUNT = 20;
+
 const TIER_BAR_COLORS: Record<ProjectTier, string> = {
   1: "bg-amber-700",
   2: "bg-slate-600",
@@ -88,8 +91,7 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
               Notable & Current Projects
             </AnimateHeading>
             <p className="mt-3 max-w-xl text-sm text-[var(--muted)]">
-              Over <CountUp end={800} suffix="+" className="tabular-nums" /> architectural projects in{" "}
-              <CountUp end={20} className="tabular-nums" /> years. Contract scope from $1M to $10M+. Filter by scope below.
+              Over {HERO_PROJECTS_COUNT}+ architectural projects in {HERO_YEARS_COUNT}+ years. Contract scope from $1M to $10M+. Filter by scope below.
             </p>
           </div>
           <Link

@@ -24,13 +24,15 @@ export default function MapsPage() {
         </div>
       </section>
 
-      {/* Operational footprint + service territory – intentional context */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-12 sm:py-14">
+      {/* Operational footprint – quiet intro panel */}
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-14 sm:py-16" aria-label="Operational footprint">
         <div className="mx-auto max-w-2xl">
-          <h2 className="section-label text-[var(--foreground)]/90">Operational footprint</h2>
-          <p className="mt-3 text-base leading-relaxed text-[var(--foreground)] sm:text-lg">
-            Southeast focus—South Carolina, Georgia, North Carolina, and beyond. Design, fabrication, and engineering are based at our Summerville facility.
-          </p>
+          <div className="intro-panel rounded-lg border border-[var(--border-drafting)] bg-[var(--background)] px-5 py-6 sm:px-6 sm:py-7">
+            <h2 className="section-label text-[var(--foreground)]/80">Operational footprint</h2>
+            <p className="mt-3 text-[0.9375rem] leading-relaxed text-[var(--muted)] sm:text-base">
+              Southeast focus—South Carolina, Georgia, North Carolina, and beyond. Design, fabrication, and engineering are based at our Summerville facility.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -70,8 +72,8 @@ export default function MapsPage() {
               Open in Google Maps →
             </a>
           </p>
-          <div className="map-wrapper mt-10">
-            <div className="aspect-video w-full max-w-xl mx-auto overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--border)]/40">
+          <div className="map-wrapper map-embed mt-10">
+            <div className="aspect-video w-full max-w-xl mx-auto overflow-hidden rounded-lg border border-[var(--border-drafting)] bg-[var(--border)]/30 shadow-none">
               <iframe
                 title="Map: 1025 W 5th N St, Summerville, SC 29483"
                 src="https://maps.google.com/maps?q=1025+W+5th+N+St+Summerville+SC+29483&z=15&output=embed"
@@ -85,8 +87,10 @@ export default function MapsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 py-18 pb-24 sm:py-20 sm:pb-28">
-        <ul className="grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
+      {/* Capabilities at a glance – calmer list */}
+      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 py-18 pb-24 sm:py-20 sm:pb-28" aria-label="Capabilities at a glance">
+        <h2 className="section-label text-[var(--foreground)]/80">Capabilities at a glance</h2>
+        <ul className="mt-4 grid gap-2.5 text-[0.9375rem] leading-relaxed text-[var(--muted)] sm:grid-cols-2 sm:gap-3">
           {HIGHLIGHTS.map((item) => (
             <li key={item}>{item}</li>
           ))}
