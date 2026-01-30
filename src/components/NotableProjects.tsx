@@ -80,7 +80,7 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
   const hasMore = filtered.length > GALLERY_PREVIEW_COUNT;
 
   return (
-    <section id="projects" className="scroll-mt-24 border-b border-[var(--border)] bg-section-alt px-4 py-24 sm:py-32">
+    <section id="projects" className="scroll-mt-24 border-b border-[var(--border)] bg-section-alt px-4 py-28 sm:py-36">
       <div className="mx-auto max-w-5xl">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end sm:gap-8">
           <div>

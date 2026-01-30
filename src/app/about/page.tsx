@@ -31,7 +31,7 @@ export default function AboutPage() {
   return (
     <div>
       {/* Page hero + value statement */}
-      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-label section-label-with-rule">About Us</p>
           <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
@@ -43,8 +43,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Key numbers – visual breakout */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-10 sm:py-12">
+      {/* Key numbers – 2% tone (bg-subtle); dense */}
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-12 sm:py-14">
         <div className="mx-auto max-w-4xl">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
             {METRICS.map(({ value, label }) => (
@@ -62,7 +62,7 @@ export default function AboutPage() {
       </section>
 
       {/* Lead + what we provide */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <p className="text-lg leading-relaxed text-[var(--foreground)] sm:text-xl">
             Coastal Millwork and Supply LLC (CMS) is an award-winning, AWI premium-certified, full-service, commercial interiors contractor. We provide in-house design consultation/engineering, fabrication, and the installation of:
@@ -85,32 +85,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Leadership – photos + short bios, link to full team */}
-      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="section-label section-label-with-rule text-center">Leadership</h2>
-          <p className="mt-2 text-center text-lg font-semibold tracking-[-0.025em] text-[var(--foreground)]">
-            The people behind Coastal Millwork & Supply
+      {/* Leadership – compact teaser (not full bios like Team); link to Team */}
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="section-label text-center">Leadership</h2>
+          <hr className="rule-design rule-design--thick rule-design--center mt-4" aria-hidden />
+          <p className="mt-6 text-center text-sm text-[var(--muted)]">
+            Who leads CMS—bios and the full team on our Team page.
           </p>
-          <div className="mt-10 grid gap-10 sm:grid-cols-3 sm:gap-8">
+          <div className="mt-10 flex flex-wrap justify-center gap-x-12 gap-y-8 sm:gap-x-16">
             {LEADERSHIP.map((person) => (
-              <article key={person.name} className="flex flex-col items-center text-center sm:block sm:text-left">
-                <div className="mx-auto aspect-[3/4] w-full max-w-[11rem] overflow-hidden rounded-lg bg-[var(--border)] shadow-sm sm:mx-0">
-                  <Image src={person.image} alt={person.name} width={135} height={180} className="h-full w-full object-cover object-top" />
+              <div key={person.name} className="flex flex-col items-center text-center">
+                <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-[var(--border)] ring-2 ring-[var(--border)] ring-offset-2 ring-offset-[var(--background)]">
+                  <Image src={person.image} alt={person.name} width={80} height={80} className="h-full w-full object-cover object-top" />
                 </div>
-                <h3 className="mt-4 text-lg font-semibold tracking-[-0.025em] text-[var(--foreground)]">
+                <p className="mt-3 text-sm font-semibold tracking-tight text-[var(--foreground)]">
                   {person.name}
-                </h3>
-                <p className="mt-1 text-sm font-medium text-[var(--muted)]">
+                </p>
+                <p className="mt-0.5 text-xs text-[var(--muted)]">
                   {person.title}
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-                  {person.bio}
-                </p>
-              </article>
+              </div>
             ))}
           </div>
-          <p className="mt-12 text-center">
+          <p className="mt-10 text-center">
             <Link href="/team" className="text-sm font-medium text-[var(--accent)] hover:underline">
               Meet the full team →
             </Link>
@@ -119,7 +117,7 @@ export default function AboutPage() {
       </section>
 
       {/* Figure 1 */}
-      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <figure>
             <div className="aspect-video w-full overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
@@ -142,7 +140,7 @@ export default function AboutPage() {
       </section>
 
       {/* Capabilities + figure 2 */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <p className="text-[var(--muted)] leading-relaxed">
             CMS takes great pride in tackling the most complex project designs and has never failed on any project, regardless of size, environment or complexity. We have the human resources and mechanical capabilities to perform any task required. Offering expert guidance in means and methods to achieve any design intent by incorporating pragmatic experience and AWI standards so that any functional design can handle the wear and tear of its environment for decades.
@@ -168,7 +166,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-white px-4 py-16 sm:py-20">
+      <section className="bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <Link href="/contact" className="inline-flex items-center rounded-full border-2 border-[var(--foreground)] bg-transparent px-6 py-2.5 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--foreground)] hover:text-white">
             Contact Us →

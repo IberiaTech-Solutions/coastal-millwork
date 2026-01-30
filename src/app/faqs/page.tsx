@@ -60,35 +60,38 @@ const HIGHLIGHTS = [
 export default function FAQsPage() {
   return (
     <div>
-      {/* Hero – same pattern as other pages */}
-      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
+      {/* Hero – thoughtful, not defensive */}
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-label section-label-with-rule">FAQs</p>
           <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
             Frequently Asked Questions
           </h1>
-        </div>
-      </section>
-
-      {/* Intro – why this FAQ exists */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-10 sm:py-12">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm leading-relaxed text-[var(--muted)] sm:text-base">
-            Common questions about working with us, our process, and our credentials.
+          <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
+            Answers to common questions—so you can focus on the project.
           </p>
         </div>
       </section>
 
-      {/* FAQ groups – by theme: Working With CMS, Process, Certifications */}
-      <section className="border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 py-16 sm:py-24">
-        <div className="mx-auto max-w-3xl space-y-12">
+      {/* Intro – inviting, not defensive */}
+      <section className="border-b border-[var(--border)] bg-white px-4 py-12 sm:py-14">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm leading-relaxed text-[var(--muted)] sm:text-base">
+            Working with us, our process, and our credentials.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ groups – clear headers, more spacing between blocks */}
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-28" aria-label="FAQ by topic">
+        <div className="mx-auto max-w-3xl space-y-16">
           {FAQ_GROUPS.map((group) => (
-            <div key={group.title} className="service-group">
-              <h2 className="section-label text-[var(--foreground)]/90">
-                {group.title}
-              </h2>
-              <hr className="rule-design rule-design--thick mt-2 mb-6" aria-hidden />
-              <div className="space-y-0">
+            <div key={group.title} className="faq-group">
+              <header className="faq-group-header">
+                <h2 className="faq-group-title">{group.title}</h2>
+                <hr className="rule-design rule-design--thick mt-3 mb-0" aria-hidden />
+              </header>
+              <div className="faq-group-list">
                 {group.faqs.map((faq) => (
                   <FAQItem
                     key={faq.q}
@@ -103,7 +106,7 @@ export default function FAQsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 py-14 pb-20 sm:py-16 sm:pb-24">
+      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 py-18 pb-24 sm:py-20 sm:pb-28">
         <ul className="grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
           {HIGHLIGHTS.map((item) => (
             <li key={item}>{item}</li>

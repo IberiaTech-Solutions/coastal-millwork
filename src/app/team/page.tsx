@@ -27,7 +27,6 @@ const TEAM: TeamMember[] = [
   { name: "Elisabeth Beaty", title: "Architectural Design Engineer", image: "/images/team/beaty-elisabeth_135x180.jpg", blurb: "10 years in construction and design. Residential showroom background; digital drawings and commercial construction.", bio: "Elisabeth grew up in construction as her father and brothers are all custom builders. She learned to read blueprints at a very young age. She has been a professional in the construction and design industry for 10 years. She spent most of her career in the residential market where she cultivated and managed a large remodeling showroom in north Atlanta. Elisabeth spent the past several years running her own small company specializing in digital drawings and renderings. She has seamlessly made the transition to commercial construction and has become a very strong member of our team.", group: "Engineering" },
 ];
 
-const ROLE_ORDER: RoleGroup[] = ["Leadership", "Operations", "Engineering"];
 const ROLE_LABELS: Record<RoleGroup, string> = {
   Leadership: "Leadership",
   Operations: "Operations & administration",
@@ -38,17 +37,20 @@ export default function TeamPage() {
   return (
     <div>
       {/* Page hero */}
-      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-label section-label-with-rule">Our Team</p>
           <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
             The people behind Coastal Millwork & Supply
           </h1>
+          <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
+            The people behind the work.
+          </p>
         </div>
       </section>
 
       {/* Team photo */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-4xl">
           <figure>
             <div className="aspect-[2/1] w-full overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
@@ -61,35 +63,36 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Team by role – hierarchy, blurbs, optional certifications */}
-      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
+      {/* Team – one section, same layout for everyone (equal valued) */}
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-28" aria-label="Team by role">
         <div className="mx-auto max-w-4xl">
-          <h2 className="section-label section-label-with-rule text-center">Leadership & staff</h2>
-          {ROLE_ORDER.map((group) => {
+          <h2 className="section-label text-center">Team</h2>
+          <hr className="rule-design rule-design--thick rule-design--center mt-4" aria-hidden />
+          {(["Leadership", "Operations", "Engineering"] as const).map((group) => {
             const members = TEAM.filter((p) => p.group === group);
             return (
-              <div key={group} className="mt-14 first:mt-10">
+              <div key={group} className="mt-16 first:mt-12">
                 <h3 className="section-label text-[var(--foreground)]/80">
                   {ROLE_LABELS[group]}
                 </h3>
-                <hr className="rule-design rule-design--thick mt-2 mb-8" aria-hidden />
-                <ul className="flex flex-col gap-12" role="list">
+                <hr className="rule-design rule-design--thick mt-2 mb-10" aria-hidden />
+                <ul className="flex flex-col" role="list">
                   {members.map((person) => (
-                    <li key={person.name}>
-                      <article className="flex flex-col gap-6 sm:flex-row sm:gap-8">
-                        <div className="shrink-0 sm:w-40">
-                          <div className="aspect-[3/4] w-full max-w-[10rem] overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
-                            <Image src={person.image} alt={person.name} width={135} height={180} className="h-full w-full object-cover object-top" />
+                    <li key={person.name} className="team-card">
+                      <article className="flex flex-col gap-6 sm:flex-row sm:gap-10">
+                        <div className="shrink-0">
+                          <div className="team-portrait">
+                            <Image src={person.image} alt={person.name} width={135} height={180} />
                           </div>
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="text-xl font-semibold tracking-[-0.025em] text-[var(--foreground)]">
+                          <h4 className="text-lg font-semibold tracking-[-0.025em] text-[var(--foreground)]">
                             {person.name}
                           </h4>
-                          <p className="mt-1 text-sm font-medium text-[var(--muted)]">
+                          <p className="mt-1 text-sm text-[var(--muted)]">
                             {person.title}
                           </p>
-                          <p className="mt-3 text-sm font-medium leading-snug text-[var(--foreground)]/90">
+                          <p className="mt-3 text-sm leading-relaxed text-[var(--foreground)]/85">
                             {person.blurb}
                           </p>
                           {person.certifications && (
@@ -98,9 +101,14 @@ export default function TeamPage() {
                             </p>
                           )}
                           {person.bio && (
-                            <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
-                              {person.bio}
-                            </p>
+                            <details className="mt-4 group">
+                              <summary className="cursor-pointer text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)]/80">
+                                Full bio
+                              </summary>
+                              <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+                                {person.bio}
+                              </p>
+                            </details>
                           )}
                         </div>
                       </article>
@@ -114,7 +122,7 @@ export default function TeamPage() {
       </section>
 
       {/* The Shop */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-4xl">
           <h2 className="section-label">The Shop</h2>
           <p className="mt-2 text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">

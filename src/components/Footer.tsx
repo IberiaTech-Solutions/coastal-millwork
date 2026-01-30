@@ -6,14 +6,14 @@ export default function Footer() {
   return (
     <footer className="bg-[var(--bg-paper)] text-[var(--foreground)]">
       {/* Certifications – prominent band */}
-      <div className="border-b border-[var(--border)] px-4 py-12 sm:py-16">
+      <div className="border-b border-[var(--border)] px-4 py-14 sm:py-18">
         <div className="mx-auto max-w-6xl">
           <Certifications title="Certifications & affiliations" />
         </div>
       </div>
 
       {/* Main footer content */}
-      <div className="mx-auto max-w-6xl px-4 py-14 lg:px-8 lg:py-16">
+      <div className="mx-auto max-w-6xl px-4 py-16 lg:px-8 lg:py-20">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-16">
           <div>
             <Link href="/" className="inline-block" aria-label="Coastal Millwork and Supply – Home">
@@ -61,8 +61,9 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className="border-t border-[var(--border)] px-4 py-6">
+      {/* Copyright – hairline separator (drafting identity) */}
+      <div className="rule-hairline mx-auto max-w-6xl" aria-hidden />
+      <div className="px-4 py-6">
         <p className="text-center text-xs text-[var(--muted)]">
           © 2009–2026 Coastal Millwork and Supply LLC. All rights reserved.
         </p>

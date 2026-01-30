@@ -12,7 +12,7 @@ export default function MapsPage() {
   return (
     <div>
       {/* Hero – same pattern as other pages */}
-      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-label section-label-with-rule">Location</p>
           <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
@@ -25,7 +25,7 @@ export default function MapsPage() {
       </section>
 
       {/* Operational footprint + service territory – intentional context */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-10 sm:py-12">
+      <section className="border-b border-[var(--border)] bg-white px-4 py-12 sm:py-14">
         <div className="mx-auto max-w-2xl">
           <h2 className="section-label text-[var(--foreground)]/90">Operational footprint</h2>
           <p className="mt-3 text-base leading-relaxed text-[var(--foreground)] sm:text-lg">
@@ -35,7 +35,7 @@ export default function MapsPage() {
       </section>
 
       {/* Address, contact, facility usage */}
-      <section className="border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 py-14 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 py-18 sm:py-24">
         <div className="mx-auto max-w-2xl">
           <h2 className="section-label text-[var(--foreground)]/90">Address</h2>
           <p className="mt-3 text-[var(--foreground)] leading-relaxed">
@@ -53,11 +53,14 @@ export default function MapsPage() {
         </div>
       </section>
 
-      {/* Directions – map de-emphasized (padding, reduced contrast) */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-14 sm:py-20">
+      {/* Directions – map supports, not dominates; context above, de-emphasized map, more padding */}
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-28" aria-label="Directions and map">
         <div className="mx-auto max-w-2xl">
           <h2 className="section-label text-[var(--foreground)]/90">Directions</h2>
-          <p className="mt-3 text-sm text-[var(--muted)]">
+          <p className="mt-3 text-base leading-relaxed text-[var(--foreground)]/90">
+            Use the map below to get a sense of our location—or open in Google Maps for turn-by-turn directions.
+          </p>
+          <p className="mt-4 text-sm text-[var(--muted)]">
             <a
               href="https://www.google.com/maps/search/1025+W+5th+N+St+Summerville+SC+29483"
               target="_blank"
@@ -67,8 +70,8 @@ export default function MapsPage() {
               Open in Google Maps →
             </a>
           </p>
-          <div className="mt-8 rounded-lg border border-[var(--border)]/80 bg-[var(--border)]/30 p-4 sm:p-6">
-            <div className="aspect-video w-full overflow-hidden rounded-md bg-[var(--border)]/50">
+          <div className="map-wrapper mt-10">
+            <div className="aspect-video w-full max-w-xl mx-auto overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--border)]/40">
               <iframe
                 title="Map: 1025 W 5th N St, Summerville, SC 29483"
                 src="https://maps.google.com/maps?q=1025+W+5th+N+St+Summerville+SC+29483&z=15&output=embed"
@@ -82,7 +85,7 @@ export default function MapsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 py-14 pb-20 sm:py-16 sm:pb-24">
+      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 py-18 pb-24 sm:py-20 sm:pb-28">
         <ul className="grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
           {HIGHLIGHTS.map((item) => (
             <li key={item}>{item}</li>

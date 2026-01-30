@@ -5,20 +5,45 @@ export default function ServicesPage() {
   return (
     <div>
       {/* Page hero */}
-      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-label section-label-with-rule">Services</p>
           <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
             Design, development, submittals, production, and installation
           </h1>
+          <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
+            From design through install—one team, one scope.
+          </p>
+        </div>
+      </section>
+
+      {/* Process strip – visual anchor, scanability */}
+      <section className="border-b border-[var(--border)] bg-white px-4 py-8 sm:py-10" aria-label="Our process">
+        <div className="mx-auto max-w-4xl">
+          <nav className="process-strip" aria-label="Process steps">
+            <span>Design & consultation</span>
+            <span className="process-strip-sep" aria-hidden>·</span>
+            <span>Value engineering</span>
+            <span className="process-strip-sep" aria-hidden>·</span>
+            <span>Submittals</span>
+            <span className="process-strip-sep" aria-hidden>·</span>
+            <span>Production</span>
+            <span className="process-strip-sep" aria-hidden>·</span>
+            <span>Project management</span>
+            <span className="process-strip-sep" aria-hidden>·</span>
+            <span>Installation</span>
+          </nav>
         </div>
       </section>
 
       {/* Design Assist, Design Build, and Design Consultation */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl space-y-12">
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
+        <div className="mx-auto max-w-3xl space-y-10">
           <div className="service-group">
-            <p className="section-label">Design & consultation</p>
+            <div className="flex flex-wrap items-baseline gap-2">
+              <span className="step-marker" aria-hidden>01</span>
+              <p className="section-label">Design & consultation</p>
+            </div>
             <hr className="rule-design rule-design--thick mt-2 mb-4" aria-hidden />
             <div className="flex items-center gap-3">
               <span className="service-heading-bar" aria-hidden />
@@ -45,10 +70,13 @@ export default function ServicesPage() {
       </section>
 
       {/* Value Engineering */}
-      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <div className="service-group">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-baseline gap-2">
+              <span className="step-marker" aria-hidden>02</span>
+            </div>
+            <div className="flex items-center gap-3 mt-2">
               <span className="service-heading-bar" aria-hidden />
               <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">Value Engineering</h2>
             </div>
@@ -61,10 +89,13 @@ export default function ServicesPage() {
       </section>
 
       {/* Submittals */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <div className="service-group">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-baseline gap-2">
+              <span className="step-marker" aria-hidden>03</span>
+            </div>
+            <div className="flex items-center gap-3 mt-2">
               <span className="service-heading-bar" aria-hidden />
               <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">Submittals</h2>
             </div>
@@ -82,11 +113,23 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Anchor: pull quote */}
+      <section className="border-b border-[var(--border)] bg-white px-4 py-14 sm:py-16">
+        <div className="mx-auto max-w-2xl text-center">
+          <blockquote className="pull-quote text-left sm:text-center">
+            Submittals become the road map. The more proactive and detailed this function is, the higher the success.
+          </blockquote>
+        </div>
+      </section>
+
       {/* Production */}
-      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl">
           <div className="service-group">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-baseline gap-2">
+              <span className="step-marker" aria-hidden>04</span>
+            </div>
+            <div className="flex items-center gap-3 mt-2">
               <span className="service-heading-bar" aria-hidden />
               <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">Production</h2>
             </div>
@@ -107,10 +150,13 @@ export default function ServicesPage() {
       </section>
 
       {/* Project Management + Installation – two groups with divider */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl space-y-12">
+      <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
+        <div className="mx-auto max-w-3xl space-y-10">
           <div className="service-group">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-baseline gap-2">
+              <span className="step-marker" aria-hidden>05</span>
+            </div>
+            <div className="flex items-center gap-3 mt-2">
               <span className="service-heading-bar" aria-hidden />
               <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
                 Project Management
@@ -123,7 +169,10 @@ export default function ServicesPage() {
           </div>
           <hr className="rule-design rule-design--thick rule-design--center" aria-hidden />
           <div className="service-group">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-baseline gap-2">
+              <span className="step-marker" aria-hidden>06</span>
+            </div>
+            <div className="flex items-center gap-3 mt-2">
               <span className="service-heading-bar" aria-hidden />
               <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
                 Installation
@@ -141,7 +190,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-white px-4 py-16 sm:py-20">
+      <section className="bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <Link href="/contact" className="inline-flex items-center rounded-full border-2 border-[var(--foreground)] bg-transparent px-6 py-2.5 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--foreground)] hover:text-white">
             Contact Us →

@@ -15,7 +15,7 @@ export default function ContactPage() {
   return (
     <div>
       {/* Hero – same pattern as other pages */}
-      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-label section-label-with-rule">Contact</p>
           <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
@@ -24,16 +24,19 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Form – slight background contrast, more whitespace */}
-      <section className="border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 py-16 sm:py-24">
+      {/* Form – soft panel, clear spacing, reassurance under form */}
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-24 sm:py-32" aria-label="Contact form">
         <div className="mx-auto max-w-2xl">
           <div className="rounded-lg border border-[var(--border)] bg-white px-6 py-8 shadow-sm sm:px-8 sm:py-10">
             <ContactForm />
           </div>
+          <p className="mt-6 text-center text-sm text-[var(--muted)]">
+            We respond within one business day. Inquiries go directly to our project team.
+          </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 pt-14 pb-16 sm:pt-16 sm:pb-20">
+      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 pt-20 pb-24 sm:pt-24 sm:pb-28">
         <h2 className="text-xl font-semibold text-[var(--foreground)]">Address &amp; phone</h2>
         <div className="mt-4 space-y-2 text-[var(--muted)]">
           <p>
@@ -52,8 +55,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section id="maps" className="mx-auto max-w-3xl mt-12 scroll-mt-24 px-4">
-        <h2 className="text-xl font-semibold text-[var(--foreground)]">Maps / Directions</h2>
+      <section id="maps" className="mx-auto max-w-3xl mt-16 scroll-mt-24 px-4">
+        <h2 className="text-xl font-semibold text-[var(--foreground)]">Map & Directions</h2>
         <p className="mt-2 text-[var(--muted)]">
           <a
             href="https://www.google.com/maps/search/1025+W+5th+N+Street+Summerville+SC+29483"
@@ -65,15 +68,24 @@ export default function ContactPage() {
           </a>
           {" · "}
           <Link href="/maps" className="font-medium text-[var(--accent)] hover:underline">
-            Map/Directions page →
+            Map & Directions →
           </Link>
         </p>
-        <div className="mt-4 aspect-video w-full max-w-2xl rounded-lg bg-[var(--border)] flex items-center justify-center text-sm text-[var(--muted)]">
-          [ Map embed or directions ]
+        <div className="map-wrapper mt-6">
+          <div className="aspect-video w-full max-w-xl mx-auto overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--border)]/40">
+            <iframe
+              title="Map: 1025 W 5th N St, Summerville, SC 29483"
+              src="https://maps.google.com/maps?q=1025+W+5th+N+St+Summerville+SC+29483&z=15&output=embed"
+              className="h-full w-full border-0"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 pt-14 pb-16 sm:pb-20">
+      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 pt-16 pb-20 sm:pb-24">
         <ul className="grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
           {HIGHLIGHTS.map((item) => (
             <li key={item}>{item}</li>

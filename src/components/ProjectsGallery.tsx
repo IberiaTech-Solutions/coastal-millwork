@@ -77,14 +77,14 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
   return (
     <>
     <div className="mx-auto max-w-6xl">
-      {/* Filter bar – visible but not dominant */}
-      <div className="mb-12 flex flex-wrap items-center gap-5 border-b border-[var(--border)] pb-8">
+      {/* Filter bar – minimal chrome, gallery not database */}
+      <div className="mb-14 flex flex-wrap items-center gap-4 border-b border-[var(--border-drafting)] pb-10 sm:mb-16 sm:gap-5 sm:pb-12">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="section-label mr-0.5 text-[var(--foreground)]/80">Value</span>
+          <span className="text-[10px] font-medium uppercase tracking-wider text-[var(--muted)]">Value</span>
           <button
             type="button"
             onClick={() => setValueFilter("all")}
-            className={`cursor-pointer rounded-full border-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition focus:outline-none focus:ring-2 focus:ring-offset-1 ${
+            className={`cursor-pointer rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider transition focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/20 focus:ring-offset-1 ${
               valueFilter === "all" ? TIER_PILL_ACTIVE.all : TIER_PILL_INACTIVE.all
             }`}
           >
@@ -95,7 +95,7 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
               key={tier}
               type="button"
               onClick={() => setValueFilter(tier)}
-              className={`cursor-pointer rounded-full border-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition focus:outline-none focus:ring-2 focus:ring-offset-1 ${
+              className={`cursor-pointer rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider transition focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/20 focus:ring-offset-1 ${
                 valueFilter === tier ? TIER_PILL_ACTIVE[tier] : TIER_PILL_INACTIVE[tier]
               }`}
             >
@@ -105,14 +105,12 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
         </div>
         {availableSectors.length > 0 && (
           <div className="flex items-center gap-2">
-            <label htmlFor="sector-filter" className="section-label text-[var(--foreground)]/80">
-              Sector
-            </label>
+            <label htmlFor="sector-filter" className="sr-only">Sector</label>
             <select
               id="sector-filter"
               value={sectorFilter}
               onChange={(e) => setSectorFilter(e.target.value as SectorFilterValue)}
-              className="rounded-md border border-[var(--border)] bg-[var(--background)] py-1.5 pl-3 pr-8 text-xs font-medium text-[var(--foreground)] focus:border-[var(--foreground)]/40 focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/20"
+              className="rounded border border-[var(--border)]/80 bg-transparent py-1.5 pl-2 pr-6 text-[11px] font-medium text-[var(--muted)] focus:border-[var(--foreground)]/30 focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/10"
               aria-label="Filter by sector"
             >
               <option value="all">All sectors</option>
@@ -124,25 +122,23 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
             </select>
           </div>
         )}
-        <div className="ml-auto flex items-center gap-4">
-          <span className="text-xs font-medium tabular-nums text-[var(--foreground)]/80">
+        <div className="ml-auto flex items-center gap-3">
+          <span className="text-[11px] tabular-nums text-[var(--muted)]">
             {filtered.length} project{filtered.length !== 1 ? "s" : ""}
           </span>
-          <div className="relative w-40 sm:w-52">
-            <label htmlFor="projects-search" className="sr-only">
-              Search projects
-            </label>
+          <div className="relative w-36 sm:w-44">
+            <label htmlFor="projects-search" className="sr-only">Search</label>
             <input
               id="projects-search"
               type="search"
-              placeholder="Search projects"
+              placeholder="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-md border border-[var(--border)] bg-[var(--background)] py-2 pl-3 pr-8 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] focus:border-[var(--foreground)]/40 focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/20"
+              className="w-full rounded border border-[var(--border)]/80 bg-transparent py-1.5 pl-2.5 pr-7 text-[11px] text-[var(--foreground)] placeholder:text-[var(--muted)] focus:border-[var(--foreground)]/30 focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/10"
               aria-label="Search projects"
             />
-            <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[var(--muted)]" aria-hidden>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[var(--muted)]" aria-hidden>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />
               </svg>
@@ -151,8 +147,8 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
         </div>
       </div>
 
-      {/* Portfolio grid – larger featured visuals, subtle reveal, contextual captions */}
-      <AnimateSection as="div" className="grid grid-cols-2 gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-12">
+      {/* Gallery grid – more cards per row, smaller cards */}
+      <AnimateSection as="div" className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-10 lg:gap-12">
         {filtered.map((project) => {
           const coverSrc = projectImageUrl(project, project.coverImage);
           const scaleLabel = project.tier === 0 ? "—" : TIER_LABELS[project.tier];
@@ -160,36 +156,41 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
             <Link
               key={project.slug}
               href={`/projects/${project.slug}`}
-              className="card-float group block overflow-hidden rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2"
+              className="group block overflow-hidden rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2"
             >
-              <ImageReveal className="aspect-[4/5] bg-[var(--border)]">
-                <Image
-                  src={coverSrc}
-                  alt={project.title}
-                  width={560}
-                  height={700}
-                  className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.02]"
-                  sizes="(max-width: 1024px) 50vw, 50vw"
-                />
-              </ImageReveal>
-              <div className="px-5 py-6 sm:px-6 sm:py-7">
-                <h2 className="text-lg font-semibold tracking-tight text-[var(--foreground)] sm:text-xl group-hover:text-[var(--accent)]">
-                  {project.title}
-                </h2>
-                <p className="mt-2 text-sm tracking-wide text-[var(--foreground)]/80">
+              {/* Image: gentle zoom on hover, soft overlay reveal */}
+              <div className="relative aspect-[4/5] overflow-hidden bg-[var(--border)]/50">
+                <ImageReveal className="absolute inset-0 h-full w-full">
+                  <Image
+                    src={coverSrc}
+                    alt={project.title}
+                    width={400}
+                    height={500}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  />
+                </ImageReveal>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" aria-hidden />
+                <span className="absolute bottom-3 left-3 right-3 text-[11px] font-medium text-white opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100">
+                  View project →
+                </span>
+              </div>
+              {/* Location + type hierarchy – compact for smaller cards */}
+              <div className="px-4 py-4 sm:px-5 sm:py-5">
+                <p className="text-sm font-medium tracking-wide text-[var(--foreground)]">
                   {project.location}
                 </p>
-                <p className="mt-0.5 section-label text-[var(--muted)]">
+                <h2 className="mt-1 text-lg font-semibold tracking-tight text-[var(--foreground)] group-hover:text-[var(--accent)]">
+                  {project.title}
+                </h2>
+                <p className="mt-1.5 text-[10px] font-medium uppercase tracking-wider text-[var(--muted)]">
                   {project.sector}
                   {scaleLabel !== "—" && (
-                    <span className="ml-1.5 font-medium text-[var(--foreground)]/70">
+                    <span className="ml-1.5 normal-case tracking-normal text-[var(--foreground)]/60">
                       · {scaleLabel}
                     </span>
                   )}
                 </p>
-                <span className="mt-4 inline-block text-xs font-medium text-[var(--foreground)] opacity-0 transition group-hover:opacity-100">
-                  View project →
-                </span>
               </div>
             </Link>
           );
@@ -197,7 +198,7 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
       </AnimateSection>
 
       {filtered.length === 0 ? (
-        <p className="py-24 text-center text-sm text-[var(--muted)]">
+        <p className="py-28 text-center text-sm text-[var(--muted)]">
           No projects match. Try a different filter or search.
         </p>
       ) : null}

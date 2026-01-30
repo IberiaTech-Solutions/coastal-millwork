@@ -25,7 +25,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   return (
     <div>
       {/* Back + title – location & sector as typography, not labels */}
-      <section className="border-b border-[var(--border)] bg-intro px-4 py-12 sm:py-20">
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-24">
         <div className="mx-auto max-w-4xl">
           <Link
             href="/projects"
@@ -46,7 +46,7 @@ export default async function ProjectDetailPage({ params }: Props) {
       </section>
 
       {/* Key details */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-12 sm:py-16">
+      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-4xl">
           <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {project.contractValue && (
@@ -89,7 +89,7 @@ export default async function ProjectDetailPage({ params }: Props) {
 
       {/* Summary of products */}
       {project.summary.length > 0 && (
-        <section className="border-b border-[var(--border)] bg-section-alt px-4 py-12 sm:py-16">
+        <section className="border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
           <div className="mx-auto max-w-4xl">
             <h2 className="section-label section-label-with-rule">Summary of Products Engineered, Fabricated, and Installed</h2>
             <ul className="mt-8 space-y-3">
@@ -105,7 +105,7 @@ export default async function ProjectDetailPage({ params }: Props) {
       )}
 
       {/* Image gallery */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-12 sm:py-16">
+      <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-5xl">
           <h2 className="section-label section-label-with-rule">Gallery</h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -130,7 +130,7 @@ export default async function ProjectDetailPage({ params }: Props) {
       </section>
 
       {/* CTA back to gallery */}
-      <section className="bg-white px-4 py-12">
+      <section className="bg-white px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-4xl text-center">
           <Link
             href="/projects"

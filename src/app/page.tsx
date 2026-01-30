@@ -126,8 +126,8 @@ export default function Home() {
         scrollToId="intro"
       />
 
-      {/* Intro – statement → explanation (2025 pattern), same content, architectural pacing */}
-      <AnimateSection as="section" id="intro" className="scroll-mt-24 border-b border-[var(--border)] bg-intro px-4 py-28 sm:py-36">
+      {/* Intro – spacious, text-heavy; 2026 pattern: light → darker, dense → spacious */}
+      <AnimateSection as="section" id="intro" className="scroll-mt-24 border-b border-[var(--border)] bg-intro px-4 py-32 sm:py-40">
         <div className="mx-auto max-w-4xl">
           <p className="pull-quote">
             Our primary mission is to &ldquo;provide the highest level of comprehensive, pre-project design integration and pro-active construction management in the production and installation of premium finished, architectural wood and interior specialty products.&rdquo;
@@ -144,10 +144,10 @@ export default function Home() {
         </div>
       </AnimateSection>
 
-      {/* Featured – What we do: narrative beat, then cards */}
-      <AnimateSection as="section" id="services" className="section-overlap-up scroll-mt-24 border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 pb-20 pt-16 sm:pb-24 sm:pt-20">
+      {/* Process sections – step indicators, alternating layout, animate independently */}
+      <section id="services" className="section-overlap-up scroll-mt-24 border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 pb-20 pt-18 sm:pb-24 sm:pt-22">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-12 text-center sm:mb-14">
+          <div className="mb-14 text-center sm:mb-16">
             <AnimateHeading className="section-label">
               What we do
             </AnimateHeading>
@@ -156,62 +156,70 @@ export default function Home() {
             </div>
             <hr className="rule-design rule-design--thick rule-design--center mt-6" aria-hidden />
           </div>
-        <div className="featured-cards-grid grid gap-6 lg:grid-cols-3 lg:items-start">
-          {FEATURED.map((item, index) => {
-            const isMiddle = index === 1;
-            return (
-              <Link
-                key={item.title}
-                href={item.href}
-                className={`featured-card card-float group rounded-lg bg-white p-8 transition hover:bg-white lg:p-10 ${isMiddle ? "mt-8 sm:mt-12 lg:mt-10" : ""}`}
-              >
-                <ImageReveal className={`w-full bg-[var(--border)] ${isMiddle ? "aspect-square" : "aspect-[4/3]"}`}>
-                  <Image
-                    src={item.image}
-                    alt={item.alt}
-                    width={isMiddle ? 360 : 360}
-                    height={isMiddle ? 360 : 270}
-                    className="h-full w-full object-cover"
-                  />
-                </ImageReveal>
-                <div className={isMiddle ? "mt-6 space-y-3" : "mt-6"}>
-                  <h2 className="text-xl font-semibold tracking-[-0.025em] text-[var(--foreground)] group-hover:underline sm:text-[1.25rem]">
-                    {item.title}
-                  </h2>
-                  <p className={`text-[var(--muted)] ${isMiddle ? "mt-3 text-base leading-relaxed" : "mt-3 text-sm leading-relaxed"}`}>
-                    {item.description}
-                  </p>
-                </div>
-                <span className="mt-4 inline-block text-sm font-medium text-[var(--foreground)] group-hover:underline">
-                  Learn more →
-                </span>
-              </Link>
-            );
-          })}
+          <div className="space-y-12 sm:space-y-16">
+            {FEATURED.map((item, index) => {
+              const step = String(index + 1).padStart(2, "0");
+              const imageFirst = index % 2 === 0;
+              return (
+                <AnimateSection key={item.title} as="div">
+                  <div>
+                    <p className="section-label mb-3 text-[var(--muted)]/80" aria-hidden>
+                      {step}
+                    </p>
+                    <Link
+                      href={item.href}
+                      className={`card-float group flex flex-col gap-6 rounded-lg bg-white p-8 transition hover:bg-white lg:flex-row lg:items-stretch lg:gap-10 lg:p-10 ${!imageFirst ? "lg:flex-row-reverse" : ""}`}
+                    >
+                      <div className={`relative flex-1 overflow-hidden rounded-lg bg-[var(--border)] ${index === 1 ? "aspect-square max-w-sm lg:max-w-xs" : "aspect-[4/3] lg:min-w-[280px] lg:max-w-sm"}`}>
+                        <ImageReveal className="absolute inset-0 h-full w-full">
+                          <Image
+                            src={item.image}
+                            alt={item.alt}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 1024px) 100vw, 320px"
+                          />
+                        </ImageReveal>
+                      </div>
+                      <div className="flex min-w-0 flex-1 flex-col justify-center">
+                        <h2 className="text-xl font-semibold tracking-[-0.025em] text-[var(--foreground)] group-hover:underline sm:text-2xl">
+                          {item.title}
+                        </h2>
+                        <p className="mt-3 text-[var(--muted)] leading-relaxed sm:text-base">
+                          {item.description}
+                        </p>
+                        <span className="mt-5 inline-block text-sm font-medium text-[var(--foreground)] group-hover:underline">
+                          Learn more →
+                        </span>
+                      </div>
+                    </Link>
+                  </div>
+                </AnimateSection>
+              );
+            })}
+          </div>
         </div>
-        </div>
-      </AnimateSection>
+      </section>
 
-      {/* Mission – manifesto-lite: isolate, big text, minimal elements, let it breathe */}
-      <AnimateSection as="section" className="border-b border-[var(--border)] bg-band px-4 py-32 sm:py-44">
+      {/* Mission – manifesto moment: bigger text, more isolation, less UI */}
+      <AnimateSection as="section" className="border-b border-[var(--border)] bg-band px-4 py-40 sm:py-56">
         <div className="mx-auto max-w-3xl text-center">
           <blockquote className="manifesto-quote">
             We are committed to &ldquo;not being the concern&rdquo; for any General Contractor or Design Team—and our track record and reputation have come from that commitment.
           </blockquote>
-          <hr className="rule-design rule-design--center mt-20 mb-6" aria-hidden />
-          <p className="text-xs font-normal text-[var(--muted)] sm:text-sm">
+          <p className="mt-12 text-[11px] font-normal text-[var(--muted)]/80 sm:text-xs">
             From medical upfits to projects with multimillion dollar scope values.
           </p>
-          <p className="mt-4">
-            <Link href="/about" className="text-xs font-medium text-[var(--accent)] hover:underline sm:text-sm">
-              Continue reading on our About Us page →
+          <p className="mt-3">
+            <Link href="/about" className="text-[11px] font-medium text-[var(--accent)] hover:underline sm:text-xs">
+              About Us →
             </Link>
           </p>
         </div>
       </AnimateSection>
 
-      {/* Sectors – fewer per row, more space, category hierarchy, subtle marker, micro-hover */}
-      <AnimateSection as="section" className="border-b border-[var(--border)] bg-stripes px-4 py-18 sm:py-22">
+      {/* Sectors – dense, text-heavy; subtle 2% tone (bg-subtle) */}
+      <AnimateSection as="section" className="border-b border-[var(--border)] bg-subtle px-4 py-16 sm:py-22">
         <div className="mx-auto max-w-4xl">
           <AnimateHeading as="h2" className="section-label text-center">
             Sectors We Serve
@@ -225,10 +233,10 @@ export default function Home() {
               <Link
                 key={label}
                 href={href}
-                className="sector-item flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3.5 text-left transition hover:border-[var(--foreground)]/40 hover:bg-[var(--foreground)] hover:text-white focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2"
+                className="sector-item group flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3.5 text-left transition hover:border-[var(--foreground)]/40 hover:bg-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2"
               >
                 <span className="sector-item-marker h-1 w-1 shrink-0 rounded-full bg-[var(--foreground)]/35" aria-hidden />
-                <span className="text-sm font-semibold tracking-tight text-[var(--foreground)]">
+                <span className="text-sm font-semibold tracking-tight text-[var(--foreground)] group-hover:text-white">
                   {label}
                 </span>
               </Link>
@@ -237,8 +245,8 @@ export default function Home() {
         </div>
       </AnimateSection>
 
-      {/* Awards – whisper credibility: softer presentation, more spacing, support not dominate */}
-      <AnimateSection as="section" className="section-overlap-up border-b border-[var(--border)] bg-section-alt px-4 py-20 sm:py-28">
+      {/* Awards – spacious, image-heavy; cooler alt tone */}
+      <AnimateSection as="section" className="section-overlap-up border-b border-[var(--border)] bg-section-alt px-4 py-24 sm:py-32">
         <div className="mx-auto max-w-6xl">
           <AnimateHeading as="h2" className="section-label text-center">
             Awards & Recognition
@@ -270,8 +278,8 @@ export default function Home() {
         <NotableProjects projects={PROJECTS} />
       </AnimateSection>
 
-      {/* Products and Services – anchor line + rule, first item as visual anchor */}
-      <AnimateSection as="section" className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
+      {/* Products – dense, text-heavy; subtle-alt 4% tone */}
+      <AnimateSection as="section" className="border-b border-[var(--border)] bg-subtle-alt px-4 py-16 sm:py-22">
         <div className="mx-auto max-w-5xl">
           <AnimateHeading as="h2" className="section-label text-center">
             Products and Services
@@ -319,8 +327,8 @@ export default function Home() {
         </div>
       </AnimateSection>
 
-      {/* Bottom CTA – rule + headline, anchor line for impact */}
-      <AnimateSection as="section" className="bg-white px-4 py-28 sm:py-36">
+      {/* CTA – spacious, light (white); text anchor */}
+      <AnimateSection as="section" className="bg-white px-4 py-32 sm:py-40">
         <div className="mx-auto max-w-4xl text-center">
           <hr className="rule-design rule-design--thick rule-design--center mb-12" aria-hidden />
           <AnimateHeading as="h2" className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">

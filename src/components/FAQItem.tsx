@@ -12,31 +12,31 @@ export default function FAQItem({ question, answer, list }: FAQItemProps) {
   const [open, setOpen] = useState(false);
 
   return (
-    <article className="border-b border-[var(--border)] py-6 first:pt-0 last:border-0">
+    <article className="faq-item">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="flex w-full items-start justify-between gap-4 text-left focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2 focus:ring-offset-[var(--background)] rounded"
+        className="faq-item-trigger"
         aria-expanded={open}
       >
-        <h2 className="text-base font-semibold tracking-tight text-[var(--foreground)] sm:text-lg">
-          {question}
-        </h2>
+        <h3 className="faq-item-question">{question}</h3>
         <span
-          className="shrink-0 text-[var(--muted)] transition-transform duration-200 ease-out"
+          className="faq-item-icon"
           style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
           aria-hidden
         >
-          ▼
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </span>
       </button>
       <div
-        className="grid transition-[grid-template-rows] duration-200 ease-out"
+        className="faq-item-panel"
         style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
         aria-hidden={!open}
       >
         <div className="overflow-hidden">
-          <div className="pt-3 text-[var(--muted)] leading-relaxed">
+          <div className="faq-item-content">
             <p>{answer}</p>
             {list && list.length > 0 && (
               <ul className="mt-3 list-disc space-y-1 pl-6">

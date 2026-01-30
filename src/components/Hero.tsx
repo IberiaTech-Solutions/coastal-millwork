@@ -51,8 +51,8 @@ export default function Hero({
   return (
     <section
       id="slideshow"
-      className="relative min-h-[280px] w-full overflow-hidden border-b border-[var(--border)]"
-      style={{ height: "calc(100dvh - 120px)" }}
+      className="relative min-h-[320px] w-full overflow-hidden border-b border-[var(--border)]"
+      style={{ minHeight: "calc(100dvh - 100px)" }}
       aria-label="Hero"
     >
       {/* Background images – fill section, very slow pan */}
@@ -80,23 +80,26 @@ export default function Hero({
       {/* Dark overlay for text contrast */}
       <div className="absolute inset-0 bg-black/50" aria-hidden />
 
-      {/* Content – one line dominant, rest supporting; load-in so it sticks */}
-      <div className="relative flex h-full flex-col justify-center px-4 py-24 text-center">
+      {/* Subtle grain overlay – depth, not noise */}
+      <div className="hero-grain" aria-hidden />
+
+      {/* Content – ONE line dominant, secondary text reduced */}
+      <div className="relative flex h-full flex-col justify-center px-4 py-28 text-center">
         <div className="hero-content-load mx-auto max-w-4xl">
           {subtitle && (
-            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/55 sm:text-xs">
+            <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/45 sm:text-[10px]">
               {subtitle}
             </p>
           )}
-          <div className="mt-3 min-h-[3.5rem] sm:min-h-[4rem] lg:min-h-[5rem]">
+          <div className="mt-4 min-h-[3.5rem] sm:min-h-[4.5rem] lg:min-h-[5.5rem]">
             <h1
               key={lineIndex}
-              className="animate-fade-in text-4xl font-bold leading-[1.06] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[4rem]"
+              className="animate-fade-in text-4xl font-bold leading-[1.06] tracking-tight text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.4)] sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[4.25rem]"
             >
               {taglines[lineIndex]}
             </h1>
           </div>
-          <p className="mt-5 text-xs font-normal tracking-wide text-white/60 sm:text-sm lg:mt-6">
+          <p className="mt-6 text-[11px] font-normal tracking-wide text-white/50 sm:text-xs lg:mt-7">
             {metric}
           </p>
         </div>

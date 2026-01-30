@@ -5,22 +5,31 @@
   --foreground: #1a1a1a;
   --muted: #6b7280;
   --border: #e5e7eb;
-  --accent: #1a1a1a;
-  --accent-hover: #374151;
-  /* Architectural / design backgrounds – light → dark → light rhythm */
+  /* Warm accent – stone/wood undertone, used sparingly (links, rules, highlights) */
+  --accent-warm: #5c5348;
+  --accent: #5c5348;
+  --accent-hover: #4a4239;
+  /* Architectural / design backgrounds – light → dark → light rhythm; 2–4% shifts feel designed */
   --bg-warm: #f8f7f5;
   --bg-cool: #f6f7f9;
   --bg-paper: #f5f4f2;
   --bg-band: #ececec; /* Slightly darker band for depth */
+  --bg-subtle: #f7f7f6;   /* ~2% darker than background – breath between sections */
+  --bg-subtle-alt: #f3f3f1; /* ~4% darker – gentle tone shift */
   /* Depth – controlled elevation */
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
   --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08), 0 12px 24px rgba(0, 0, 0, 0.06);
   --shadow-overlap: 0 -2px 8px rgba(0, 0, 0, 0.04);
+  /* Dividers & lines – architectural / drafting-line identity */
+  --line-hairline: rgba(0, 0, 0, 0.06);
+  --line-drafting: rgba(0, 0, 0, 0.1);
+  --border-drafting: #e2e2e2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent-warm: var(--accent-warm);
   --font-sans: var(--font-sans-app), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, monospace;
 }
@@ -31,6 +40,7 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   letter-spacing: 0.01em;
+  line-height: 1.65;
 }
 
 /* When top bar is hidden on scroll, reduce main padding to match shorter header */
@@ -38,10 +48,16 @@ body.top-bar-hidden main {
   padding-top: 5.5rem; /* 88px – logo/nav row only */
 }
 
-/* Architectural / design – editorial typography */
+/* Section separators: drafting-line identity (thin, precise) */
+main section.border-b {
+  border-bottom-color: var(--border-drafting);
+}
+
+/* Architectural / design – editorial typography; tighter line-height on large headings */
 h1, h2, h3 {
   letter-spacing: -0.025em;
   font-weight: 600;
+  line-height: 1.15;
 }
 
 /* Section eyebrow – small caps label above sections */
@@ -96,6 +112,16 @@ h1, h2, h3 {
   animation: hero-bg-pan 90s ease-in-out infinite;
 }
 
+/* Hero – subtle grain overlay for depth (no parallax drama) */
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
 /* Bouncy arrow down */
 @keyframes bounce-down {
   0%, 100% {
@@ -141,6 +167,14 @@ h1, h2, h3 {
   background-color: var(--bg-band);
 }
 
+/* 2026 pattern: subtle tone shifts (2–4%) – designed, not stacked */
+.bg-subtle {
+  background-color: var(--bg-subtle);
+}
+.bg-subtle-alt {
+  background-color: var(--bg-subtle-alt);
+}
+
 /* Section overlap – next section pulls up and sits on top (spatial layering) */
 .section-overlap-up {
   position: relative;
@@ -159,28 +193,6 @@ h1, h2, h3 {
   transform: translateY(-2px);
 }
 
-/* Featured (Design / Fabrication / Installation) – sequence, flow, stagger */
-.featured-card {
-  opacity: 0;
-  transform: translateY(0.5rem);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-.animate-section-enter.is-visible .featured-cards-grid .featured-card:nth-child(1) {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0;
-}
-.animate-section-enter.is-visible .featured-cards-grid .featured-card:nth-child(2) {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.14s;
-}
-.animate-section-enter.is-visible .featured-cards-grid .featured-card:nth-child(3) {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.28s;
-}
-
 /* Architectural accent – thin rule under section labels (optional) */
 .section-label-with-rule::after {
   content: "";
@@ -190,7 +202,8 @@ h1, h2, h3 {
   margin-top: 0.5rem;
   margin-left: auto;
   margin-right: auto;
-  background: var(--border);
+  background: var(--accent-warm);
+  opacity: 0.35;
 }
 
 /* ---- Text rhythm: pull quotes, anchors, rules (same words, more impact) ---- */
@@ -198,9 +211,12 @@ h1, h2, h3 {
 .pull-quote {
   font-size: clamp(1.375rem, 2.5vw + 1rem, 2rem);
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.28;
   letter-spacing: -0.02em;
   color: var(--foreground);
+  border-left: 3px solid var(--accent-warm);
+  padding-left: 1rem;
+  border-left-color: rgba(92, 83, 72, 0.35);
 }
 
 /* One line as visual anchor in a section */
@@ -212,6 +228,37 @@ h1, h2, h3 {
   line-height: 1.4;
 }
 
+/* ---- Dividers & lines: hairline, thin, section separators (drafting-line identity) ---- */
+/* Hairline rule – very fine, architectural */
+.rule-hairline {
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--line-hairline);
+}
+
+/* Thin divider – drafting-line feel */
+.rule-thin {
+  width: 100%;
+  max-width: 4rem;
+  height: 1px;
+  margin-left: 0;
+  margin-right: auto;
+  border: 0;
+  background: var(--line-drafting);
+}
+.rule-thin--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section separator – border that feels like a drafting line */
+.border-drafting {
+  border-color: var(--border-drafting);
+}
+
 /* Horizontal rule as design element (not just divider) */
 .rule-design {
   width: 100%;
@@ -219,7 +266,7 @@ h1, h2, h3 {
   height: 1px;
   margin-left: 0;
   margin-right: auto;
-  background: var(--border);
+  background: var(--line-drafting);
   border: 0;
 }
 .rule-design--center {
@@ -229,8 +276,8 @@ h1, h2, h3 {
 .rule-design--thick {
   height: 2px;
   max-width: 3rem;
-  background: var(--foreground);
-  opacity: 0.2;
+  background: var(--accent-warm);
+  opacity: 0.4;
 }
 
 /* Service block – card-like grouping, less list-like */
@@ -250,10 +297,154 @@ h1, h2, h3 {
 .service-heading-bar {
   width: 3px;
   height: 1.5rem;
-  background: var(--foreground);
-  opacity: 0.25;
+  background: var(--accent-warm);
+  opacity: 0.5;
   border-radius: 1px;
   flex-shrink: 0;
+}
+
+/* Product category / service card – grouping without doc feel */
+.product-group {
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem 1.25rem 1.5rem 1.5rem;
+}
+@media (min-width: 640px) {
+  .product-group {
+    padding: 1.75rem 1.75rem 1.75rem 2rem;
+  }
+}
+
+/* Restrained step marker – number only, no icon library */
+.step-marker {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+/* Map – support, not dominate; restrained size and frame */
+.map-wrapper {
+  padding: 0.5rem 0;
+}
+
+/* FAQ – thoughtful, not defensive; accordion motion + spacing */
+.faq-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line-hairline);
+}
+.faq-item:first-child {
+  padding-top: 0;
+}
+.faq-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.faq-item-trigger {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: 1rem;
+  text-align: left;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  border-radius: 0.25rem;
+  outline: none;
+  transition: color 0.15s ease;
+}
+.faq-item-trigger:hover {
+  color: var(--foreground);
+}
+.faq-item-trigger:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+}
+.faq-item-question {
+  flex: 1;
+  min-width: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--foreground);
+}
+@media (min-width: 640px) {
+  .faq-item-question {
+    font-size: 1.125rem;
+  }
+}
+.faq-item-icon {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  color: var(--muted);
+  transition: transform 0.28s ease-out;
+}
+.faq-item-panel {
+  display: grid;
+  transition: grid-template-rows 0.28s ease-out;
+}
+.faq-item-content {
+  padding-top: 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* FAQ group – clear headers, breathing room */
+.faq-group {
+  padding: 1.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+@media (min-width: 640px) {
+  .faq-group {
+    padding: 2rem 2rem;
+  }
+}
+.faq-group-header {
+  margin-bottom: 1.5rem;
+}
+.faq-group-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--foreground);
+  opacity: 0.9;
+}
+.faq-group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Process strip – horizontal anchor (Design → … → Install) */
+.process-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  padding: 1rem 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+.process-strip span {
+  white-space: nowrap;
+}
+.process-strip .process-strip-sep {
+  color: var(--border);
+  user-select: none;
 }
 
 /* Sectors – category feel: marker, hierarchy, micro-hover */
@@ -262,9 +453,13 @@ h1, h2, h3 {
 }
 .sector-item:hover {
   transform: translateY(-1px);
+  color: white;
 }
 .sector-item:hover .sector-item-marker {
   background: rgba(255, 255, 255, 0.8);
+}
+.sector-item:hover span:last-child {
+  color: white;
 }
 
 /* Awards – whisper credibility: softer shadow, subtle hover, support not dominate */
@@ -278,19 +473,45 @@ h1, h2, h3 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
+/* Team – consistent portrait treatment (human, composed) */
+.team-portrait {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  max-width: 10rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.team-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.team-card {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line-hairline);
+}
+.team-card:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
 /* Manifesto-lite – philosophy statement, not a paragraph; isolate, give it air */
 .manifesto-quote {
-  font-size: clamp(1.5rem, 4vw + 1.25rem, 2.5rem);
+  font-size: clamp(1.75rem, 5vw + 1.5rem, 3rem);
   font-weight: 500;
-  line-height: 1.28;
+  line-height: 1.2;
   letter-spacing: -0.03em;
   color: var(--foreground);
 }
 
-/* Heading: subtle fade + slide when in view (slightly delayed so it reads after section) */
+/* ---- Safe 2026 motion: fade + rise 8–12px, ease-out only, no bounce, no scroll hijack ---- */
+/* Heading: fade + rise 8px on enter */
 .animate-heading-enter {
   opacity: 0;
-  transform: translateY(0.4rem);
+  transform: translateY(0.5rem); /* 8px */
   transition:
     opacity 0.5s ease-out,
     transform 0.5s ease-out;
@@ -301,11 +522,10 @@ h1, h2, h3 {
   transform: translateY(0);
 }
 
-/* ---- Subtle scroll-triggered motion (architectural, not marketing) ---- */
-/* Section fade/slide: very subtle, runs when section enters view */
+/* Section: fade + rise 10px on enter */
 .animate-section-enter {
   opacity: 0;
-  transform: translateY(0.5rem);
+  transform: translateY(0.625rem); /* 10px */
   transition:
     opacity 0.6s ease-out,
     transform 0.6s ease-out;
@@ -324,11 +544,37 @@ h1, h2, h3 {
   width: 2rem;
 }
 
-/* Image reveal: clip from left, very subtle */
+/* Image reveal: soft mask (clip) + opacity; ease-out, no drama */
 .animate-image-reveal {
   clip-path: inset(0 0 0 100%);
-  transition: clip-path 0.7s ease-out;
+  opacity: 0;
+  transition:
+    clip-path 0.6s ease-out,
+    opacity 0.5s ease-out;
 }
 .animate-image-reveal.is-visible {
   clip-path: inset(0 0 0 0);
+  opacity: 1;
+}
+
+/* List stagger: 60ms apart (50–80ms range); featured cards */
+.featured-card {
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.animate-section-enter.is-visible .featured-cards-grid .featured-card:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0;
+}
+.animate-section-enter.is-visible .featured-cards-grid .featured-card:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.06s;
+}
+.animate-section-enter.is-visible .featured-cards-grid .featured-card:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.12s;
 }
