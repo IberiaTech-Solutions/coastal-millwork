@@ -38,16 +38,6 @@ const CONSTRUCTION_GENRES = [
   "Banks / Financial Institutions",
 ];
 
-const HIGHLIGHTS = [
-  "Largest Architectural Design Engineering Staff in the Southeast",
-  "Focusing On Premium, High-Expectation Commercial Projects",
-  "Specializing In Large-Scope Projects … Up to $20 Million in Contract Value",
-  "Providing a Complete Scope of Wood, Laminates, Finishes, Decorative Metals & Glass, Polymers, and Stone Packages",
-  "Complete Design, Development and Construction Integration Consulting",
-  "Highly Proactive, Collaborative Driven, Project Design & Management Protocols",
-  "AWI-QCP Premium Certified – All Fabrication and Installation QSIs",
-];
-
 export default function ProductsPage() {
   return (
     <div>
@@ -64,11 +54,12 @@ export default function ProductsPage() {
       {/* Lead + image */}
       <section className="border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-3xl">
-          <nav className="mb-10 flex flex-wrap gap-4 text-sm" aria-label="Page menu">
-            <a href="#typical-product-categories" className="font-medium text-[var(--accent)] hover:underline">
+          <nav className="mb-10 flex flex-wrap items-center gap-3 text-sm" aria-label="Jump to section">
+            <span className="font-medium text-[var(--muted)]">Jump to:</span>
+            <a href="#typical-product-categories" className="rounded-full border-2 border-[var(--foreground)]/40 bg-transparent px-4 py-2 font-semibold text-[var(--accent)] transition hover:border-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-white">
               Typical Product Categories
             </a>
-            <a href="#typical-construction-genres" className="font-medium text-[var(--accent)] hover:underline">
+            <a href="#typical-construction-genres" className="rounded-full border-2 border-[var(--foreground)]/40 bg-transparent px-4 py-2 font-semibold text-[var(--accent)] transition hover:border-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-white">
               Typical Construction Genres
             </a>
           </nav>
@@ -80,10 +71,10 @@ export default function ProductsPage() {
           </p>
           <figure className="mt-10">
             <div className="aspect-video w-full overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
-              <Image src="/images/products/executive-work-space_480x305.jpg" alt="Executive work space" width={480} height={305} className="h-full w-full object-cover" />
+              <Image src="/images/products/executive-work-space_480x305.jpg" alt="Executive work space." width={480} height={305} className="h-full w-full object-cover" />
             </div>
             <figcaption className="mt-3 text-sm text-[var(--muted)]">
-              executive work space
+              Executive work space.
             </figcaption>
           </figure>
           <p className="mt-8 text-[var(--muted)] leading-relaxed">
@@ -92,8 +83,8 @@ export default function ProductsPage() {
           <p className="mt-8 text-[var(--foreground)] font-semibold">Of importance to note, CMS is:</p>
           <ul className="mt-3 space-y-2 text-[var(--muted)] leading-relaxed">
             {[
-              "a member and participant in good standing of the AWI-QCP program and an AWI premium-certified millwork contractor; and,",
-              "a distinctly specified fabricator and installer for commercial Corian contracting in the state of South Carolina per DuPont Corian specifications.",
+              "A member and participant in good standing of the AWI-QCP program and an AWI premium-certified millwork contractor; and",
+              "A distinctly specified fabricator and installer for commercial Corian contracting in the state of South Carolina per DuPont Corian specifications.",
             ].map((item) => (
               <li key={item} className="flex items-start gap-3">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
@@ -108,8 +99,7 @@ export default function ProductsPage() {
       <section id="typical-product-categories" className="scroll-mt-24 border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-4xl">
           <h2 className="section-label section-label-with-rule text-center">Typical Product Categories</h2>
-          <p className="mt-10 text-center text-sm font-medium text-[var(--muted)]">Pine Lakes Country Club</p>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {PRODUCT_CATEGORIES.map((item) => (
               <li
                 key={item}
@@ -127,30 +117,11 @@ export default function ProductsPage() {
       <section id="typical-construction-genres" className="scroll-mt-24 border-b border-[var(--border)] bg-white px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-4xl">
           <h2 className="section-label section-label-with-rule text-center">Typical Construction Genres</h2>
-          <p className="mt-10 text-center text-sm font-medium text-[var(--muted)]">Beaufort City Hall</p>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {CONSTRUCTION_GENRES.map((item) => (
               <li
                 key={item}
                 className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3.5 text-sm font-medium text-[var(--foreground)] shadow-sm"
-              >
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
-                <span className="leading-snug">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Highlights */}
-      <section className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="section-label section-label-with-rule text-center">Highlights</h2>
-          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {HIGHLIGHTS.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/80 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] shadow-sm backdrop-blur-sm"
               >
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
                 <span className="leading-snug">{item}</span>

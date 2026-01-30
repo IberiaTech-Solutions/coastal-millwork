@@ -55,14 +55,14 @@ export default function Header() {
           </p>
         </div>
       </div>
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 lg:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2.5 lg:px-6">
         <Link href="/" className="shrink-0" aria-label="Coastal Millwork and Supply – Home">
           <Image
             src="/logo_CMS.png"
             alt="Coastal Millwork and Supply"
-            width={240}
-            height={80}
-            className="h-12 w-auto object-contain object-left sm:h-14"
+            width={280}
+            height={93}
+            className="h-16 w-auto object-contain object-left sm:h-20"
             priority
           />
         </Link>

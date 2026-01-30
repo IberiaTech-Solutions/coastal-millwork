@@ -19,35 +19,51 @@ const TIER_LABELS: Record<ProjectTier | "all", string> = {
   4: ">$10M",
 };
 
+// Money/value progression: bronze → silver → gold → green (ascending contract size)
 const TIER_PILL_ACTIVE: Record<ProjectTier | "all", string> = {
   all: "border-[var(--foreground)] bg-[var(--foreground)] text-white shadow-sm",
-  1: "border-[var(--foreground)] bg-[var(--foreground)] text-white shadow-sm",
-  2: "border-red-700 bg-red-700 text-white shadow-sm",
-  3: "border-orange-600 bg-orange-600 text-white shadow-sm",
+  1: "border-amber-700 bg-amber-700 text-white shadow-sm",
+  2: "border-slate-600 bg-slate-600 text-white shadow-sm",
+  3: "border-amber-600 bg-amber-600 text-white shadow-sm",
   4: "border-emerald-700 bg-emerald-700 text-white shadow-sm",
 };
 
 const TIER_PILL_INACTIVE: Record<ProjectTier | "all", string> = {
   all: "border-[var(--border)] bg-[var(--background)] text-[var(--muted)] hover:border-[var(--foreground)]/40 hover:text-[var(--foreground)]",
-  1: "border-[var(--foreground)]/50 bg-[var(--background)] text-[var(--foreground)] hover:bg-[var(--foreground)]/10",
-  2: "border-red-700/50 bg-[var(--background)] text-red-700 hover:bg-red-700/10",
-  3: "border-orange-600/50 bg-[var(--background)] text-orange-600 hover:bg-orange-600/10",
+  1: "border-amber-700/50 bg-[var(--background)] text-amber-700 hover:bg-amber-700/10",
+  2: "border-slate-600/50 bg-[var(--background)] text-slate-600 hover:bg-slate-600/10",
+  3: "border-amber-600/50 bg-[var(--background)] text-amber-600 hover:bg-amber-600/10",
   4: "border-emerald-700/50 bg-[var(--background)] text-emerald-700 hover:bg-emerald-700/10",
 };
 
 const TIER_TEXT_STYLES: Record<ProjectTier, string> = {
-  1: "font-semibold text-[var(--foreground)]",
-  2: "font-semibold text-red-700",
-  3: "font-semibold text-orange-600",
+  1: "font-semibold text-amber-700",
+  2: "font-semibold text-slate-600",
+  3: "font-semibold text-amber-600",
   4: "font-semibold text-emerald-700",
+};
+
+const TIER_BAR_COLORS: Record<ProjectTier, string> = {
+  1: "bg-amber-700",
+  2: "bg-slate-600",
+  3: "bg-amber-600",
+  4: "bg-emerald-700",
 };
 
 type NotableProjectsProps = {
   projects: Project[];
 };
 
+function useTierCounts(projects: Project[]) {
+  const counts: Record<ProjectTier, number> = { 1: 0, 2: 0, 3: 0, 4: 0 };
+  projects.forEach((p) => { counts[p.tier] += 1; });
+  return counts;
+}
+
 export default function NotableProjects({ projects }: NotableProjectsProps) {
   const [filter, setFilter] = useState<ProjectTier | "all">("all");
+  const tierCounts = useTierCounts(projects);
+  const total = projects.length;
 
   const filtered =
     filter === "all"
@@ -74,18 +90,16 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
           </Link>
         </div>
 
-        {/* Filter pills */}
+        {/* Filter pills + bar */}
         <div className="mt-8">
-          <p className="section-label mb-3">
-            Contract scope
-          </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="section-label mr-1">Contract scope</span>
             {(["all", 1, 2, 3, 4] as const).map((tier) => (
               <button
                 key={tier}
                 type="button"
                 onClick={() => setFilter(tier)}
-                className={`rounded-full border-2 px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                className={`cursor-pointer rounded-full border-2 px-4 py-2 text-sm font-semibold transition hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 ${
                   filter === tier ? TIER_PILL_ACTIVE[tier] : TIER_PILL_INACTIVE[tier]
                 } ${filter === tier ? "focus:ring-[var(--foreground)]" : "focus:ring-[var(--accent)]"}`}
               >
@@ -93,9 +107,94 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
               </button>
             ))}
           </div>
-          <p className="mt-3 text-xs text-[var(--muted)]">
+
+          {/* Graphic bar — click a segment to filter */}
+          <div className="mt-4">
+            <p className="mb-2 text-[10px] uppercase tracking-wider text-[var(--muted)]">
+              Click a segment to filter
+            </p>
+            <div
+              className="flex h-8 w-full cursor-pointer overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--border)]/50 shadow-sm"
+              role="img"
+              aria-label={`Stacked bar: ${([1, 2, 3, 4] as const).map((t) => `${TIER_LABELS[t]}: ${tierCounts[t]} projects`).join(", ")}. Click a segment to filter.`}
+            >
+              {([1, 2, 3, 4] as const).map((tier) => {
+                const count = tierCounts[tier];
+                const pct = total > 0 ? (count / total) * 100 : 0;
+                const widthPct = Math.max(pct, 0);
+                const showLabelInside = widthPct >= 12;
+                const isSelected = filter === tier;
+                const barColor = filter !== "all" && !isSelected
+                  ? (tier === 1 ? "bg-neutral-400" : tier === 2 ? "bg-neutral-500" : tier === 3 ? "bg-neutral-600" : "bg-neutral-700")
+                  : TIER_BAR_COLORS[tier];
+                return (
+                  <button
+                    key={tier}
+                    type="button"
+                    onClick={() => setFilter(tier)}
+                    className={`group relative min-w-0 shrink-0 cursor-pointer border-r border-white/30 last:border-r-0 transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/80 first:rounded-l-xl last:rounded-r-xl ${
+                      isSelected ? "ring-2 ring-inset ring-white/90 ring-offset-2 ring-offset-[var(--section-alt)]" : ""
+                    } ${barColor}`}
+                    style={{ width: `${widthPct}%`, minWidth: count > 0 ? "24px" : "0" }}
+                    title={`${TIER_LABELS[tier]}: ${count} project${count !== 1 ? "s" : ""} — click to filter`}
+                  >
+                    {count > 0 && (
+                      <>
+                        {showLabelInside ? (
+                          <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-white drop-shadow-[0_0_1px_rgba(0,0,0,0.8)]">
+                            {count}
+                          </span>
+                        ) : (
+                          <span className="absolute -bottom-6 left-1/2 z-10 -translate-x-1/2 rounded bg-[var(--foreground)] px-1.5 py-0.5 text-[10px] font-semibold text-white opacity-0 shadow transition group-hover:opacity-100 group-focus:opacity-100">
+                            {count}
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            {/* Money labels below each segment */}
+            <div className="mt-2 flex w-full">
+              {([1, 2, 3, 4] as const).map((tier) => {
+                const count = tierCounts[tier];
+                const pct = total > 0 ? (count / total) * 100 : 0;
+                const widthPct = Math.max(pct, 0);
+                const isSelected = filter === tier;
+                const isFilterActive = filter !== "all";
+                const labelMuted = isFilterActive && !isSelected;
+                return (
+                  <div
+                    key={tier}
+                    className="flex min-w-0 shrink-0 items-center justify-center py-1"
+                    style={{ width: `${widthPct}%`, minWidth: count > 0 ? "24px" : "0" }}
+                  >
+                    {count > 0 && (
+                      <span
+                        className={`text-[11px] font-medium tabular-nums tracking-tight transition-colors ${
+                          labelMuted
+                            ? "text-[var(--muted)]"
+                            : tier === 1
+                              ? "text-amber-700"
+                              : tier === 2
+                                ? "text-slate-600"
+                                : tier === 3
+                                  ? "text-amber-600"
+                                  : "text-emerald-700"
+                        } ${isSelected ? "font-semibold" : ""}`}
+                      >
+                        {TIER_LABELS[tier]}
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <p className="mt-4 text-xs text-[var(--muted)]">
             Showing {filtered.length} project{filtered.length !== 1 ? "s" : ""}
-            <span className="ml-2 hidden sm:inline">· Bold &gt;$1M · Red &gt;$3M · Orange &gt;$5M · Green &gt;$10M</span>
           </p>
         </div>
 

@@ -30,7 +30,7 @@ body {
 
 /* When top bar is hidden on scroll, reduce main padding to match shorter header */
 body.top-bar-hidden main {
-  padding-top: 4.5rem; /* 72px – logo/nav row only */
+  padding-top: 5.5rem; /* 88px – logo/nav row only */
 }
 
 /* Architectural / design – editorial typography */

@@ -15,16 +15,6 @@ const TEAM = [
   { name: "Elisabeth Beaty", title: "Architectural Design Engineer", image: "/images/team/beaty-elisabeth_135x180.jpg", bio: "Elisabeth grew up in construction as her father and brothers are all custom builders. She learned to read blueprints at a very young age. She has been a professional in the construction and design industry for 10 years. She spent most of her career in the residential market where she cultivated and managed a large remodeling showroom in north Atlanta. Elisabeth spent the past several years running her own small company specializing in digital drawings and renderings. She has seamlessly made the transition to commercial construction and has become a very strong member of our team." },
 ];
 
-const HIGHLIGHTS = [
-  "Largest Architectural Design Engineering Staff in the Southeast",
-  "Focusing On Premium, High-Expectation Commercial Projects",
-  "Specializing In Large-Scope Projects … Up to $20 Million in Contract Value",
-  "Providing a Complete Scope of Wood, Laminates, Finishes, Decorative Metals & Glass, Polymers, and Stone Packages",
-  "Complete Design, Development and Construction Integration Consulting",
-  "Highly Proactive, Collaborative Driven, Project Design & Management Protocols",
-  "AWI-QCP Premium Certified – All Fabrication and Installation QSIs",
-];
-
 export default function TeamPage() {
   return (
     <div>
@@ -92,10 +82,10 @@ export default function TeamPage() {
           </p>
           <figure className="mt-8">
             <div className="aspect-video w-full max-w-2xl overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
-              <Image src="/images/team/shop-the_135x180.jpg" alt="CMS employees working in the shop" width={540} height={360} className="h-full w-full object-cover" />
+              <Image src="/images/team/shop-the_135x180.jpg" alt="CMS employees working in the shop." width={540} height={360} className="h-full w-full object-cover" />
             </div>
             <figcaption className="mt-3 text-sm text-[var(--muted)]">
-              CMS employees working in the shop
+              CMS employees working in the shop.
             </figcaption>
           </figure>
           <p className="mt-8 text-[var(--muted)] leading-relaxed">
@@ -104,23 +94,6 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Highlights */}
-      <section className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="section-label section-label-with-rule text-center">Highlights</h2>
-          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {HIGHLIGHTS.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/80 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] shadow-sm backdrop-blur-sm"
-              >
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
-                <span className="leading-snug">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
     </div>
   );
 }

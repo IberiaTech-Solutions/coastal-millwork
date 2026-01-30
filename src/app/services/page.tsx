@@ -1,16 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const HIGHLIGHTS = [
-  "Largest Architectural Design Engineering Staff in the Southeast",
-  "Focusing On Premium, High-Expectation Commercial Projects",
-  "Specializing In Large-Scope Projects … Up to $20 Million in Contract Value",
-  "Providing a Complete Scope of Wood, Laminates, Finishes, Decorative Metals & Glass, Polymers, and Stone Packages",
-  "Complete Design, Development and Construction Integration Consulting",
-  "Highly Proactive, Collaborative Driven, Project Design & Management Protocols",
-  "AWI-QCP Premium Certified – All Fabrication and Installation QSIs",
-];
-
 export default function ServicesPage() {
   return (
     <div>
@@ -83,10 +73,10 @@ export default function ServicesPage() {
           </p>
           <figure className="mt-10">
             <div className="aspect-[3/4] w-full max-w-sm overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
-              <Image src="/images/services/exterior-store-fronts_360x480.jpg" alt="exterior store fronts" width={360} height={480} className="h-full w-full object-cover" />
+              <Image src="/images/services/exterior-store-fronts_360x480.jpg" alt="Exterior store fronts." width={360} height={480} className="h-full w-full object-cover" />
             </div>
             <figcaption className="mt-3 text-sm text-[var(--muted)]">
-              exterior store fronts
+              Exterior store fronts.
             </figcaption>
           </figure>
         </div>
@@ -112,24 +102,6 @@ export default function ServicesPage() {
           <p className="mt-6 text-[var(--muted)] leading-relaxed">
             As part of the team, our install crews are not required to &lsquo;figure things out in the field.&rsquo; They are consulted early in the development so that installation meets all the expectations.
           </p>
-        </div>
-      </section>
-
-      {/* Highlights */}
-      <section className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="section-label section-label-with-rule text-center">Highlights</h2>
-          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {HIGHLIGHTS.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/80 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] shadow-sm backdrop-blur-sm"
-              >
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
-                <span className="leading-snug">{item}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 

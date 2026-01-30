@@ -2,21 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 const SERVICES = [
-  "custom interior architectural millwork and casework",
-  "cabinetry",
-  "decorative metals",
-  "solid surface and stone countertops",
-  "decorative specialty finishes",
-];
-
-const HIGHLIGHTS = [
-  "Largest Architectural Design Engineering Staff in the Southeast",
-  "Focusing On Premium, High-Expectation Commercial Projects",
-  "Specializing In Large-Scope Projects … Up to $20 Million in Contract Value",
-  "Providing a Complete Scope of Wood, Laminates, Finishes, Decorative Metals & Glass, Polymers, and Stone Packages",
-  "Complete Design, Development and Construction Integration Consulting",
-  "Highly Proactive, Collaborative Driven, Project Design & Management Protocols",
-  "AWI-QCP Premium Certified – All Fabrication and Installation QSIs",
+  "Custom interior architectural millwork and casework",
+  "Cabinetry",
+  "Decorative metals",
+  "Solid surface and stone countertops",
+  "Decorative specialty finishes",
 ];
 
 export default function AboutPage() {
@@ -98,24 +88,6 @@ export default function AboutPage() {
           <p className="mt-6 text-[var(--muted)] leading-relaxed">
             Our shop submittals are extremely detailed relative to any competitors. We know that the shop submittals become the story for how the project flows, and we use them to uncover any red flags, obstacles, and expectation conflicts that are present in the project. They are designed to create a complete picture of our scope products and the adjacent components of an elevation.
           </p>
-        </div>
-      </section>
-
-      {/* Highlights */}
-      <section className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="section-label section-label-with-rule text-center">Highlights</h2>
-          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {HIGHLIGHTS.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/80 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] shadow-sm backdrop-blur-sm"
-              >
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
-                <span className="leading-snug">{item}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
