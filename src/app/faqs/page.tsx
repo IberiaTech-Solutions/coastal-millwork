@@ -1,32 +1,49 @@
-const FAQS = [
+import FAQItem from "@/components/FAQItem";
+
+const FAQ_GROUPS = [
   {
-    q: "What size projects do you specialize in?",
-    a: "CMS provide full service contracting for projects ranging from $5,000.00 to $4.5 million in size. CMS has successfully completed projects over $3.5 million and dozens in the $1.5 to $2.5 million range. Managing the logistics and scope of large projects is our area of expertise.",
-  },
-  {
-    q: "What geographic region does Coastal Millwork operate?",
-    a: "While we don't like to limit any location, but our primary area of operation is all of South Carolina, Northern and Eastern Georgia, and Southern North Carolina. However, we have provided services from New York to Colorado pending the project.",
-  },
-  {
-    q: "What is meant by \"full service\"?",
-    a: "CMS has a very professional staff of educated and experienced employees. We offer the full range of support starting with design assist/build engineering through installation.",
-  },
-  {
-    q: "Is CMS commercial construction only?",
-    a: "Yes. CMS operates only within the commercial market with some cross over for assisted living facilities and long-term care projects or similar.",
-  },
-  {
-    q: "What are your certifications?",
-    a: "CMS is certified by following entities:",
-    list: [
-      "AWI-QCP Premium certification in all QSIs",
-      "FCS Chain of Custody certification",
-      "Multiple staff members are LEED AP certified",
+    title: "Working With Coastal",
+    faqs: [
+      {
+        q: "What geographic region does Coastal Millwork operate?",
+        a: "While we don't like to limit any location, but our primary area of operation is all of South Carolina, Northern and Eastern Georgia, and Southern North Carolina. However, we have provided services from New York to Colorado pending the project.",
+      },
+      {
+        q: "What is meant by \"full service\"?",
+        a: "CMS has a very professional staff of educated and experienced employees. We offer the full range of support starting with design assist/build engineering through installation. Early involvement and coordination from design through install is how we reduce risk and keep projects on track.",
+      },
+      {
+        q: "Is CMS commercial construction only?",
+        a: "Yes. CMS operates only within the commercial market with some cross over for assisted living facilities and long-term care projects or similar.",
+      },
     ],
   },
   {
-    q: "What is your bond rate?",
-    a: "CMS has a very high bond ability index, while over $5 million at any one time and a bond rate of 2.5%.",
+    title: "Project Scale & Process",
+    faqs: [
+      {
+        q: "What size projects do you specialize in?",
+        a: "CMS provide full service contracting for projects ranging from $5,000.00 to $4.5 million in size. CMS has successfully completed projects over $3.5 million and dozens in the $1.5 to $2.5 million range. Managing the logistics and scope of large projects is our area of expertise. We emphasize early coordination to reduce schedule and field risk.",
+      },
+    ],
+  },
+  {
+    title: "Certifications & Quality",
+    faqs: [
+      {
+        q: "What are your certifications?",
+        a: "CMS is certified by following entities:",
+        list: [
+          "AWI-QCP Premium certification in all QSIs",
+          "FCS Chain of Custody certification",
+          "Multiple staff members are LEED AP certified",
+        ],
+      },
+      {
+        q: "What is your bond rate?",
+        a: "CMS has a very high bond ability index, while over $5 million at any one time and a bond rate of 2.5%.",
+      },
+    ],
   },
 ];
 
@@ -42,30 +59,51 @@ const HIGHLIGHTS = [
 
 export default function FAQsPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16">
-      <h1 className="text-3xl font-semibold text-[var(--foreground)]">Frequently Asked Questions</h1>
+    <div>
+      {/* Hero – same pattern as other pages */}
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="section-label section-label-with-rule">FAQs</p>
+          <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
+            Frequently Asked Questions
+          </h1>
+        </div>
+      </section>
 
-      <div className="mt-10 space-y-10">
-        {FAQS.map((faq) => (
-          <article key={faq.q} className="border-b border-[var(--border)] pb-10 last:border-0 last:pb-0">
-            <h2 className="text-lg font-semibold text-[var(--foreground)]">
-              {faq.q}
-            </h2>
-            <div className="mt-3 text-[var(--muted)] leading-relaxed">
-              <p>{faq.a}</p>
-              {"list" in faq && faq.list && (
-                <ul className="mt-3 list-disc space-y-1 pl-6">
-                  {faq.list.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              )}
+      {/* Intro – why this FAQ exists */}
+      <section className="border-b border-[var(--border)] bg-white px-4 py-10 sm:py-12">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm leading-relaxed text-[var(--muted)] sm:text-base">
+            Common questions about working with us, our process, and our credentials.
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ groups – by intent */}
+      <section className="border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 py-16 sm:py-24">
+        <div className="mx-auto max-w-3xl">
+          {FAQ_GROUPS.map((group) => (
+            <div key={group.title} className="mb-16 last:mb-0">
+              <h2 className="section-label text-[var(--foreground)]/90">
+                {group.title}
+              </h2>
+              <hr className="rule-design rule-design--thick mt-2 mb-2" aria-hidden />
+              <div className="mt-6 space-y-0">
+                {group.faqs.map((faq) => (
+                  <FAQItem
+                    key={faq.q}
+                    question={faq.q}
+                    answer={faq.a}
+                    list={"list" in faq ? faq.list : undefined}
+                  />
+                ))}
+              </div>
             </div>
-          </article>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
 
-      <section className="mt-14 border-t border-[var(--border)] pt-12">
+      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 py-14 pb-20 sm:py-16 sm:pb-24">
         <ul className="grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
           {HIGHLIGHTS.map((item) => (
             <li key={item}>{item}</li>

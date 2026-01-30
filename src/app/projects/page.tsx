@@ -4,15 +4,14 @@ import { PROJECTS_GALLERY } from "@/data/projects";
 export default function ProjectsPage() {
   return (
     <div>
-      {/* Hero: editorial, more white space */}
-      <section className="border-b border-[var(--border)] bg-intro px-4 py-20 sm:py-28">
+      {/* Page hero – same height and styling as About, Team, Products, Services */}
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="section-label">Projects</p>
-          <hr className="rule-design rule-design--thick rule-design--center my-6" aria-hidden />
-          <h1 className="text-2xl font-semibold tracking-[-0.03em] text-[var(--foreground)] sm:text-3xl">
+          <p className="section-label section-label-with-rule">Projects</p>
+          <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
             Notable and current work
           </h1>
-          <p className="mt-6 text-sm text-[var(--muted)] leading-relaxed">
+          <p className="mt-4 text-sm text-[var(--muted)] leading-relaxed">
             Stadiums, judicial centers, airports, hospitality—across the Southeast and beyond.
           </p>
         </div>

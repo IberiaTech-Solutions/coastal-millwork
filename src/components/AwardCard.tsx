@@ -17,10 +17,10 @@ export default function AwardCard({ name, image, fullWidthImage, objectPosition 
   const showImage = image && !imageError;
 
   return (
-    <figure className="card-float group flex flex-col overflow-hidden rounded-lg">
+    <figure className="award-card group flex flex-col overflow-hidden rounded-lg border border-[var(--border)]/80 bg-white">
       <div
         className={`relative w-full overflow-hidden aspect-[4/3] ${
-          fullWidthImage ? "flex justify-center items-start bg-white" : "bg-[var(--border)]"
+          fullWidthImage ? "flex justify-center items-start bg-white" : "bg-[var(--border)]/50"
         }`}
       >
         {showImage ? (
@@ -32,7 +32,7 @@ export default function AwardCard({ name, image, fullWidthImage, objectPosition 
                 <img
                   src={image}
                   alt={name}
-                  className="max-h-full max-w-full w-auto h-auto object-contain object-top transition group-hover:scale-105"
+                  className="max-h-full max-w-full w-auto h-auto object-contain object-top opacity-90 transition opacity duration-200 group-hover:opacity-100"
                   onError={() => setImageError(true)}
                 />
               </ImageReveal>
@@ -43,13 +43,13 @@ export default function AwardCard({ name, image, fullWidthImage, objectPosition 
                 <img
                   src={image}
                   alt={name}
-                  className={`h-full w-full object-cover transition group-hover:scale-105 ${objectPosition === "top" ? "object-top" : "object-center"}`}
+                  className={`h-full w-full object-cover opacity-90 transition opacity duration-200 group-hover:opacity-100 ${objectPosition === "top" ? "object-top" : "object-center"}`}
                   onError={() => setImageError(true)}
                 />
               </ImageReveal>
             )}
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pt-12 pb-3 px-3 text-left">
-              <figcaption className="text-sm font-medium text-white drop-shadow">
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent pt-10 pb-3 px-3 text-left">
+              <figcaption className="text-xs font-medium text-white/90 tracking-wide sm:text-sm">
                 {name}
               </figcaption>
             </div>

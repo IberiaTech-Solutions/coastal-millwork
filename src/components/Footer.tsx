@@ -34,7 +34,7 @@ export default function Footer() {
               Contact
             </h3>
             <p className="mt-5 text-sm text-[var(--foreground)]">
-              1025 W 5th N Street<br />
+              1025 W 5th N St<br />
               Summerville, SC 29483
             </p>
             <p className="mt-3 text-sm text-[var(--muted)]">
@@ -58,6 +58,21 @@ export default function Footer() {
               <li><Link href="/maps" className="hover:text-[var(--foreground)] transition">Maps / Directions</Link></li>
             </ul>
           </div>
+        </div>
+      </div>
+
+      {/* Closing statement – end memorably */}
+      <div className="border-t border-[var(--border)] px-4 py-10 sm:py-12">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-sm font-medium leading-relaxed text-[var(--foreground)]/90 sm:text-base">
+            We are committed to &ldquo;not being the concern&rdquo; for any General Contractor or Design Team.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-4 inline-block text-sm font-medium text-[var(--accent)] hover:underline"
+          >
+            Get in touch →
+          </Link>
         </div>
       </div>
 

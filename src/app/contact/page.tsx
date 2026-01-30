@@ -13,23 +13,44 @@ const HIGHLIGHTS = [
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16">
-      <h1 className="text-3xl font-semibold text-[var(--foreground)]">Contact Us</h1>
+    <div>
+      {/* Hero – same pattern as other pages */}
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="section-label section-label-with-rule">Contact</p>
+          <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
+            When and why to reach us
+          </h1>
+        </div>
+      </section>
 
-      <p className="mt-6 text-[var(--muted)] leading-relaxed">
-        Please fill out the brief form below and expect a response within one business day. We thank you for considering Coastal Millwork and Supply LLC.
-      </p>
+      {/* Context before form – qualify without rejecting */}
+      <section className="border-b border-[var(--border)] bg-white px-4 py-14 sm:py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-base font-medium leading-relaxed text-[var(--foreground)] sm:text-lg">
+            We typically engage during pre-construction and early design phases.
+          </p>
+          <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
+            Early coordination helps reduce field issues and schedule risk.
+          </p>
+        </div>
+      </section>
 
-      <div className="mt-10">
-        <ContactForm />
-      </div>
+      {/* Form – slight background contrast, more whitespace */}
+      <section className="border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 py-16 sm:py-24">
+        <div className="mx-auto max-w-2xl">
+          <div className="rounded-lg border border-[var(--border)] bg-white px-6 py-8 shadow-sm sm:px-8 sm:py-10">
+            <ContactForm />
+          </div>
+        </div>
+      </section>
 
-      <section className="mt-14 border-t border-[var(--border)] pt-12">
+      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 pt-14 pb-16 sm:pt-16 sm:pb-20">
         <h2 className="text-xl font-semibold text-[var(--foreground)]">Address &amp; phone</h2>
         <div className="mt-4 space-y-2 text-[var(--muted)]">
           <p>
             <strong className="text-[var(--foreground)]">Address</strong><br />
-            1025 W 5th N Street<br />
+            1025 W 5th N St<br />
             Summerville, SC 29483
           </p>
           <p>
@@ -43,7 +64,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section id="maps" className="mt-10 scroll-mt-24">
+      <section id="maps" className="mx-auto max-w-3xl mt-12 scroll-mt-24 px-4">
         <h2 className="text-xl font-semibold text-[var(--foreground)]">Maps / Directions</h2>
         <p className="mt-2 text-[var(--muted)]">
           <a
@@ -64,7 +85,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="mt-14 border-t border-[var(--border)] pt-12">
+      <section className="mx-auto max-w-3xl border-t border-[var(--border)] px-4 pt-14 pb-16 sm:pb-20">
         <ul className="grid gap-3 text-sm text-[var(--muted)] sm:grid-cols-2">
           {HIGHLIGHTS.map((item) => (
             <li key={item}>{item}</li>

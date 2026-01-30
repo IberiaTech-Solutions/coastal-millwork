@@ -75,14 +75,14 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
   return (
     <>
     <div className="mx-auto max-w-6xl">
-      {/* Minimal filter bar – less directory, more portfolio */}
-      <div className="mb-12 flex flex-wrap items-center gap-4 border-b border-[var(--border)] pb-8">
+      {/* Filter bar – visible but not dominant */}
+      <div className="mb-12 flex flex-wrap items-center gap-5 border-b border-[var(--border)] pb-8">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="section-label mr-0.5">Value</span>
+          <span className="section-label mr-0.5 text-[var(--foreground)]/80">Value</span>
           <button
             type="button"
             onClick={() => setValueFilter("all")}
-            className={`cursor-pointer rounded-full border px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider transition focus:outline-none focus:ring-1 focus:ring-offset-1 ${
+            className={`cursor-pointer rounded-full border-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition focus:outline-none focus:ring-2 focus:ring-offset-1 ${
               valueFilter === "all" ? TIER_PILL_ACTIVE.all : TIER_PILL_INACTIVE.all
             }`}
           >
@@ -93,7 +93,7 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
               key={tier}
               type="button"
               onClick={() => setValueFilter(tier)}
-              className={`cursor-pointer rounded-full border px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider transition focus:outline-none focus:ring-1 focus:ring-offset-1 ${
+              className={`cursor-pointer rounded-full border-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition focus:outline-none focus:ring-2 focus:ring-offset-1 ${
                 valueFilter === tier ? TIER_PILL_ACTIVE[tier] : TIER_PILL_INACTIVE[tier]
               }`}
             >
@@ -103,14 +103,14 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
         </div>
         {availableSectors.length > 0 && (
           <div className="flex items-center gap-2">
-            <label htmlFor="sector-filter" className="section-label sr-only">
+            <label htmlFor="sector-filter" className="section-label text-[var(--foreground)]/80">
               Sector
             </label>
             <select
               id="sector-filter"
               value={sectorFilter}
               onChange={(e) => setSectorFilter(e.target.value as SectorFilterValue)}
-              className="rounded border-0 bg-transparent py-1 pl-0 pr-6 text-[11px] font-medium uppercase tracking-wider text-[var(--muted)] focus:outline-none focus:ring-0 focus:underline hover:text-[var(--foreground)]"
+              className="rounded-md border border-[var(--border)] bg-[var(--background)] py-1.5 pl-3 pr-8 text-xs font-medium text-[var(--foreground)] focus:border-[var(--foreground)]/40 focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/20"
               aria-label="Filter by sector"
             >
               <option value="all">All sectors</option>
@@ -123,23 +123,23 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
           </div>
         )}
         <div className="ml-auto flex items-center gap-4">
-          <span className="section-label tabular-nums text-[var(--muted)]">
+          <span className="text-xs font-medium tabular-nums text-[var(--foreground)]/80">
             {filtered.length} project{filtered.length !== 1 ? "s" : ""}
           </span>
-          <div className="relative w-36 sm:w-44">
+          <div className="relative w-40 sm:w-52">
             <label htmlFor="projects-search" className="sr-only">
               Search projects
             </label>
             <input
               id="projects-search"
               type="search"
-              placeholder="Search"
+              placeholder="Search projects"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full border-0 border-b border-[var(--border)] bg-transparent py-1.5 pl-0 pr-6 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] focus:border-[var(--foreground)]/50 focus:outline-none focus:ring-0"
+              className="w-full rounded-md border border-[var(--border)] bg-[var(--background)] py-2 pl-3 pr-8 text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] focus:border-[var(--foreground)]/40 focus:outline-none focus:ring-1 focus:ring-[var(--foreground)]/20"
               aria-label="Search projects"
             />
-            <span className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-[var(--muted)]" aria-hidden>
+            <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[var(--muted)]" aria-hidden>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />

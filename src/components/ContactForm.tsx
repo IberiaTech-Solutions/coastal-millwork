@@ -2,6 +2,12 @@
 
 import { useState } from "react";
 
+const INQUIRY_TYPES = [
+  { value: "pre-construction", label: "Pre-construction / Budgeting" },
+  { value: "active-project", label: "Active project coordination" },
+  { value: "general", label: "General inquiries" },
+] as const;
+
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -27,6 +33,25 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <p className="text-sm text-[var(--muted)]">* Required</p>
+
+      {/* Light segmentation – type of inquiry */}
+      <div>
+        <label htmlFor="inquiry-type" className="block text-sm font-medium text-[var(--foreground)]">
+          Type of inquiry
+        </label>
+        <select
+          id="inquiry-type"
+          name="inquiryType"
+          className="mt-1 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm text-[var(--foreground)] focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
+          aria-label="Type of inquiry"
+        >
+          {INQUIRY_TYPES.map(({ value, label }) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-[var(--foreground)]">
@@ -122,10 +147,15 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="rounded-md bg-[var(--accent)] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--accent-light)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
+        className="rounded-md bg-[var(--accent)] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[var(--accent-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
       >
         Send message
       </button>
+
+      {/* Micro-reassurance – calm, confident, human */}
+      <p className="pt-4 text-xs leading-relaxed text-[var(--muted)]">
+        All inquiries go directly to our project team. We respond within one business day.
+      </p>
     </form>
   );
 }

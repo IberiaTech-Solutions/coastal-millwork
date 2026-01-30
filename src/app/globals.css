@@ -53,7 +53,7 @@ h1, h2, h3 {
   color: var(--muted);
 }
 
-/* Hero text fade-in */
+/* Hero text fade-in (e.g. on tagline rotate) */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -66,6 +66,21 @@ h1, h2, h3 {
 }
 .animate-fade-in {
   animation: fade-in 0.6s ease-out forwards;
+}
+
+/* Hero content – lands on load so one moment sticks (not polite, confident) */
+@keyframes hero-load-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-content-load {
+  animation: hero-load-in 0.85s ease-out forwards;
 }
 
 /* Hero background – very restrained slow pan (architectural, not marketing) */
@@ -144,6 +159,28 @@ h1, h2, h3 {
   transform: translateY(-2px);
 }
 
+/* Featured (Design / Fabrication / Installation) – sequence, flow, stagger */
+.featured-card {
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+.animate-section-enter.is-visible .featured-cards-grid .featured-card:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0;
+}
+.animate-section-enter.is-visible .featured-cards-grid .featured-card:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.14s;
+}
+.animate-section-enter.is-visible .featured-cards-grid .featured-card:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.28s;
+}
+
 /* Architectural accent – thin rule under section labels (optional) */
 .section-label-with-rule::after {
   content: "";
@@ -194,6 +231,37 @@ h1, h2, h3 {
   max-width: 3rem;
   background: var(--foreground);
   opacity: 0.2;
+}
+
+/* Sectors – category feel: marker, hierarchy, micro-hover */
+.sector-item {
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.sector-item:hover {
+  transform: translateY(-1px);
+}
+.sector-item:hover .sector-item-marker {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Awards – whisper credibility: softer shadow, subtle hover, support not dominate */
+.award-card {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  opacity: 0.92;
+  transition: opacity 0.25s ease, box-shadow 0.25s ease;
+}
+.award-card:hover {
+  opacity: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Manifesto-lite – philosophy statement, not a paragraph; isolate, give it air */
+.manifesto-quote {
+  font-size: clamp(1.5rem, 4vw + 1.25rem, 2.5rem);
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
 }
 
 /* ---- Subtle scroll-triggered motion (architectural, not marketing) ---- */

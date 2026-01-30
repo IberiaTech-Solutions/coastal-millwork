@@ -37,12 +37,15 @@ const TIER_PILL_INACTIVE: Record<ProjectTier | "all", string> = {
   4: "border-emerald-700/50 bg-[var(--background)] text-emerald-700 hover:bg-emerald-700/10",
 };
 
-const TIER_TEXT_STYLES: Record<ProjectTier, string> = {
-  1: "font-semibold text-amber-700",
-  2: "font-semibold text-slate-600",
-  3: "font-semibold text-amber-600",
-  4: "font-semibold text-emerald-700",
+const TIER_LABEL_STYLES: Record<ProjectTier, string> = {
+  1: "text-amber-700",
+  2: "text-slate-600",
+  3: "text-amber-600",
+  4: "text-emerald-700",
 };
+
+/** Curated gallery: show this many items at once (exhibits, not index). */
+const GALLERY_PREVIEW_COUNT = 6;
 
 const TIER_BAR_COLORS: Record<ProjectTier, string> = {
   1: "bg-amber-700",
@@ -72,9 +75,12 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
       : projects.filter((p) => p.tier === filter)
   ).sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
 
+  const displayed = filtered.slice(0, GALLERY_PREVIEW_COUNT);
+  const hasMore = filtered.length > GALLERY_PREVIEW_COUNT;
+
   return (
-    <section id="projects" className="scroll-mt-24 border-b border-[var(--border)] bg-section-alt px-4 py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl">
+    <section id="projects" className="scroll-mt-24 border-b border-[var(--border)] bg-section-alt px-4 py-24 sm:py-32">
+      <div className="mx-auto max-w-5xl">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end sm:gap-8">
           <div>
             <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
@@ -94,7 +100,7 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
         </div>
 
         {/* Filter pills + bar */}
-        <div className="mt-8">
+        <div className="mt-10">
           <div className="flex flex-wrap items-center gap-2">
             <span className="section-label mr-1">Contract scope</span>
             {(["all", 1, 2, 3, 4] as const).map((tier) => (
@@ -197,27 +203,46 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
           </div>
 
           <p className="mt-4 text-xs text-[var(--muted)]">
-            Showing {filtered.length} project{filtered.length !== 1 ? "s" : ""}
+            {filtered.length} project{filtered.length !== 1 ? "s" : ""}
+            {filtered.length > GALLERY_PREVIEW_COUNT
+              ? ` · showing ${GALLERY_PREVIEW_COUNT} below`
+              : ""}
           </p>
         </div>
 
-        {/* Project list */}
+        {/* Gallery – fewer, larger cards; location + type as typography */}
         <ul
-          className="mt-10 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8"
           role="list"
         >
-          {filtered.map(({ name, location, tier }) => (
+          {displayed.map(({ name, location, tier }) => (
             <li
               key={`${name}-${location}`}
-              className="card-float rounded-lg border border-[var(--border)] bg-white p-4 transition hover:border-[var(--foreground)]/20"
+              className="card-float rounded-lg border border-[var(--border)] bg-white p-6 transition hover:border-[var(--foreground)]/20 sm:p-8"
             >
-              <span className={`block ${TIER_TEXT_STYLES[tier]}`}>{name}</span>
-              <span className="mt-1 block text-sm text-[var(--muted)]">
+              <p className="text-base font-semibold tracking-tight text-[var(--foreground)] sm:text-lg">
+                {name}
+              </p>
+              <p className="mt-2 text-sm tracking-wide text-[var(--foreground)]/80">
                 {location}
-              </span>
+              </p>
+              <p className={`mt-1 section-label ${TIER_LABEL_STYLES[tier]}`}>
+                {TIER_LABELS[tier]}
+              </p>
             </li>
           ))}
         </ul>
+
+        {hasMore && (
+          <p className="mt-10 text-center">
+            <Link
+              href="/projects"
+              className="text-sm font-medium text-[var(--accent)] hover:underline"
+            >
+              View all {filtered.length} projects in gallery →
+            </Link>
+          </p>
+        )}
       </div>
     </section>
   );

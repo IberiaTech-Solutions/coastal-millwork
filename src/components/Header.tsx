@@ -42,7 +42,7 @@ export default function Header() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-2 text-xs text-[var(--muted)] lg:px-8">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <a href="/maps" className="hover:text-[var(--foreground)]">
-              1025 W 5th N Street, Summerville, SC 29483
+              1025 W 5th N St, Summerville, SC 29483
             </a>
             <span className="hidden sm:inline" aria-hidden>·</span>
             <span className="flex items-center gap-x-3">

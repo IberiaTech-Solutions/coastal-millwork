@@ -80,23 +80,23 @@ export default function Hero({
       {/* Dark overlay for text contrast */}
       <div className="absolute inset-0 bg-black/50" aria-hidden />
 
-      {/* Content – centered, oversized headline + metric */}
+      {/* Content – one line dominant, rest supporting; load-in so it sticks */}
       <div className="relative flex h-full flex-col justify-center px-4 py-24 text-center">
-        <div className="mx-auto max-w-4xl">
+        <div className="hero-content-load mx-auto max-w-4xl">
           {subtitle && (
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80 sm:text-sm">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/55 sm:text-xs">
               {subtitle}
             </p>
           )}
-          <div className="mt-4 min-h-[3.5rem] sm:min-h-[4rem] lg:min-h-[5rem]">
+          <div className="mt-3 min-h-[3.5rem] sm:min-h-[4rem] lg:min-h-[5rem]">
             <h1
               key={lineIndex}
-              className="animate-fade-in text-4xl font-semibold leading-[1.08] tracking-tight text-white drop-shadow-md sm:text-5xl lg:text-6xl xl:text-7xl"
+              className="animate-fade-in text-4xl font-bold leading-[1.06] tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)] sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[4rem]"
             >
               {taglines[lineIndex]}
             </h1>
           </div>
-          <p className="mt-6 text-sm font-medium tracking-wide text-white/90 sm:text-base lg:mt-8 lg:text-lg">
+          <p className="mt-5 text-xs font-normal tracking-wide text-white/60 sm:text-sm lg:mt-6">
             {metric}
           </p>
         </div>

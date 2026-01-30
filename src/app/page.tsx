@@ -125,18 +125,17 @@ export default function Home() {
         scrollToId="intro"
       />
 
-      {/* Intro – pull quote + rules break text rhythm */}
-      <AnimateSection as="section" id="intro" className="scroll-mt-24 border-b border-[var(--border)] bg-intro px-4 py-24 sm:py-32">
+      {/* Intro – statement → explanation (2025 pattern), same content, architectural pacing */}
+      <AnimateSection as="section" id="intro" className="scroll-mt-24 border-b border-[var(--border)] bg-intro px-4 py-28 sm:py-36">
         <div className="mx-auto max-w-4xl">
           <p className="pull-quote">
             Our primary mission is to &ldquo;provide the highest level of comprehensive, pre-project design integration and pro-active construction management in the production and installation of premium finished, architectural wood and interior specialty products.&rdquo;
           </p>
-          <hr className="rule-design rule-design--thick mt-10 mb-10" aria-hidden />
-          <p className="text-lg font-medium text-[var(--foreground)] leading-relaxed sm:text-xl sm:leading-loose">
+          <hr className="rule-design rule-design--thick mt-14 mb-14 sm:mt-16 sm:mb-16" aria-hidden />
+          <p className="text-base font-normal leading-relaxed text-[var(--muted)] sm:text-lg sm:leading-loose">
             Located in Summerville, SC, but serving the Southeast, Coastal Millwork & Supply LLC is an award-winning, AWI QCP premium-certified, full-service, commercial interior architectural woodwork and adjacent finishes contractor and fabricator. We specialize in the design engineering, project management, fabrication, and installation of custom wood & laminate products, custom finishes, decorative metals and glass, polymers, and stone packages.
           </p>
-          <hr className="rule-design mt-10 mb-10" aria-hidden />
-          <p>
+          <p className="mt-12 sm:mt-14">
             <Link href="/about" className="text-sm font-medium text-[var(--accent)] hover:underline">
               Continue reading on our About Us page →
             </Link>
@@ -144,54 +143,64 @@ export default function Home() {
         </div>
       </AnimateSection>
 
-      {/* Featured – cards float, section overlaps intro (spatial layering) */}
+      {/* Featured – sequence, flow: staggered layout, alternating emphasis, scroll-in one at a time */}
       <AnimateSection as="section" id="services" className="section-overlap-up scroll-mt-24 border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 pb-20 pt-16 sm:pb-24 sm:pt-20">
-        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-3">
-          {FEATURED.map((item) => (
-            <Link
-              key={item.title}
-              href={item.href}
-              className="card-float group rounded-lg bg-white p-8 transition hover:bg-white lg:p-10"
-            >
-              <ImageReveal className="aspect-[4/3] w-full bg-[var(--border)]">
-                <Image src={item.image} alt={item.alt} width={360} height={270} className="h-full w-full object-cover" />
-              </ImageReveal>
-              <h2 className="mt-6 text-xl font-semibold tracking-[-0.025em] text-[var(--foreground)] group-hover:underline">
-                {item.title}
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-                {item.description}
-              </p>
-              <span className="mt-4 inline-block text-sm font-medium text-[var(--foreground)] group-hover:underline">
-                Learn more →
-              </span>
-            </Link>
-          ))}
+        <div className="featured-cards-grid mx-auto grid max-w-6xl gap-6 lg:grid-cols-3 lg:items-start">
+          {FEATURED.map((item, index) => {
+            const isMiddle = index === 1;
+            return (
+              <Link
+                key={item.title}
+                href={item.href}
+                className={`featured-card card-float group rounded-lg bg-white p-8 transition hover:bg-white lg:p-10 ${isMiddle ? "mt-8 sm:mt-12 lg:mt-10" : ""}`}
+              >
+                <ImageReveal className={`w-full bg-[var(--border)] ${isMiddle ? "aspect-square" : "aspect-[4/3]"}`}>
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    width={isMiddle ? 360 : 360}
+                    height={isMiddle ? 360 : 270}
+                    className="h-full w-full object-cover"
+                  />
+                </ImageReveal>
+                <div className={isMiddle ? "mt-6 space-y-3" : "mt-6"}>
+                  <h2 className="text-xl font-semibold tracking-[-0.025em] text-[var(--foreground)] group-hover:underline sm:text-[1.25rem]">
+                    {item.title}
+                  </h2>
+                  <p className={`text-[var(--muted)] ${isMiddle ? "mt-3 text-base leading-relaxed" : "mt-3 text-sm leading-relaxed"}`}>
+                    {item.description}
+                  </p>
+                </div>
+                <span className="mt-4 inline-block text-sm font-medium text-[var(--foreground)] group-hover:underline">
+                  Learn more →
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </AnimateSection>
 
-      {/* Quote – oversized quote + rules as design elements */}
-      <AnimateSection as="section" className="border-b border-[var(--border)] bg-band px-4 py-24 sm:py-32">
+      {/* Mission – manifesto-lite: isolate, big text, minimal elements, let it breathe */}
+      <AnimateSection as="section" className="border-b border-[var(--border)] bg-band px-4 py-32 sm:py-44">
         <div className="mx-auto max-w-3xl text-center">
-          <hr className="rule-design rule-design--thick rule-design--center mb-12" aria-hidden />
-          <blockquote className="pull-quote">
+          <blockquote className="manifesto-quote">
             We are committed to &ldquo;not being the concern&rdquo; for any General Contractor or Design Team—and our track record and reputation have come from that commitment.
           </blockquote>
-          <hr className="rule-design rule-design--center mt-12 mb-8" aria-hidden />
-          <p className="anchor-line text-[var(--muted)] font-medium">
+          <hr className="rule-design rule-design--center mt-20 mb-6" aria-hidden />
+          <p className="text-xs font-normal text-[var(--muted)] sm:text-sm">
             From medical upfits to projects with multimillion dollar scope values.
           </p>
-          <p className="mt-6">
-            <Link href="/about" className="text-sm font-medium text-[var(--accent)] hover:underline">
+          <p className="mt-4">
+            <Link href="/about" className="text-xs font-medium text-[var(--accent)] hover:underline sm:text-sm">
               Continue reading on our About Us page →
             </Link>
           </p>
         </div>
       </AnimateSection>
 
-      {/* Sectors – rule as design element, anchor line */}
-      <AnimateSection as="section" className="border-b border-[var(--border)] bg-stripes px-4 py-14 sm:py-18">
-        <div className="mx-auto max-w-6xl">
+      {/* Sectors – fewer per row, more space, category hierarchy, subtle marker, micro-hover */}
+      <AnimateSection as="section" className="border-b border-[var(--border)] bg-stripes px-4 py-18 sm:py-22">
+        <div className="mx-auto max-w-4xl">
           <h2 className="section-label text-center">
             Sectors We Serve
           </h2>
@@ -199,22 +208,25 @@ export default function Home() {
             <AnimateLine className="!mt-0.5 !block" />
           </div>
           <hr className="rule-design rule-design--thick rule-design--center mt-6" aria-hidden />
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:gap-6">
             {SECTORS.map(({ label, href }) => (
               <Link
                 key={label}
                 href={href}
-                className="rounded-full border border-[var(--border)] bg-[var(--background)] px-5 py-2.5 text-sm font-medium text-[var(--foreground)] transition hover:border-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-white"
+                className="sector-item flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3.5 text-left transition hover:border-[var(--foreground)]/40 hover:bg-[var(--foreground)] hover:text-white focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2"
               >
-                {label}
+                <span className="sector-item-marker h-1 w-1 shrink-0 rounded-full bg-[var(--foreground)]/35" aria-hidden />
+                <span className="text-sm font-semibold tracking-tight text-[var(--foreground)]">
+                  {label}
+                </span>
               </Link>
             ))}
           </div>
         </div>
       </AnimateSection>
 
-      {/* Awards – anchor line above grid, rule as design */}
-      <AnimateSection as="section" className="section-overlap-up border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
+      {/* Awards – whisper credibility: softer presentation, more spacing, support not dominate */}
+      <AnimateSection as="section" className="section-overlap-up border-b border-[var(--border)] bg-section-alt px-4 py-20 sm:py-28">
         <div className="mx-auto max-w-6xl">
           <h2 className="section-label text-center">
             Awards & Recognition
@@ -223,7 +235,7 @@ export default function Home() {
             <AnimateLine className="!mt-0.5 !block" />
           </div>
           <hr className="rule-design rule-design--thick rule-design--center mt-6" aria-hidden />
-          <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-6">
+          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-10 xl:grid-cols-5 xl:gap-8">
             {AWARDS.map((award) => (
               <AwardCard
                 key={award.name}
@@ -234,8 +246,8 @@ export default function Home() {
               />
             ))}
           </div>
-          <p className="mt-10 text-center">
-            <Link href="/projects" className="text-sm font-medium text-[var(--accent)] hover:underline">
+          <p className="mt-12 text-center">
+            <Link href="/projects" className="text-sm font-medium text-[var(--accent)]/90 hover:text-[var(--accent)] hover:underline">
               Project gallery →
             </Link>
           </p>
