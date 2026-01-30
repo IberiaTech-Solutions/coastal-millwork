@@ -24,8 +24,8 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   return (
     <div>
-      {/* Back + title */}
-      <section className="border-b border-[var(--border)] bg-intro px-4 py-10 sm:py-14">
+      {/* Back + title – location & sector as typography, not labels */}
+      <section className="border-b border-[var(--border)] bg-intro px-4 py-12 sm:py-20">
         <div className="mx-auto max-w-4xl">
           <Link
             href="/projects"
@@ -33,9 +33,15 @@ export default async function ProjectDetailPage({ params }: Props) {
           >
             ← Return to Projects Gallery
           </Link>
-          <h1 className="mt-6 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
+          <h1 className="mt-8 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
             {project.title}
           </h1>
+          <p className="mt-3 text-base tracking-wide text-[var(--foreground)]/80">
+            {project.location}
+          </p>
+          <p className="mt-0.5 section-label text-[var(--muted)]">
+            {project.sector}
+          </p>
         </div>
       </section>
 

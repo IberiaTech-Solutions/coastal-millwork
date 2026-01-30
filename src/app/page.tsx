@@ -3,6 +3,9 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import AwardCard from "@/components/AwardCard";
 import NotableProjects from "@/components/NotableProjects";
+import AnimateSection from "@/components/AnimateSection";
+import AnimateLine from "@/components/AnimateLine";
+import ImageReveal from "@/components/ImageReveal";
 import { PROJECTS_GALLERY, SECTOR_LABELS } from "@/data/projects";
 
 const AWARDS = [
@@ -113,43 +116,46 @@ const PROJECTS: { name: string; location: string; tier: 1 | 2 | 3 | 4 }[] = [
 export default function Home() {
   return (
     <div>
-      {/* Hero – rotating taglines + background images */}
+      {/* Hero – oversized headline, metric, restrained background motion */}
       <Hero
         taglines={HERO_TAGLINES}
         images={HERO_IMAGES}
-        subtitle="AWI-QCP Premium Certified · Summerville, SC"
+        subtitle="Summerville, SC"
+        metric="800+ architectural projects · 20+ years · AWI-QCP Premium Certified"
         scrollToId="intro"
       />
 
-      {/* Intro – company overview and mission (from old site) */}
-      <section id="intro" className="scroll-mt-24 border-b border-[var(--border)] bg-intro px-4 py-20 sm:py-28">
+      {/* Intro – pull quote + rules break text rhythm */}
+      <AnimateSection as="section" id="intro" className="scroll-mt-24 border-b border-[var(--border)] bg-intro px-4 py-24 sm:py-32">
         <div className="mx-auto max-w-4xl">
+          <p className="pull-quote">
+            Our primary mission is to &ldquo;provide the highest level of comprehensive, pre-project design integration and pro-active construction management in the production and installation of premium finished, architectural wood and interior specialty products.&rdquo;
+          </p>
+          <hr className="rule-design rule-design--thick mt-10 mb-10" aria-hidden />
           <p className="text-lg font-medium text-[var(--foreground)] leading-relaxed sm:text-xl sm:leading-loose">
             Located in Summerville, SC, but serving the Southeast, Coastal Millwork & Supply LLC is an award-winning, AWI QCP premium-certified, full-service, commercial interior architectural woodwork and adjacent finishes contractor and fabricator. We specialize in the design engineering, project management, fabrication, and installation of custom wood & laminate products, custom finishes, decorative metals and glass, polymers, and stone packages.
           </p>
-          <p className="mt-8 text-lg font-medium text-[var(--foreground)] leading-relaxed sm:text-xl sm:leading-loose">
-            Our primary mission is to &ldquo;provide the highest level of comprehensive, pre-project design integration and pro-active construction management in the production and installation of premium finished, architectural wood and interior specialty products.&rdquo;
-          </p>
-          <p className="mt-10">
+          <hr className="rule-design mt-10 mb-10" aria-hidden />
+          <p>
             <Link href="/about" className="text-sm font-medium text-[var(--accent)] hover:underline">
               Continue reading on our About Us page →
             </Link>
           </p>
         </div>
-      </section>
+      </AnimateSection>
 
-      {/* Featured – 3 cards like LS3P Architecture | Interiors | Planning */}
-      <section id="services" className="scroll-mt-24 border-b border-[var(--border)] bg-white">
-        <div className="mx-auto grid max-w-6xl gap-px bg-[var(--border)] lg:grid-cols-3">
+      {/* Featured – cards float, section overlaps intro (spatial layering) */}
+      <AnimateSection as="section" id="services" className="section-overlap-up scroll-mt-24 border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 pb-20 pt-16 sm:pb-24 sm:pt-20">
+        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-3">
           {FEATURED.map((item) => (
             <Link
               key={item.title}
               href={item.href}
-              className="group bg-[var(--background)] p-8 transition hover:bg-white lg:p-10"
+              className="card-float group rounded-lg bg-white p-8 transition hover:bg-white lg:p-10"
             >
-              <div className="aspect-[4/3] w-full overflow-hidden bg-[var(--border)]">
+              <ImageReveal className="aspect-[4/3] w-full bg-[var(--border)]">
                 <Image src={item.image} alt={item.alt} width={360} height={270} className="h-full w-full object-cover" />
-              </div>
+              </ImageReveal>
               <h2 className="mt-6 text-xl font-semibold tracking-[-0.025em] text-[var(--foreground)] group-hover:underline">
                 {item.title}
               </h2>
@@ -162,15 +168,17 @@ export default function Home() {
             </Link>
           ))}
         </div>
-      </section>
+      </AnimateSection>
 
-      {/* Quote / mission – LS3P-style pull quote */}
-      <section className="border-b border-[var(--border)] bg-quote px-4 py-20 sm:py-28">
+      {/* Quote – oversized quote + rules as design elements */}
+      <AnimateSection as="section" className="border-b border-[var(--border)] bg-band px-4 py-24 sm:py-32">
         <div className="mx-auto max-w-3xl text-center">
-          <blockquote className="text-2xl font-medium leading-relaxed text-[var(--foreground)] sm:text-3xl">
+          <hr className="rule-design rule-design--thick rule-design--center mb-12" aria-hidden />
+          <blockquote className="pull-quote">
             We are committed to &ldquo;not being the concern&rdquo; for any General Contractor or Design Team—and our track record and reputation have come from that commitment.
           </blockquote>
-          <p className="mt-8 text-sm text-[var(--muted)]">
+          <hr className="rule-design rule-design--center mt-12 mb-8" aria-hidden />
+          <p className="anchor-line text-[var(--muted)] font-medium">
             From medical upfits to projects with multimillion dollar scope values.
           </p>
           <p className="mt-6">
@@ -179,14 +187,18 @@ export default function Home() {
             </Link>
           </p>
         </div>
-      </section>
+      </AnimateSection>
 
-      {/* Sectors – grid of buttons */}
-      <section className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
+      {/* Sectors – rule as design element, anchor line */}
+      <AnimateSection as="section" className="border-b border-[var(--border)] bg-stripes px-4 py-14 sm:py-18">
         <div className="mx-auto max-w-6xl">
-          <h2 className="section-label section-label-with-rule text-center">
+          <h2 className="section-label text-center">
             Sectors We Serve
           </h2>
+          <div className="flex justify-center">
+            <AnimateLine className="!mt-0.5 !block" />
+          </div>
+          <hr className="rule-design rule-design--thick rule-design--center mt-6" aria-hidden />
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             {SECTORS.map(({ label, href }) => (
               <Link
@@ -199,14 +211,18 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </AnimateSection>
 
-      {/* Awards & Recognition */}
-      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
+      {/* Awards – anchor line above grid, rule as design */}
+      <AnimateSection as="section" className="section-overlap-up border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl">
-          <h2 className="section-label section-label-with-rule text-center">
+          <h2 className="section-label text-center">
             Awards & Recognition
           </h2>
+          <div className="flex justify-center">
+            <AnimateLine className="!mt-0.5 !block" />
+          </div>
+          <hr className="rule-design rule-design--thick rule-design--center mt-6" aria-hidden />
           <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 xl:gap-6">
             {AWARDS.map((award) => (
               <AwardCard
@@ -224,17 +240,23 @@ export default function Home() {
             </Link>
           </p>
         </div>
-      </section>
+      </AnimateSection>
 
-      <NotableProjects projects={PROJECTS} />
+      <AnimateSection>
+        <NotableProjects projects={PROJECTS} />
+      </AnimateSection>
 
-      {/* Products and Services – modern grid */}
-      <section className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
+      {/* Products and Services – anchor line + rule, first item as visual anchor */}
+      <AnimateSection as="section" className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-5xl">
-          <h2 className="section-label section-label-with-rule text-center">
+          <h2 className="section-label text-center">
             Products and Services
           </h2>
-          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="flex justify-center">
+            <AnimateLine className="!mt-0.5 !block" />
+          </div>
+          <hr className="rule-design rule-design--thick rule-design--center mt-6 mb-10" aria-hidden />
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               "Comprehensive architectural design and development",
               "Premium grade, factory transparent and opaque finishes",
@@ -247,10 +269,12 @@ export default function Home() {
             ].map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/80 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] shadow-sm backdrop-blur-sm transition hover:border-[var(--foreground)]/20 hover:shadow"
+                className="card-float flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/90 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] backdrop-blur-sm transition hover:border-[var(--foreground)]/20"
               >
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
-                <span className="leading-snug">{item}</span>
+                <span className={`leading-snug ${item === "Comprehensive architectural design and development" ? "anchor-line text-base" : ""}`}>
+                  {item}
+                </span>
               </li>
             ))}
           </ul>
@@ -269,16 +293,20 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </AnimateSection>
 
-      {/* Bottom CTA – About + Contact */}
-      <section className="bg-white px-4 py-20 sm:py-28">
+      {/* Bottom CTA – rule + headline, anchor line for impact */}
+      <AnimateSection as="section" className="bg-white px-4 py-28 sm:py-36">
         <div className="mx-auto max-w-4xl text-center">
+          <hr className="rule-design rule-design--thick rule-design--center mb-12" aria-hidden />
           <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
             Design excellence. Proactive management. No surprises.
           </h2>
-          <p className="mt-6 text-[var(--muted)]">
-            Largest architectural design engineering staff in the Southeast. AWI-QCP Premium certified fabrication and installation.
+          <p className="anchor-line mt-8 text-[var(--foreground)]">
+            Largest architectural design engineering staff in the Southeast.
+          </p>
+          <p className="mt-3 text-[var(--muted)]">
+            AWI-QCP Premium certified fabrication and installation.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link
@@ -295,7 +323,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </AnimateSection>
     </div>
   );
 }

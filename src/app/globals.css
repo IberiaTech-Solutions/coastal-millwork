@@ -7,10 +7,15 @@
   --border: #e5e7eb;
   --accent: #1a1a1a;
   --accent-hover: #374151;
-  /* Architectural / design backgrounds */
+  /* Architectural / design backgrounds – light → dark → light rhythm */
   --bg-warm: #f8f7f5;
   --bg-cool: #f6f7f9;
   --bg-paper: #f5f4f2;
+  --bg-band: #ececec; /* Slightly darker band for depth */
+  /* Depth – controlled elevation */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.08), 0 12px 24px rgba(0, 0, 0, 0.06);
+  --shadow-overlap: 0 -2px 8px rgba(0, 0, 0, 0.04);
 }
 
 @theme inline {
@@ -63,6 +68,19 @@ h1, h2, h3 {
   animation: fade-in 0.6s ease-out forwards;
 }
 
+/* Hero background – very restrained slow pan (architectural, not marketing) */
+@keyframes hero-bg-pan {
+  0%, 100% {
+    transform: scale(1.04) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.04) translate(-1.5%, -1%);
+  }
+}
+.hero-bg-pan {
+  animation: hero-bg-pan 90s ease-in-out infinite;
+}
+
 /* Bouncy arrow down */
 @keyframes bounce-down {
   0%, 100% {
@@ -103,6 +121,29 @@ h1, h2, h3 {
   background-color: var(--bg-cool);
 }
 
+/* Darker band for background rhythm (light → dark → light) */
+.bg-band {
+  background-color: var(--bg-band);
+}
+
+/* Section overlap – next section pulls up and sits on top (spatial layering) */
+.section-overlap-up {
+  position: relative;
+  z-index: 10;
+  margin-top: -3rem; /* -48px – overlaps previous section */
+  box-shadow: var(--shadow-overlap);
+}
+
+/* Floating cards – subtle elevation, lift on hover */
+.card-float {
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.card-float:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
 /* Architectural accent – thin rule under section labels (optional) */
 .section-label-with-rule::after {
   content: "";
@@ -113,4 +154,76 @@ h1, h2, h3 {
   margin-left: auto;
   margin-right: auto;
   background: var(--border);
+}
+
+/* ---- Text rhythm: pull quotes, anchors, rules (same words, more impact) ---- */
+/* Oversized pull quote – key sentence pulled out */
+.pull-quote {
+  font-size: clamp(1.375rem, 2.5vw + 1rem, 2rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+/* One line as visual anchor in a section */
+.anchor-line {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  line-height: 1.4;
+}
+
+/* Horizontal rule as design element (not just divider) */
+.rule-design {
+  width: 100%;
+  max-width: 4rem;
+  height: 1px;
+  margin-left: 0;
+  margin-right: auto;
+  background: var(--border);
+  border: 0;
+}
+.rule-design--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.rule-design--thick {
+  height: 2px;
+  max-width: 3rem;
+  background: var(--foreground);
+  opacity: 0.2;
+}
+
+/* ---- Subtle scroll-triggered motion (architectural, not marketing) ---- */
+/* Section fade/slide: very subtle, runs when section enters view */
+.animate-section-enter {
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+.animate-section-enter.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Line/divider that grows in (e.g. under section labels) */
+.animate-line-in {
+  width: 0;
+  transition: width 0.5s ease-out;
+}
+.animate-line-in.is-visible {
+  width: 2rem;
+}
+
+/* Image reveal: clip from left, very subtle */
+.animate-image-reveal {
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path 0.7s ease-out;
+}
+.animate-image-reveal.is-visible {
+  clip-path: inset(0 0 0 0);
 }

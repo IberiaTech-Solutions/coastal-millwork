@@ -8,12 +8,23 @@ const ROTATE_INTERVAL_MS = 5000;
 type HeroProps = {
   taglines: string[];
   images: string[];
+  /** Small caps eyebrow above the headline (e.g. location or certification). */
   subtitle?: string;
-  /** ID of the element to scroll to when the down arrow is clicked (e.g. "featured") */
+  /** Single powerful metric line below the headline — "this is who we are." */
+  metric?: string;
+  /** ID of the element to scroll to when the down arrow is clicked. */
   scrollToId?: string;
 };
 
-export default function Hero({ taglines, images, subtitle, scrollToId = "featured" }: HeroProps) {
+const DEFAULT_METRIC = "800+ architectural projects · 20+ years · AWI-QCP Premium Certified";
+
+export default function Hero({
+  taglines,
+  images,
+  subtitle,
+  metric = DEFAULT_METRIC,
+  scrollToId = "featured",
+}: HeroProps) {
   const [lineIndex, setLineIndex] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
 
@@ -40,11 +51,11 @@ export default function Hero({ taglines, images, subtitle, scrollToId = "feature
   return (
     <section
       id="slideshow"
-      className="relative h-[calc(100vh-120px)] w-full overflow-hidden border-b border-[var(--border)] min-h-[280px]"
+      className="relative min-h-[280px] w-full overflow-hidden border-b border-[var(--border)]"
       style={{ height: "calc(100dvh - 120px)" }}
-      aria-label="Hero slideshow"
+      aria-label="Hero"
     >
-      {/* Background images – fill section height */}
+      {/* Background images – fill section, very slow pan */}
       <div className="absolute inset-0 bg-[var(--background)]">
         {images.map((src, i) => (
           <div
@@ -52,7 +63,7 @@ export default function Hero({ taglines, images, subtitle, scrollToId = "feature
             className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
             style={{ opacity: i === imageIndex ? 1 : 0 }}
           >
-            <div className="relative h-full w-full">
+            <div className="hero-bg-pan relative h-full w-full">
               <Image
                 src={src}
                 alt=""
@@ -69,32 +80,35 @@ export default function Hero({ taglines, images, subtitle, scrollToId = "feature
       {/* Dark overlay for text contrast */}
       <div className="absolute inset-0 bg-black/50" aria-hidden />
 
-      {/* Content – centered in viewport */}
+      {/* Content – centered, oversized headline + metric */}
       <div className="relative flex h-full flex-col justify-center px-4 py-24 text-center">
         <div className="mx-auto max-w-4xl">
           {subtitle && (
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/90 sm:text-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80 sm:text-sm">
               {subtitle}
             </p>
           )}
-          <div className="mt-6 min-h-[4.5rem] sm:min-h-[5rem] lg:min-h-[6rem]">
+          <div className="mt-4 min-h-[3.5rem] sm:min-h-[4rem] lg:min-h-[5rem]">
             <h1
               key={lineIndex}
-              className="animate-fade-in text-3xl font-semibold leading-tight tracking-tight text-white drop-shadow-md sm:text-4xl lg:text-5xl lg:leading-[1.15]"
+              className="animate-fade-in text-4xl font-semibold leading-[1.08] tracking-tight text-white drop-shadow-md sm:text-5xl lg:text-6xl xl:text-7xl"
             >
               {taglines[lineIndex]}
             </h1>
           </div>
+          <p className="mt-6 text-sm font-medium tracking-wide text-white/90 sm:text-base lg:mt-8 lg:text-lg">
+            {metric}
+          </p>
         </div>
       </div>
 
-      {/* Bouncy down arrow – scroll to next section */}
+      {/* Scroll cue */}
       {scrollToId && (
         <button
           type="button"
           onClick={handleScrollDown}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/90 transition hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent rounded-full p-2"
-          aria-label={`Scroll to next section`}
+          className="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1 rounded-full p-2 text-white/90 transition hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent"
+          aria-label="Scroll to next section"
         >
           <span className="animate-bounce-down text-3xl leading-none" aria-hidden>
             ↓

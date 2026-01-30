@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import CountUp from "@/components/CountUp";
 
 export type ProjectTier = 1 | 2 | 3 | 4;
 
@@ -80,7 +81,8 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
               Notable & Current Projects
             </h2>
             <p className="mt-3 max-w-xl text-sm text-[var(--muted)]">
-              Over 800 architectural projects in 20 years. Filter by contract scope below.
+              Over <CountUp end={800} suffix="+" className="tabular-nums" /> architectural projects in{" "}
+              <CountUp end={20} className="tabular-nums" /> years. Filter by contract scope below.
             </p>
           </div>
           <Link
@@ -207,7 +209,7 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
           {filtered.map(({ name, location, tier }) => (
             <li
               key={`${name}-${location}`}
-              className="rounded-lg border border-[var(--border)] bg-white p-4 shadow-sm transition hover:border-[var(--foreground)]/20 hover:shadow"
+              className="card-float rounded-lg border border-[var(--border)] bg-white p-4 transition hover:border-[var(--foreground)]/20"
             >
               <span className={`block ${TIER_TEXT_STYLES[tier]}`}>{name}</span>
               <span className="mt-1 block text-sm text-[var(--muted)]">

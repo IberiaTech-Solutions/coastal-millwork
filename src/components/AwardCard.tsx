@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ImageReveal from "@/components/ImageReveal";
 
 type AwardCardProps = {
   name: string;
@@ -16,7 +17,7 @@ export default function AwardCard({ name, image, fullWidthImage, objectPosition 
   const showImage = image && !imageError;
 
   return (
-    <figure className="group flex flex-col overflow-hidden rounded-lg shadow-md">
+    <figure className="card-float group flex flex-col overflow-hidden rounded-lg">
       <div
         className={`relative w-full overflow-hidden aspect-[4/3] ${
           fullWidthImage ? "flex justify-center items-start bg-white" : "bg-[var(--border)]"
@@ -25,23 +26,27 @@ export default function AwardCard({ name, image, fullWidthImage, objectPosition 
         {showImage ? (
           <>
             {fullWidthImage ? (
-              /* Same height as other cards: image at top, white bg */
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={image}
-                alt={name}
-                className="max-h-full max-w-full w-auto h-auto object-contain object-top transition group-hover:scale-105"
-                onError={() => setImageError(true)}
-              />
+              <ImageReveal className="h-full w-full flex justify-center items-start bg-white">
+                {/* Same height as other cards: image at top, white bg */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={image}
+                  alt={name}
+                  className="max-h-full max-w-full w-auto h-auto object-contain object-top transition group-hover:scale-105"
+                  onError={() => setImageError(true)}
+                />
+              </ImageReveal>
             ) : (
-              /* Fixed aspect: image fills card with object-cover */
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={image}
-                alt={name}
-                className={`absolute inset-0 h-full w-full object-cover transition group-hover:scale-105 ${objectPosition === "top" ? "object-top" : "object-center"}`}
-                onError={() => setImageError(true)}
-              />
+              <ImageReveal className="absolute inset-0 h-full w-full">
+                {/* Fixed aspect: image fills card with object-cover */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={image}
+                  alt={name}
+                  className={`h-full w-full object-cover transition group-hover:scale-105 ${objectPosition === "top" ? "object-top" : "object-center"}`}
+                  onError={() => setImageError(true)}
+                />
+              </ImageReveal>
             )}
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pt-12 pb-3 px-3 text-left">
               <figcaption className="text-sm font-medium text-white drop-shadow">
