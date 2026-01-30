@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useState, useMemo } from "react";
 import type { ProjectDetail, ProjectTier, SectorLabel } from "@/data/projects";
 import { projectImageUrl, SECTOR_LABELS } from "@/data/projects";
+import AnimateSection from "@/components/AnimateSection";
+import ImageReveal from "@/components/ImageReveal";
 
 const TIER_LABELS: Record<ProjectTier | "all", string> = {
   all: "All",
@@ -149,26 +151,27 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
         </div>
       </div>
 
-      {/* Portfolio grid – larger thumbnails, fewer per row, more white space */}
-      <div className="grid grid-cols-2 gap-8 sm:gap-10 lg:grid-cols-3">
+      {/* Portfolio grid – larger featured visuals, subtle reveal, contextual captions */}
+      <AnimateSection as="div" className="grid grid-cols-2 gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-12">
         {filtered.map((project) => {
           const coverSrc = projectImageUrl(project, project.coverImage);
+          const scaleLabel = project.tier === 0 ? "—" : TIER_LABELS[project.tier];
           return (
             <Link
               key={project.slug}
               href={`/projects/${project.slug}`}
               className="card-float group block overflow-hidden rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2"
             >
-              <div className="aspect-[4/5] overflow-hidden bg-[var(--border)]">
+              <ImageReveal className="aspect-[4/5] bg-[var(--border)]">
                 <Image
                   src={coverSrc}
                   alt={project.title}
                   width={560}
                   height={700}
                   className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.02]"
-                  sizes="(max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 1024px) 50vw, 50vw"
                 />
-              </div>
+              </ImageReveal>
               <div className="px-5 py-6 sm:px-6 sm:py-7">
                 <h2 className="text-lg font-semibold tracking-tight text-[var(--foreground)] sm:text-xl group-hover:text-[var(--accent)]">
                   {project.title}
@@ -178,6 +181,11 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
                 </p>
                 <p className="mt-0.5 section-label text-[var(--muted)]">
                   {project.sector}
+                  {scaleLabel !== "—" && (
+                    <span className="ml-1.5 font-medium text-[var(--foreground)]/70">
+                      · {scaleLabel}
+                    </span>
+                  )}
                 </p>
                 <span className="mt-4 inline-block text-xs font-medium text-[var(--foreground)] opacity-0 transition group-hover:opacity-100">
                   View project →
@@ -186,7 +194,7 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
             </Link>
           );
         })}
-      </div>
+      </AnimateSection>
 
       {filtered.length === 0 ? (
         <p className="py-24 text-center text-sm text-[var(--muted)]">

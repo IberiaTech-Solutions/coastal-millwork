@@ -24,18 +24,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Context before form – qualify without rejecting */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-14 sm:py-20">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-base font-medium leading-relaxed text-[var(--foreground)] sm:text-lg">
-            We typically engage during pre-construction and early design phases.
-          </p>
-          <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
-            Early coordination helps reduce field issues and schedule risk.
-          </p>
-        </div>
-      </section>
-
       {/* Form – slight background contrast, more whitespace */}
       <section className="border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 py-16 sm:py-24">
         <div className="mx-auto max-w-2xl">

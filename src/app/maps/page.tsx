@@ -18,22 +18,23 @@ export default function MapsPage() {
           <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
             Map & Directions
           </h1>
+          <p className="mt-4 text-sm text-[var(--muted)] leading-relaxed">
+            Our facility in Summerville—and where we serve.
+          </p>
         </div>
       </section>
 
-      {/* Framing sentence – statement of reach */}
+      {/* Operational footprint + service territory – intentional context */}
       <section className="border-b border-[var(--border)] bg-white px-4 py-10 sm:py-12">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-base font-medium leading-relaxed text-[var(--foreground)] sm:text-lg">
-            Based in Summerville, serving projects throughout the Southeast.
-          </p>
-          <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
-            Our fabrication and engineering teams operate from our Summerville facility.
+        <div className="mx-auto max-w-2xl">
+          <h2 className="section-label text-[var(--foreground)]/90">Operational footprint</h2>
+          <p className="mt-3 text-base leading-relaxed text-[var(--foreground)] sm:text-lg">
+            Southeast focus—South Carolina, Georgia, North Carolina, and beyond. Design, fabrication, and engineering are based at our Summerville facility.
           </p>
         </div>
       </section>
 
-      {/* Address, contact, visit note */}
+      {/* Address, contact, facility usage */}
       <section className="border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 py-14 sm:py-20">
         <div className="mx-auto max-w-2xl">
           <h2 className="section-label text-[var(--foreground)]/90">Address</h2>
@@ -46,8 +47,8 @@ export default function MapsPage() {
             {" · "}
             Fax: 843.873.9296
           </p>
-          <p className="mt-6 text-xs font-medium text-[var(--muted)]">
-            Deliveries and site visits by appointment. Please contact our team before visiting the facility.
+          <p className="mt-6 text-sm text-[var(--muted)]">
+            Visits and deliveries by appointment only. Please contact our team before visiting the facility.
           </p>
         </div>
       </section>

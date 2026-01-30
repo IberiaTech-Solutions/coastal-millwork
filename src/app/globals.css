@@ -233,6 +233,29 @@ h1, h2, h3 {
   opacity: 0.2;
 }
 
+/* Service block – card-like grouping, less list-like */
+.service-group {
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem 1.5rem 1.5rem 1.25rem;
+}
+@media (min-width: 640px) {
+  .service-group {
+    padding: 1.75rem 2rem 1.75rem 1.75rem;
+  }
+}
+/* Small vertical bar as graphic anchor next to service heading */
+.service-heading-bar {
+  width: 3px;
+  height: 1.5rem;
+  background: var(--foreground);
+  opacity: 0.25;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
 /* Sectors – category feel: marker, hierarchy, micro-hover */
 .sector-item {
   transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
@@ -262,6 +285,20 @@ h1, h2, h3 {
   line-height: 1.28;
   letter-spacing: -0.03em;
   color: var(--foreground);
+}
+
+/* Heading: subtle fade + slide when in view (slightly delayed so it reads after section) */
+.animate-heading-enter {
+  opacity: 0;
+  transform: translateY(0.4rem);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+  transition-delay: 0.06s;
+}
+.animate-heading-enter.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ---- Subtle scroll-triggered motion (architectural, not marketing) ---- */

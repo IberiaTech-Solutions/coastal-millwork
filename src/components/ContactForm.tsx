@@ -3,13 +3,15 @@
 import { useState } from "react";
 
 const INQUIRY_TYPES = [
-  { value: "pre-construction", label: "Pre-construction / Budgeting" },
-  { value: "active-project", label: "Active project coordination" },
-  { value: "general", label: "General inquiries" },
+  { value: "pre-construction", label: "Pre-construction / Budgeting", guidance: "For early project inquiries" },
+  { value: "active-project", label: "Active project coordination", guidance: "For project coordination" },
+  { value: "general", label: "General inquiries", guidance: "For general questions" },
 ] as const;
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [inquiryType, setInquiryType] = useState<(typeof INQUIRY_TYPES)[number]["value"]>("pre-construction");
+  const selectedGuidance = INQUIRY_TYPES.find((t) => t.value === inquiryType)?.guidance ?? "";
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -24,7 +26,7 @@ export default function ContactForm() {
           Thank you for your message.
         </p>
         <p className="mt-2 text-[var(--muted)]">
-          We will respond within one business day.
+          We&apos;ll be in touch within one business day.
         </p>
       </div>
     );
@@ -34,7 +36,7 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <p className="text-sm text-[var(--muted)]">* Required</p>
 
-      {/* Light segmentation – type of inquiry */}
+      {/* Type of inquiry + contextual guidance */}
       <div>
         <label htmlFor="inquiry-type" className="block text-sm font-medium text-[var(--foreground)]">
           Type of inquiry
@@ -42,6 +44,8 @@ export default function ContactForm() {
         <select
           id="inquiry-type"
           name="inquiryType"
+          value={inquiryType}
+          onChange={(e) => setInquiryType(e.target.value as (typeof INQUIRY_TYPES)[number]["value"])}
           className="mt-1 w-full rounded-md border border-[var(--border)] bg-white px-3 py-2 text-sm text-[var(--foreground)] focus:border-[var(--accent)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
           aria-label="Type of inquiry"
         >
@@ -51,6 +55,11 @@ export default function ContactForm() {
             </option>
           ))}
         </select>
+        {selectedGuidance && (
+          <p className="mt-2 text-xs font-medium text-[var(--muted)]">
+            {selectedGuidance}
+          </p>
+        )}
       </div>
 
       <div>
@@ -141,6 +150,9 @@ export default function ContactForm() {
         />
       </div>
 
+      <p className="text-xs leading-relaxed text-[var(--muted)]">
+        Inquiries go directly to our project team. We respond within one business day.
+      </p>
       <p className="text-xs text-[var(--muted)]">
         Disclaimer: Under no circumstances will your information ever be given to or sold to any other individual, business, or entity.
       </p>
@@ -152,10 +164,6 @@ export default function ContactForm() {
         Send message
       </button>
 
-      {/* Micro-reassurance – calm, confident, human */}
-      <p className="pt-4 text-xs leading-relaxed text-[var(--muted)]">
-        All inquiries go directly to our project team. We respond within one business day.
-      </p>
     </form>
   );
 }

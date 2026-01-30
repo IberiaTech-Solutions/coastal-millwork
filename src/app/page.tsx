@@ -5,6 +5,7 @@ import AwardCard from "@/components/AwardCard";
 import NotableProjects from "@/components/NotableProjects";
 import AnimateSection from "@/components/AnimateSection";
 import AnimateLine from "@/components/AnimateLine";
+import AnimateHeading from "@/components/AnimateHeading";
 import ImageReveal from "@/components/ImageReveal";
 import { PROJECTS_GALLERY, SECTOR_LABELS } from "@/data/projects";
 
@@ -143,9 +144,19 @@ export default function Home() {
         </div>
       </AnimateSection>
 
-      {/* Featured – sequence, flow: staggered layout, alternating emphasis, scroll-in one at a time */}
+      {/* Featured – What we do: narrative beat, then cards */}
       <AnimateSection as="section" id="services" className="section-overlap-up scroll-mt-24 border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 pb-20 pt-16 sm:pb-24 sm:pt-20">
-        <div className="featured-cards-grid mx-auto grid max-w-6xl gap-6 lg:grid-cols-3 lg:items-start">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 text-center sm:mb-14">
+            <AnimateHeading className="section-label">
+              What we do
+            </AnimateHeading>
+            <div className="flex justify-center">
+              <AnimateLine className="!mt-0.5 !block" />
+            </div>
+            <hr className="rule-design rule-design--thick rule-design--center mt-6" aria-hidden />
+          </div>
+        <div className="featured-cards-grid grid gap-6 lg:grid-cols-3 lg:items-start">
           {FEATURED.map((item, index) => {
             const isMiddle = index === 1;
             return (
@@ -178,6 +189,7 @@ export default function Home() {
             );
           })}
         </div>
+        </div>
       </AnimateSection>
 
       {/* Mission – manifesto-lite: isolate, big text, minimal elements, let it breathe */}
@@ -201,9 +213,9 @@ export default function Home() {
       {/* Sectors – fewer per row, more space, category hierarchy, subtle marker, micro-hover */}
       <AnimateSection as="section" className="border-b border-[var(--border)] bg-stripes px-4 py-18 sm:py-22">
         <div className="mx-auto max-w-4xl">
-          <h2 className="section-label text-center">
+          <AnimateHeading as="h2" className="section-label text-center">
             Sectors We Serve
-          </h2>
+          </AnimateHeading>
           <div className="flex justify-center">
             <AnimateLine className="!mt-0.5 !block" />
           </div>
@@ -228,9 +240,9 @@ export default function Home() {
       {/* Awards – whisper credibility: softer presentation, more spacing, support not dominate */}
       <AnimateSection as="section" className="section-overlap-up border-b border-[var(--border)] bg-section-alt px-4 py-20 sm:py-28">
         <div className="mx-auto max-w-6xl">
-          <h2 className="section-label text-center">
+          <AnimateHeading as="h2" className="section-label text-center">
             Awards & Recognition
-          </h2>
+          </AnimateHeading>
           <div className="flex justify-center">
             <AnimateLine className="!mt-0.5 !block" />
           </div>
@@ -261,9 +273,9 @@ export default function Home() {
       {/* Products and Services – anchor line + rule, first item as visual anchor */}
       <AnimateSection as="section" className="border-b border-[var(--border)] bg-stripes px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-5xl">
-          <h2 className="section-label text-center">
+          <AnimateHeading as="h2" className="section-label text-center">
             Products and Services
-          </h2>
+          </AnimateHeading>
           <div className="flex justify-center">
             <AnimateLine className="!mt-0.5 !block" />
           </div>
@@ -311,9 +323,9 @@ export default function Home() {
       <AnimateSection as="section" className="bg-white px-4 py-28 sm:py-36">
         <div className="mx-auto max-w-4xl text-center">
           <hr className="rule-design rule-design--thick rule-design--center mb-12" aria-hidden />
-          <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
+          <AnimateHeading as="h2" className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
             Design excellence. Proactive management. No surprises.
-          </h2>
+          </AnimateHeading>
           <p className="anchor-line mt-8 text-[var(--foreground)]">
             Largest architectural design engineering staff in the Southeast.
           </p>

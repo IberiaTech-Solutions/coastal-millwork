@@ -1,6 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
 
+/** Opening value statement (one line). */
+const VALUE_STATEMENT = "Our mission: the highest level of proactive, coordinated project management in the industry.";
+
+/** Key metrics for visual breakout. */
+const METRICS = [
+  { value: "700+", label: "Premium interior projects" },
+  { value: "40,000", label: "Sq ft facility" },
+  { value: "20+", label: "Years in business" },
+  { value: "AWI-QCP", label: "Premium certified" },
+];
+
+/** Leadership teaser for About – links to full Team page. */
+const LEADERSHIP = [
+  { name: "Chris Wagner", title: "President / Owner", image: "/images/team/wagner-chris_135x180.jpg", bio: "Founding owner. Brings upper management experience from one of the largest publicly held companies to commercial construction." },
+  { name: "Christian Datz", title: "Business Development Manager", image: "/images/team/placeholder-male_135x180.png", bio: "Citadel graduate. Over a decade in commercial woodworking; leads business development and estimation." },
+  { name: "Joe Fonseca", title: "Director of Project Management", image: "/images/team/fonseca-joe_135x180.jpg", bio: "35+ years in architectural casework and metals. Major projects in mass transit and aviation; handles scope from $2M to $40M." },
+];
+
 const SERVICES = [
   "Custom interior architectural millwork and casework",
   "Cabinetry",
@@ -12,13 +30,34 @@ const SERVICES = [
 export default function AboutPage() {
   return (
     <div>
-      {/* Page hero */}
+      {/* Page hero + value statement */}
       <section className="border-b border-[var(--border)] bg-intro px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">
           <p className="section-label section-label-with-rule">About Us</p>
           <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
             Award-winning, AWI premium-certified, full-service commercial interiors contractor
           </h1>
+          <p className="mt-5 text-base font-medium leading-relaxed text-[var(--foreground)]/90 sm:text-lg">
+            {VALUE_STATEMENT}
+          </p>
+        </div>
+      </section>
+
+      {/* Key numbers – visual breakout */}
+      <section className="border-b border-[var(--border)] bg-white px-4 py-10 sm:py-12">
+        <div className="mx-auto max-w-4xl">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
+            {METRICS.map(({ value, label }) => (
+              <div key={label} className="text-center">
+                <p className="text-2xl font-semibold tracking-tight text-[var(--foreground)] sm:text-3xl">
+                  {value}
+                </p>
+                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-[var(--muted)] sm:text-sm sm:normal-case sm:tracking-normal">
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -36,8 +75,45 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-10 text-[var(--muted)] leading-relaxed">
-            While we are very proud of the high-quality products we design, fabricate and install, our primary mission is to provide the highest level of proactive, coordinated project management found in the industry. Proactive management cannot be understated in our company&apos;s culture. We guarantee real success is found only in the management expertise and execution of any project.
+          <blockquote className="pull-quote mt-12 sm:mt-14">
+            Our primary mission is to provide the highest level of proactive, coordinated project management found in the industry.
+          </blockquote>
+          <hr className="rule-design rule-design--thick mt-8 mb-8" aria-hidden />
+          <p className="text-[var(--muted)] leading-relaxed">
+            Proactive management cannot be understated in our company&apos;s culture. We guarantee real success is found only in the management expertise and execution of any project. We are very proud of the high-quality products we design, fabricate and install—and that starts with how we manage every job.
+          </p>
+        </div>
+      </section>
+
+      {/* Leadership – photos + short bios, link to full team */}
+      <section className="border-b border-[var(--border)] bg-section-alt px-4 py-16 sm:py-20">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="section-label section-label-with-rule text-center">Leadership</h2>
+          <p className="mt-2 text-center text-lg font-semibold tracking-[-0.025em] text-[var(--foreground)]">
+            The people behind Coastal Millwork & Supply
+          </p>
+          <div className="mt-10 grid gap-10 sm:grid-cols-3 sm:gap-8">
+            {LEADERSHIP.map((person) => (
+              <article key={person.name} className="flex flex-col items-center text-center sm:block sm:text-left">
+                <div className="mx-auto aspect-[3/4] w-full max-w-[11rem] overflow-hidden rounded-lg bg-[var(--border)] shadow-sm sm:mx-0">
+                  <Image src={person.image} alt={person.name} width={135} height={180} className="h-full w-full object-cover object-top" />
+                </div>
+                <h3 className="mt-4 text-lg font-semibold tracking-[-0.025em] text-[var(--foreground)]">
+                  {person.name}
+                </h3>
+                <p className="mt-1 text-sm font-medium text-[var(--muted)]">
+                  {person.title}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
+                  {person.bio}
+                </p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-12 text-center">
+            <Link href="/team" className="text-sm font-medium text-[var(--accent)] hover:underline">
+              Meet the full team →
+            </Link>
           </p>
         </div>
       </section>

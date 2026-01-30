@@ -2,7 +2,7 @@ import FAQItem from "@/components/FAQItem";
 
 const FAQ_GROUPS = [
   {
-    title: "Working With Coastal",
+    title: "Working With CMS",
     faqs: [
       {
         q: "What geographic region does Coastal Millwork operate?",
@@ -19,7 +19,7 @@ const FAQ_GROUPS = [
     ],
   },
   {
-    title: "Project Scale & Process",
+    title: "Process",
     faqs: [
       {
         q: "What size projects do you specialize in?",
@@ -28,7 +28,7 @@ const FAQ_GROUPS = [
     ],
   },
   {
-    title: "Certifications & Quality",
+    title: "Certifications",
     faqs: [
       {
         q: "What are your certifications?",
@@ -79,16 +79,16 @@ export default function FAQsPage() {
         </div>
       </section>
 
-      {/* FAQ groups – by intent */}
+      {/* FAQ groups – by theme: Working With CMS, Process, Certifications */}
       <section className="border-b border-[var(--border)] bg-[var(--bg-paper)] px-4 py-16 sm:py-24">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-3xl space-y-12">
           {FAQ_GROUPS.map((group) => (
-            <div key={group.title} className="mb-16 last:mb-0">
+            <div key={group.title} className="service-group">
               <h2 className="section-label text-[var(--foreground)]/90">
                 {group.title}
               </h2>
-              <hr className="rule-design rule-design--thick mt-2 mb-2" aria-hidden />
-              <div className="mt-6 space-y-0">
+              <hr className="rule-design rule-design--thick mt-2 mb-6" aria-hidden />
+              <div className="space-y-0">
                 {group.faqs.map((faq) => (
                   <FAQItem
                     key={faq.q}

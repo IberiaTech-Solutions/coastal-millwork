@@ -61,25 +61,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Closing statement – end memorably */}
-      <div className="border-t border-[var(--border)] px-4 py-10 sm:py-12">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium leading-relaxed text-[var(--foreground)]/90 sm:text-base">
-            We are committed to &ldquo;not being the concern&rdquo; for any General Contractor or Design Team.
-          </p>
-          <Link
-            href="/contact"
-            className="mt-4 inline-block text-sm font-medium text-[var(--accent)] hover:underline"
-          >
-            Get in touch →
-          </Link>
-        </div>
-      </div>
-
       {/* Copyright */}
       <div className="border-t border-[var(--border)] px-4 py-6">
         <p className="text-center text-xs text-[var(--muted)]">
-          © 2009–2025 Coastal Millwork and Supply LLC. All rights reserved.
+          © 2009–2026 Coastal Millwork and Supply LLC. All rights reserved.
         </p>
       </div>
     </footer>

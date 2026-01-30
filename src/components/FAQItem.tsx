@@ -9,7 +9,7 @@ type FAQItemProps = {
 };
 
 export default function FAQItem({ question, answer, list }: FAQItemProps) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <article className="border-b border-[var(--border)] py-6 first:pt-0 last:border-0">

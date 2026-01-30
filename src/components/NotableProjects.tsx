@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import CountUp from "@/components/CountUp";
+import AnimateHeading from "@/components/AnimateHeading";
 
 export type ProjectTier = 1 | 2 | 3 | 4;
 
@@ -83,12 +84,12 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
       <div className="mx-auto max-w-5xl">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end sm:gap-8">
           <div>
-            <h2 className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
+            <AnimateHeading className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
               Notable & Current Projects
-            </h2>
+            </AnimateHeading>
             <p className="mt-3 max-w-xl text-sm text-[var(--muted)]">
               Over <CountUp end={800} suffix="+" className="tabular-nums" /> architectural projects in{" "}
-              <CountUp end={20} className="tabular-nums" /> years. Filter by contract scope below.
+              <CountUp end={20} className="tabular-nums" /> years. Contract scope from $1M to $10M+. Filter by scope below.
             </p>
           </div>
           <Link
