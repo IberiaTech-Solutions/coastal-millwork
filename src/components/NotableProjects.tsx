@@ -45,7 +45,7 @@ const TIER_LABEL_STYLES: Record<ProjectTier, string> = {
 };
 
 /** Curated gallery: show this many items at once (exhibits, not index). */
-const GALLERY_PREVIEW_COUNT = 6;
+const GALLERY_PREVIEW_COUNT = 12;
 
 /** Fallback copy so we never render "0+ projects in 0 years" (CountUp starts at 0). */
 const HERO_PROJECTS_COUNT = 800;
@@ -84,7 +84,7 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
 
   return (
     <section id="projects" className="scroll-mt-24 border-b border-[var(--border)] bg-section-alt px-4 py-28 sm:py-36">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end sm:gap-8">
           <div>
             <AnimateHeading className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
@@ -213,24 +213,23 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
           </p>
         </div>
 
-        {/* Gallery – fewer, larger cards; location + type as typography */}
+        {/* Gallery – 2026 cards: compact padding, title loud, metadata one line, normalized heights, 1/2/3/4 cols */}
         <ul
-          className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8"
+          className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4 xl:gap-6"
           role="list"
         >
           {displayed.map(({ name, location, tier }) => (
             <li
               key={`${name}-${location}`}
-              className="card-float rounded-lg border border-[var(--border)] bg-white p-6 transition hover:border-[var(--foreground)]/20 sm:p-8"
+              className="card-float flex h-full flex-col rounded-lg border border-[var(--border)] bg-white p-4 transition hover:border-[var(--foreground)]/20 sm:p-5"
             >
-              <p className="text-base font-semibold tracking-tight text-[var(--foreground)] sm:text-lg">
+              <h3 className="line-clamp-2 text-base font-semibold leading-tight tracking-tight text-[var(--foreground)] sm:text-lg sm:leading-snug">
                 {name}
-              </p>
-              <p className="mt-2 text-sm tracking-wide text-[var(--foreground)]/80">
+              </h3>
+              <p className="mt-2 text-xs font-medium tracking-wide text-[var(--muted)] sm:mt-2.5">
                 {location}
-              </p>
-              <p className={`mt-1 section-label ${TIER_LABEL_STYLES[tier]}`}>
-                {TIER_LABELS[tier]}
+                <span className="mx-1.5" aria-hidden>·</span>
+                <span className={TIER_LABEL_STYLES[tier]}>{TIER_LABELS[tier]}</span>
               </p>
             </li>
           ))}

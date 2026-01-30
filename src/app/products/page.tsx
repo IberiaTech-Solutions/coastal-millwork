@@ -79,63 +79,66 @@ export default function ProductsPage() {
       {/* Lead + image */}
       <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl">
-          <nav className="mb-10 flex flex-wrap items-center gap-3 text-sm" aria-label="Jump to section">
-            <span className="font-medium text-[var(--muted)]">Jump to:</span>
-            <a href="#typical-product-categories" className="rounded-full border-2 border-[var(--foreground)]/40 bg-transparent px-4 py-2 font-semibold text-[var(--accent)] transition hover:border-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-white">
-              Typical Product Categories
-            </a>
-            <a href="#sectors-we-serve" className="rounded-full border-2 border-[var(--foreground)]/40 bg-transparent px-4 py-2 font-semibold text-[var(--accent)] transition hover:border-[var(--foreground)] hover:bg-[var(--foreground)] hover:text-white">
-              Sectors we serve
-            </a>
+          <nav className="products-jump-nav mb-10" aria-label="Jump to section">
+            <a href="#typical-product-categories">Typical Product Categories</a>
+            <a href="#sectors-we-serve">Sectors we serve</a>
           </nav>
-          <p className="text-lg leading-relaxed text-[var(--foreground)] sm:text-xl">
-            Coastal Millwork and Supply (CMS) offers the design, manufacture, and installation of virtually any type of interior finish product. Being in the &lsquo;custom&rsquo; genre, we are usually involved in developing new types of finished products with varying material types. No one in our industry has the resources to accomplish this quite like the CMS staff.
-          </p>
-          <blockquote className="pull-quote mt-10 sm:mt-12">
+
+          {/* Zone A — Overview (constrained, breathing room below) */}
+          <div className="products-lead-overview">
+            <p className="text-lg leading-relaxed text-[var(--foreground)] sm:text-xl mt-0 mb-0">
+              Coastal Millwork and Supply (CMS) offers the design, manufacture, and installation of virtually any type of interior finish product. Being in the &lsquo;custom&rsquo; genre, we are usually involved in developing new types of finished products with varying material types. No one in our industry has the resources to accomplish this quite like the CMS staff.
+            </p>
+          </div>
+
+          {/* Zone B — Capability statement (pull quote: larger, left rule) */}
+          <blockquote className="products-capability-quote mt-0">
             From decorative metals to radius polymers to AWI Premium, high-end shop finishing, CMS can provide products with any type of integrated finishes based on the AWI standards of custom architectural millwork.
           </blockquote>
-          <hr className="rule-design rule-design--thick mt-8 mb-8" aria-hidden />
-          <p className="text-[var(--muted)] leading-relaxed">
-            We offer a full line of solid-surface designs and capabilities by utilizing our full-size polymer oven.
-          </p>
-          <figure className="mt-10">
-            <div className="aspect-video w-full overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
-              <Image src="/images/products/executive-work-space_480x305.jpg" alt="Executive work space." width={480} height={305} className="h-full w-full object-cover" />
-            </div>
-            <figcaption className="mt-3 text-sm text-[var(--muted)]">
-              Executive work space.
-            </figcaption>
-          </figure>
-          <p className="mt-8 text-[var(--muted)] leading-relaxed">
-            CMS does not offer a &lsquo;product line&rsquo; of cabinetry. With a mission focused on project management, CMS is a custom manufacturer starting with product design engineering through site installation and all points in between. Over the years, we have branched into integrating specialty finishes by incorporating metal work, glazing, acrylics, polymers, and other specialty products, into our design and manufacturing experience.
-          </p>
-          <p className="mt-8 text-[var(--foreground)] font-semibold">Of importance to note, CMS is:</p>
-          <ul className="mt-3 space-y-2 text-[var(--muted)] leading-relaxed">
-            {[
-              "A member and participant in good standing of the AWI-QCP program and an AWI premium-certified millwork contractor; and",
-              "A distinctly specified fabricator and installer for commercial Corian contracting in the state of South Carolina per DuPont Corian specifications.",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
-                {item}
-              </li>
-            ))}
-          </ul>
+
+          {/* Zone C — Clarification (narrower line length, smaller, explanatory) */}
+          <div className="products-clarification space-y-6">
+            <p className="mt-0">
+              We offer a full line of solid-surface designs and capabilities by utilizing our full-size polymer oven.
+            </p>
+            <figure className="mt-8 mb-8">
+              <div className="aspect-video w-full overflow-hidden rounded-lg bg-[var(--border)] shadow-sm">
+                <Image src="/images/products/executive-work-space_480x305.jpg" alt="Executive work space." width={480} height={305} className="h-full w-full object-cover" />
+              </div>
+              <figcaption className="mt-3 text-sm text-[var(--muted)]">
+                Executive work space.
+              </figcaption>
+            </figure>
+            <p className="mt-0">
+              CMS does not offer a &lsquo;product line&rsquo; of cabinetry. With a mission focused on project management, CMS is a custom manufacturer starting with product design engineering through site installation and all points in between. Over the years, we have branched into integrating specialty finishes by incorporating metal work, glazing, acrylics, polymers, and other specialty products, into our design and manufacturing experience.
+            </p>
+          </div>
+          <div className="products-certifications mt-10">
+            <p className="section-label mt-0 mb-3" aria-label="Certifications">
+              Certifications
+            </p>
+            <p className="products-certifications-statement mt-0 text-[var(--muted)] leading-relaxed">
+              A member and participant in good standing of the AWI-QCP program and an AWI premium-certified millwork contractor.
+            </p>
+            <p className="products-certifications-statement mt-3 text-[var(--muted)] leading-relaxed">
+              A distinctly specified fabricator and installer for commercial Corian contracting in the state of South Carolina per DuPont Corian specifications.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Materials & finishes – tight 2x2 grid, museum-label captions */}
-      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
+      {/* Materials & finishes – gallery as museum wall (equal ratios, caption band) */}
+      <section className="border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24" aria-label="Materials and finishes gallery">
         <div className="mx-auto max-w-4xl">
-          <h2 className="section-label text-center">Materials & finishes</h2>
-          <p className="mt-2 text-center text-sm text-[var(--muted)]">
+          <p className="section-label text-center mt-0">Materials & finishes</p>
+          <p className="mt-2 text-center text-sm text-[var(--muted)] max-w-md mx-auto">
             Sample work across custom millwork, casework, and integrated materials
           </p>
-          <div className="materials-gallery mt-8 grid grid-cols-2 gap-5 sm:gap-6">
+          <div className="materials-gallery mt-12">
             {VISUAL_SAMPLES.map(({ src, alt, caption }) => (
-              <figure key={src} className="group overflow-hidden rounded-lg border border-[var(--border)] bg-white shadow-sm transition hover:border-[var(--foreground)]/20 hover:shadow-md">
-                <div className="aspect-[4/3] overflow-hidden bg-[var(--border)]">
-                  <Image src={src} alt={alt} width={480} height={360} className="h-full w-full object-cover transition group-hover:scale-[1.02]" />
+              <figure key={src}>
+                <div className="materials-gallery-img">
+                  <Image src={src} alt={alt} width={480} height={360} sizes="(min-width: 640px) 50vw, 50vw" className="h-full w-full object-cover object-center" />
                 </div>
                 <figcaption className="materials-gallery-caption">
                   {caption}
@@ -143,7 +146,7 @@ export default function ProductsPage() {
               </figure>
             ))}
           </div>
-          <hr className="rule-design rule-design--thick rule-design--center mt-12" aria-hidden />
+          <hr className="rule-design rule-design--thick rule-design--center mt-16" aria-hidden />
         </div>
       </section>
 
@@ -155,38 +158,31 @@ export default function ProductsPage() {
             <h2 className="mt-4 text-center text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl lg:text-left">
               Typical product categories
             </h2>
-            <nav className="product-category-tabs mt-8 flex flex-wrap justify-center gap-2 text-xs lg:mt-10 lg:justify-start lg:flex-col lg:gap-1" aria-label="Jump to category">
+            <nav className="product-category-tabs mt-8 flex flex-wrap justify-center gap-2 lg:mt-10 lg:justify-start lg:flex-col lg:gap-1.5" aria-label="Jump to category">
               {PRODUCT_GROUPS.map(({ label }) => (
                 <a
                   key={label}
                   href={`#product-${label.toLowerCase().replace(/\s+&\s+/g, "-").replace(/\s+/g, "-")}`}
-                  className="rounded-full border border-[var(--border)] bg-[var(--background)] px-3 py-1.5 font-medium text-[var(--muted)] transition hover:border-[var(--foreground)]/40 hover:text-[var(--foreground)] lg:rounded-md lg:px-3 lg:py-2"
                 >
                   {label}
                 </a>
               ))}
             </nav>
           </aside>
-          <div className="lg:min-w-0 lg:flex-1 space-y-8">
-            {PRODUCT_GROUPS.map(({ label, items }, i) => (
+          <div className="product-categories-stack lg:min-w-0 lg:flex-1">
+            {PRODUCT_GROUPS.map(({ label, items }) => (
               <div
                 key={label}
                 id={`product-${label.toLowerCase().replace(/\s+&\s+/g, "-").replace(/\s+/g, "-")}`}
                 className="scroll-mt-24 product-group"
               >
-                <div className="flex flex-wrap items-baseline gap-2">
-                  <span className="step-marker" aria-hidden>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="section-label text-[var(--foreground)]/90">{label}</h3>
-                </div>
-                <hr className="rule-design rule-design--thick mt-2 mb-6" aria-hidden />
-                <ul className="product-category-list grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list">
+                <h3 className="product-group-title">{label}</h3>
+                <hr className="rule-hairline" aria-hidden />
+                <ul className="product-category-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" role="list">
                   {items.map((item) => (
                     <li key={item} className="product-category-item">
-                      <div className="card-float flex items-start gap-3 rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3.5 text-sm font-medium text-[var(--foreground)] transition">
-                        <span className="product-category-bullet shrink-0" aria-hidden />
-                        <span className="min-w-0 leading-snug">{item}</span>
+                      <div className="product-category-tile">
+                        {item}
                       </div>
                     </li>
                   ))}

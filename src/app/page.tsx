@@ -156,44 +156,42 @@ export default function Home() {
             </div>
             <hr className="rule-design rule-design--thick rule-design--center mt-6" aria-hidden />
           </div>
-          <div className="grid gap-10 sm:gap-12 lg:grid-cols-1">
+          {/* 2026 architectural standard: number outside card, mobile stacked, tablet 2+1, desktop 3 side by side */}
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 xl:grid-cols-3 xl:gap-12">
             {FEATURED.map((item, index) => {
               const step = String(index + 1).padStart(2, "0");
-              const imageFirst = index % 2 === 0;
               return (
-                <AnimateSection key={item.title} as="div">
-                  <div>
-                    <p className="section-label mb-3 text-[var(--muted)]/80" aria-hidden>
-                      {step}
-                    </p>
-                    <Link
-                      href={item.href}
-                      className={`card-float capability-card group flex flex-col gap-6 rounded-lg bg-white p-8 transition hover:bg-white lg:flex-row lg:items-stretch lg:gap-10 lg:p-10 ${!imageFirst ? "lg:flex-row-reverse" : ""}`}
-                    >
-                      <div className="relative aspect-[4/3] min-h-[200px] flex-1 overflow-hidden rounded-lg bg-[var(--border)] lg:min-w-[280px] lg:max-w-sm">
-                        <ImageReveal className="absolute inset-0 h-full w-full">
-                          <Image
-                            src={item.image}
-                            alt={item.alt}
-                            fill
-                            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                            sizes="(max-width: 1024px) 100vw, 320px"
-                          />
-                        </ImageReveal>
-                      </div>
-                      <div className="flex min-w-0 flex-1 flex-col justify-center">
-                        <h2 className="text-xl font-semibold tracking-[-0.025em] text-[var(--foreground)] group-hover:underline sm:text-2xl">
-                          {item.title}
-                        </h2>
-                        <p className="mt-3 text-[var(--muted)] leading-relaxed sm:text-base">
-                          {item.description}
-                        </p>
-                        <span className="capability-card-arrow mt-5 inline-block text-sm font-medium text-[var(--foreground)] group-hover:underline">
-                          Learn more →
-                        </span>
-                      </div>
-                    </Link>
-                  </div>
+                <AnimateSection key={item.title} as="div" className="flex flex-col">
+                  <span className="process-step-number mb-2 text-4xl font-semibold tabular-nums tracking-tight text-[var(--muted)]/35 sm:mb-3 sm:text-5xl" aria-hidden>
+                    {step}
+                  </span>
+                  <Link
+                    href={item.href}
+                    className="card-float capability-card group flex flex-1 flex-col overflow-hidden rounded-lg bg-white transition hover:bg-white"
+                  >
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--border)]">
+                      <ImageReveal className="absolute inset-0 h-full w-full">
+                        <Image
+                          src={item.image}
+                          alt={item.alt}
+                          fill
+                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        />
+                      </ImageReveal>
+                    </div>
+                    <div className="flex flex-1 flex-col p-6 sm:p-8">
+                      <h2 className="text-xl font-semibold tracking-[-0.025em] text-[var(--foreground)] group-hover:underline sm:text-2xl">
+                        {item.title}
+                      </h2>
+                      <p className="mt-3 flex-1 text-[var(--muted)] leading-relaxed sm:text-base">
+                        {item.description}
+                      </p>
+                      <span className="capability-card-arrow mt-5 inline-block text-sm font-medium text-[var(--foreground)] group-hover:underline">
+                        Learn more →
+                      </span>
+                    </div>
+                  </Link>
                 </AnimateSection>
               );
             })}
@@ -205,7 +203,7 @@ export default function Home() {
       <AnimateSection as="section" className="border-b border-[var(--border)] bg-band px-4 py-48 sm:py-64">
         <div className="mx-auto max-w-3xl text-center">
           <blockquote className="manifesto-quote manifesto-quote--hero">
-            We are committed to &ldquo;not being the concern&rdquo; for any General Contractor or Design Team—and our track record and reputation have come from that commitment.
+            We are committed to &ldquo;not being the concern&rdquo; for any General Contractor or Design Team, and our track record and reputation have come from that commitment.
           </blockquote>
         </div>
       </AnimateSection>

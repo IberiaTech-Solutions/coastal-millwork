@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ServiceRail from "@/components/ServiceRail";
 
 export default function ServicesPage() {
   return (
@@ -17,26 +18,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Service rail – jump links, single row, no scroll (compact) */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-6 sm:py-8" aria-label="Our process">
-        <div className="mx-auto max-w-5xl">
-          <p className="text-center text-[10px] font-semibold uppercase tracking-wider text-[var(--muted)]">Our process</p>
-          <p className="mt-1 text-center text-xs text-[var(--muted)]">From design through install</p>
-          <nav className="service-rail service-rail--links mt-4" aria-label="Jump to process step">
-              <Link href="#design-consultation" className="service-rail-item">Design & consultation</Link>
-              <span className="service-rail-arrow" aria-hidden>→</span>
-              <Link href="#value-engineering" className="service-rail-item">Value engineering</Link>
-              <span className="service-rail-arrow" aria-hidden>→</span>
-              <Link href="#submittals" className="service-rail-item">Submittals</Link>
-              <span className="service-rail-arrow" aria-hidden>→</span>
-              <Link href="#production" className="service-rail-item">Production</Link>
-              <span className="service-rail-arrow" aria-hidden>→</span>
-              <Link href="#project-management" className="service-rail-item">Project management</Link>
-              <span className="service-rail-arrow" aria-hidden>→</span>
-              <Link href="#installation" className="service-rail-item">Installation</Link>
-            </nav>
-        </div>
-      </section>
+      {/* Service rail – subheading + clickable links, active section highlighted (scroll-spy) */}
+      <ServiceRail />
 
       {/* 01 Design & consultation */}
       <section id="design-consultation" className="scroll-mt-24 border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">

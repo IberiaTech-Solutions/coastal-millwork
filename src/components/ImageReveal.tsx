@@ -9,8 +9,8 @@ type ImageRevealProps = {
 };
 
 /**
- * Wraps an image (or any content) and reveals it with a subtle clip-from-left when in view.
- * Architectural: one gentle wipe, then done.
+ * Wraps an image (or any content) and reveals it with a subtle slide-up from bottom when in view.
+ * Architectural: one gentle rise, then done.
  */
 export default function ImageReveal({ children, className = "" }: ImageRevealProps) {
   const { ref, inView } = useInView<HTMLDivElement>();

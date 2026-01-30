@@ -231,16 +231,37 @@ h1, h2, h3 {
   padding-left: 1.25rem;
 }
 
-/* About page – pulled sentence as blockquote (same text, re-presented) */
+/* About page – pulled sentence as blockquote (2026: etched, precise) */
 .about-callout {
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   font-weight: 500;
-  line-height: 1.65;
-  letter-spacing: -0.01em;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
   color: var(--foreground);
-  border-left: 1px solid var(--line-hairline);
-  border-left-color: rgba(0, 0, 0, 0.12);
+  border-left: 0.5px solid color-mix(in srgb, var(--foreground) 14%, transparent);
   padding-left: 1.25rem;
+  margin-left: 0;
+}
+
+/* About – narrative block (paragraph → rule → callout → paragraph) for 2026 editorial feel */
+.about-prose-block {
+  border-left: 0.5px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+  padding-left: 1rem;
+  margin-left: 0;
+}
+.about-prose-block .rule-hairline {
+  background: color-mix(in srgb, var(--foreground) 10%, transparent);
+  height: 0.5px;
+}
+.about-prose-block p {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+/* Callout inside prose block: no extra border (block already has etched rule) */
+.about-prose-block .about-callout {
+  border-left: none;
+  padding-left: 0;
 }
 
 /* Metrics grid – 4-column data grid, identical typography, hairline dividers */
@@ -311,18 +332,53 @@ h1, h2, h3 {
   object-position: top center;
 }
 
-/* Materials & finishes gallery – 2x2 grid, museum-label captions */
+/* Materials & finishes gallery – museum wall (equal ratios, consistent caption band) */
 .materials-gallery {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .materials-gallery {
+    gap: 2rem;
+  }
+}
+.materials-gallery figure {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  border: 0.5px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+  background: var(--background);
+  box-shadow: none;
+}
+.materials-gallery figure:hover {
+  border-color: color-mix(in srgb, var(--foreground) 18%, transparent);
+}
+.materials-gallery .materials-gallery-img {
+  flex-shrink: 0;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  overflow: hidden;
+  background: var(--border);
+}
+.materials-gallery .materials-gallery-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 .materials-gallery-caption {
-  padding: 0.75rem 1rem 1rem;
+  flex-shrink: 0;
+  padding: 0.875rem 1rem;
   font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
   line-height: 1.4;
+  border-top: 0.5px solid color-mix(in srgb, var(--foreground) 10%, transparent);
 }
 
 /* Product categories – sticky nav on desktop, aligned bullets */
@@ -333,21 +389,42 @@ h1, h2, h3 {
     align-self: start;
   }
 }
-.product-category-item .card-float {
-  gap: 0.75rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+/* Product categories – one clear heading per panel, stacked panels, reduced list density */
+.product-group-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  margin: 0 0 0.75rem;
+  line-height: 1.3;
 }
-.product-category-bullet {
-  width: 0.375rem;
-  height: 0.375rem;
-  margin-top: 0.5rem;
-  border-radius: 50%;
-  background: var(--foreground);
-  opacity: 0.4;
+.product-group-title + .rule-hairline {
+  margin-bottom: 1.25rem;
+}
+/* Product category – capability tile (no bullet, light container, square-ish) */
+.product-category-tile {
+  padding: 0.65rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 2%, var(--background));
+  border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+  border-radius: 0.125rem;
+  overflow-wrap: break-word;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.product-category-tile:hover {
+  border-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+  background: color-mix(in srgb, var(--foreground) 4%, var(--background));
 }
 .product-category-list {
-  gap: 0.5rem 1rem;
+  gap: 0.625rem 1.25rem;
+}
+@media (min-width: 640px) {
+  .product-category-list {
+    gap: 0.75rem 1.5rem;
+  }
 }
 
 /* One line as visual anchor in a section */
@@ -361,6 +438,135 @@ h1, h2, h3 {
 
 /* ---- Dividers & lines: hairline, thin, section separators (drafting-line identity) ---- */
 /* Hairline rule – very fine, architectural */
+/* About – Layer 1: Identity statement (context, not hero) */
+.about-identity {
+  max-width: 36rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--foreground);
+  opacity: 0.92;
+}
+
+/* About – Layer 2: Quiet architectural pills (labels, not UI — read-only metadata) */
+.capability-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+}
+.capability-pill {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.03em;
+  color: var(--foreground);
+  opacity: 0.88;
+  padding: 0.35rem 0.65rem;
+  border: 0.5px solid color-mix(in srgb, var(--foreground) 12%, transparent);
+  border-radius: 0.125rem;
+  background: transparent;
+  cursor: default;
+}
+
+/* Products – category-style pills (navigation, functional — soft fill + hover) */
+.products-jump-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+.products-jump-nav a,
+.product-category-tabs a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--foreground);
+  padding: 0.5rem 0.75rem;
+  border: 0.5px solid color-mix(in srgb, var(--foreground) 18%, transparent);
+  border-radius: 0.25rem;
+  background: color-mix(in srgb, var(--foreground) 3%, var(--background));
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+.products-jump-nav a:hover,
+.product-category-tabs a:hover {
+  border-color: color-mix(in srgb, var(--foreground) 28%, transparent);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--background));
+  color: var(--foreground);
+}
+.products-jump-nav a:focus-visible,
+.product-category-tabs a:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--foreground) 30%, transparent);
+  outline-offset: 2px;
+}
+
+/* Products – Lead content zones (2026) */
+.products-lead-overview {
+  max-width: 42rem;
+  margin-bottom: 3rem;
+}
+.products-capability-quote {
+  font-size: clamp(1.25rem, 2.5vw + 0.75rem, 1.75rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  border-left: 0.5px solid color-mix(in srgb, var(--foreground) 14%, transparent);
+  padding-left: 1.25rem;
+  margin-left: 0;
+  margin-bottom: 3rem;
+}
+.products-clarification {
+  max-width: 38rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.products-clarification p {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* Products – Certifications (labeled statements, no bullets) */
+.products-certifications {
+  max-width: 38rem;
+}
+.products-certifications-statement {
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+/* About – Layer 3: Mission (manifesto, isolated, large type) */
+.about-mission {
+  font-size: clamp(1.5rem, 4vw + 1.25rem, 2.5rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+  border-left: 2px solid var(--accent-warm);
+  padding-left: 1.25rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+}
+@media (min-width: 640px) {
+  .about-mission {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding-left: 1.5rem;
+  }
+}
+
+/* About – Layer 4: Supporting philosophy (reflective, softer) */
+.about-philosophy {
+  max-width: 38rem;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
 .rule-hairline {
   width: 100%;
   height: 1px;
@@ -434,17 +640,25 @@ h1, h2, h3 {
   flex-shrink: 0;
 }
 
-/* Product category / service card – grouping without doc feel */
+/* Product category – stacked panel (one heading, compact list, visually separated) */
 .product-group {
-  border-radius: 0.5rem;
-  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  border: 0.5px solid color-mix(in srgb, var(--foreground) 10%, transparent);
   background: var(--background);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  padding: 1.5rem 1.25rem 1.5rem 1.5rem;
+  box-shadow: none;
+  padding: 1.5rem 1.25rem 1.75rem;
 }
 @media (min-width: 640px) {
   .product-group {
-    padding: 1.75rem 1.75rem 1.75rem 2rem;
+    padding: 1.75rem 1.5rem 2rem;
+  }
+}
+.product-categories-stack .product-group + .product-group {
+  margin-top: 1.5rem;
+}
+@media (min-width: 640px) {
+  .product-categories-stack .product-group + .product-group {
+    margin-top: 2rem;
   }
 }
 
@@ -761,14 +975,26 @@ h1, h2, h3 {
   white-space: nowrap;
   flex-shrink: 0;
 }
-/* Rail as jump links – look like rail text, no default link styling */
+/* Rail as jump links – look clickable, subheading-style TOC */
 .service-rail--links .service-rail-item {
-  color: inherit;
+  color: var(--muted);
   text-decoration: none;
-  transition: color 0.15s ease;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
 }
 .service-rail--links .service-rail-item:hover {
   color: var(--foreground);
+  border-bottom-color: var(--foreground);
+}
+.service-rail--links .service-rail-item:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+}
+.service-rail--links .service-rail-item[aria-current="true"] {
+  color: var(--foreground);
+  font-weight: 700;
+  border-bottom-color: var(--foreground);
 }
 .service-rail-arrow {
   color: var(--line-drafting);
@@ -872,6 +1098,12 @@ h1, h2, h3 {
 }
 
 /* Capability card – arrow nudges on hover (subtle) */
+/* Process step number – outside card, editorial */
+.process-step-number {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
 .capability-card-arrow {
   transition: transform 0.25s ease-out;
 }
@@ -916,17 +1148,17 @@ h1, h2, h3 {
   width: 2rem;
 }
 
-/* Image reveal: soft mask (clip) + opacity; ease-out, no drama */
+/* Image reveal: slide up from bottom + fade; ease-out, no drama */
 .animate-image-reveal {
-  clip-path: inset(0 0 0 100%);
   opacity: 0;
+  transform: translateY(1.25rem);
   transition:
-    clip-path 0.6s ease-out,
-    opacity 0.5s ease-out;
+    opacity 0.5s ease-out,
+    transform 0.6s ease-out;
 }
 .animate-image-reveal.is-visible {
-  clip-path: inset(0 0 0 0);
   opacity: 1;
+  transform: translateY(0);
 }
 
 /* List stagger: 60ms apart (50–80ms range); featured cards */

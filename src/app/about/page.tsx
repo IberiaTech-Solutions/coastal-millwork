@@ -20,11 +20,12 @@ const LEADERSHIP = [
 ];
 
 const SERVICES = [
-  "Custom interior architectural millwork and casework",
+  "Architectural millwork",
+  "Casework",
   "Cabinetry",
   "Decorative metals",
-  "Solid surface and stone countertops",
-  "Decorative specialty finishes",
+  "Stone & solid surface",
+  "Specialty finishes",
 ];
 
 export default function AboutPage() {
@@ -57,25 +58,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Lead + what we provide – constrained width, content break */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
+      {/* 2026 structure: Layer 1 identity · Layer 2 capability rail · Layer 3 mission · Layer 4 philosophy */}
+      <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24" aria-label="Who we are and what we do">
         <div className="mx-auto max-w-2xl">
-          <p className="text-lg leading-relaxed text-[var(--foreground)] sm:text-xl">
+          {/* Layer 1 — Identity statement (context, not hero) */}
+          <p className="about-identity">
             Coastal Millwork and Supply LLC (CMS) is an award-winning, AWI premium-certified, full-service, commercial interiors contractor. We provide in-house design consultation/engineering, fabrication, and the installation of:
           </p>
-          <ul className="mt-6 grid gap-2 sm:grid-cols-2">
+
+          {/* Layer 2 — Quiet architectural pills (labels, not UI; no hover, no color fill) */}
+          <div className="capability-pills mt-6" role="list">
             {SERVICES.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-[var(--muted)] leading-relaxed">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
-                {item};
-              </li>
+              <span key={item} className="capability-pill" role="listitem">
+                {item}
+              </span>
             ))}
-          </ul>
-          <blockquote className="pull-quote mt-12 sm:mt-14">
+          </div>
+
+          {/* Layer 3 — Mission (manifesto, isolated, large type) */}
+          <blockquote className="about-mission" cite="">
             Our primary mission is to provide the highest level of proactive, coordinated project management found in the industry.
           </blockquote>
-          <hr className="rule-hairline mt-10 mb-10" aria-hidden />
-          <p className="text-[var(--muted)] leading-relaxed">
+
+          {/* Layer 4 — Supporting philosophy (reflective, softer) */}
+          <p className="about-philosophy">
             Proactive management cannot be understated in our company&apos;s culture. We guarantee real success is found only in the management expertise and execution of any project. We are very proud of the high-quality products we design, fabricate and install—and that starts with how we manage every job.
           </p>
         </div>
@@ -129,16 +135,18 @@ export default function AboutPage() {
           <p className="mt-8 text-[var(--muted)] leading-relaxed">
             Serving only the commercial construction industry, we have successfully completed over 700 premium, high profile interior projects while partnered with some of the premier general contractors and design teams in South Carolina and the country, including in: New York, NY; Washington, DC; Dallas, Texas; San Diego, CA; and, Atlanta, GA.
           </p>
-          <p className="mt-6 text-[var(--muted)] leading-relaxed">
-            From the beginning, one of our company&apos;s primary objectives has been to develop the management procedures and design engineering expertise required to complete large, logistically difficult projects with complicated design concepts within contractor schedules. We have successfully completed projects up to $7 million with dozens between $1–$4 million dollars plus projects under our belt.
-          </p>
-          <hr className="rule-hairline mt-10 mb-10" aria-hidden />
-          <blockquote className="about-callout">
-            We are constantly evaluating our performance based on our mission and growing our capabilities.
-          </blockquote>
-          <p className="mt-6 text-[var(--muted)] leading-relaxed">
-            All our experience is being utilized in developing better methods in project management going forward.
-          </p>
+          <div className="about-prose-block mt-8">
+            <p className="mt-0">
+              From the beginning, one of our company&apos;s primary objectives has been to develop the management procedures and design engineering expertise required to complete large, logistically difficult projects with complicated design concepts within contractor schedules. We have successfully completed projects up to $7 million with dozens between $1–$4 million dollars plus projects under our belt.
+            </p>
+            <hr className="rule-hairline mt-10 mb-10" aria-hidden />
+            <blockquote className="about-callout mt-0">
+              We are constantly evaluating our performance based on our mission and growing our capabilities.
+            </blockquote>
+            <p className="mt-6">
+              All our experience is being utilized in developing better methods in project management going forward.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -160,16 +168,18 @@ export default function AboutPage() {
               Beam saw and CNC on the fly.
             </figcaption>
           </figure>
-          <p className="mt-8 text-[var(--muted)] leading-relaxed">
-            CMS calls home a 40,000-square-foot, state-of-the-art facility. We regularly invest in new equipment to ensure we are utilizing the most optimal, precise, and advanced production methods as possible. We use the latest Microvellum software package, with AutoCAD overlay, for all submittal and manufacturing engineering. This premium software highly automates production with the highest degree of precision. This creates for a very fast, high-quality production line for custom standard products alike.
-          </p>
-          <hr className="rule-hairline mt-10 mb-10" aria-hidden />
-          <blockquote className="about-callout">
-            Our shop submittals become the story for how the project flows—we use them to uncover red flags, obstacles, and expectation conflicts.
-          </blockquote>
-          <p className="mt-6 text-[var(--muted)] leading-relaxed">
-            They are designed to create a complete picture of our scope products and the adjacent components of an elevation.
-          </p>
+          <div className="about-prose-block mt-8">
+            <p className="mt-0">
+              CMS calls home a 40,000-square-foot, state-of-the-art facility. We regularly invest in new equipment to ensure we are utilizing the most optimal, precise, and advanced production methods as possible. We use the latest Microvellum software package, with AutoCAD overlay, for all submittal and manufacturing engineering. This premium software highly automates production with the highest degree of precision. This creates for a very fast, high-quality production line for custom standard products alike.
+            </p>
+            <hr className="rule-hairline mt-10 mb-10" aria-hidden />
+            <blockquote className="about-callout mt-0">
+              Our shop submittals become the story for how the project flows—we use them to uncover red flags, obstacles, and expectation conflicts.
+            </blockquote>
+            <p className="mt-6">
+              They are designed to create a complete picture of our scope products and the adjacent components of an elevation.
+            </p>
+          </div>
         </div>
       </section>
 
