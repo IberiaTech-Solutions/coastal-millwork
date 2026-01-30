@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useState, useMemo } from "react";
 import type { ProjectDetail, ProjectTier, SectorLabel } from "@/data/projects";
 import { projectImageUrl, SECTOR_LABELS } from "@/data/projects";
-import AnimateSection from "@/components/AnimateSection";
 import ImageReveal from "@/components/ImageReveal";
 
 const TIER_LABELS: Record<ProjectTier | "all", string> = {
@@ -155,8 +154,8 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
         </div>
       </div>
 
-      {/* Gallery grid – 1 / 2 / 3 / 4 per row, portfolio card content */}
-      <AnimateSection as="div" className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-10 lg:gap-12">
+      {/* Gallery grid – visible on load so projects show without scrolling */}
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 sm:gap-10 lg:gap-12">
         {filtered.map((project) => {
           const coverSrc = projectImageUrl(project, project.coverImage);
           const scaleLabel = project.tier === 0 ? "—" : TIER_LABELS[project.tier];
@@ -202,7 +201,7 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
             </Link>
           );
         })}
-      </AnimateSection>
+      </div>
 
       {filtered.length === 0 ? (
         <p className="py-28 text-center text-sm text-[var(--muted)]">

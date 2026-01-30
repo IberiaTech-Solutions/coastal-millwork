@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AnimateHeading from "@/components/AnimateHeading";
 
 export type ProjectTier = 1 | 2 | 3 | 4;
@@ -44,8 +44,8 @@ const TIER_LABEL_STYLES: Record<ProjectTier, string> = {
   4: "text-emerald-700",
 };
 
-/** Curated gallery: show this many items at once (exhibits, not index). */
-const GALLERY_PREVIEW_COUNT = 12;
+/** Projects per page in Notable & Current Projects; use arrows to see all. */
+const PAGE_SIZE = 12;
 
 /** Fallback copy so we never render "0+ projects in 0 years" (CountUp starts at 0). */
 const HERO_PROJECTS_COUNT = 800;
@@ -70,6 +70,7 @@ function useTierCounts(projects: Project[]) {
 
 export default function NotableProjects({ projects }: NotableProjectsProps) {
   const [filter, setFilter] = useState<ProjectTier | "all">("all");
+  const [page, setPage] = useState(0);
   const tierCounts = useTierCounts(projects);
   const total = projects.length;
 
@@ -79,8 +80,14 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
       : projects.filter((p) => p.tier === filter)
   ).sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
 
-  const displayed = filtered.slice(0, GALLERY_PREVIEW_COUNT);
-  const hasMore = filtered.length > GALLERY_PREVIEW_COUNT;
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages - 1);
+  const displayed = filtered.slice(safePage * PAGE_SIZE, (safePage + 1) * PAGE_SIZE);
+  const hasMultiplePages = filtered.length > PAGE_SIZE;
+
+  useEffect(() => setPage(0), [filter]);
+  const goPrev = () => setPage((p) => Math.max(0, p - 1));
+  const goNext = () => setPage((p) => Math.min(totalPages - 1, p + 1));
 
   return (
     <section id="projects" className="scroll-mt-24 border-b border-[var(--border)] bg-section-alt px-4 py-28 sm:py-36">
@@ -207,8 +214,8 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
 
           <p className="mt-4 text-xs text-[var(--muted)]">
             {filtered.length} project{filtered.length !== 1 ? "s" : ""}
-            {filtered.length > GALLERY_PREVIEW_COUNT
-              ? ` · showing ${GALLERY_PREVIEW_COUNT} below`
+            {hasMultiplePages
+              ? ` · showing ${safePage * PAGE_SIZE + 1}–${Math.min((safePage + 1) * PAGE_SIZE, filtered.length)} of ${filtered.length}`
               : ""}
           </p>
         </div>
@@ -235,16 +242,42 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
           ))}
         </ul>
 
-        {hasMore && (
-          <p className="mt-10 text-center">
-            <Link
-              href="/projects"
-              className="text-sm font-medium text-[var(--accent)] hover:underline"
+        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
+          {hasMultiplePages && (
+            <nav
+              className="flex items-center gap-3"
+              aria-label="Pagination for notable projects"
             >
-              View all {filtered.length} projects in gallery →
-            </Link>
-          </p>
-        )}
+              <button
+                type="button"
+                onClick={goPrev}
+                disabled={safePage === 0}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-[var(--border)] bg-white text-[var(--foreground)] transition hover:border-[var(--foreground)]/40 hover:bg-[var(--foreground)]/5 disabled:pointer-events-none disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
+                aria-label="Previous page"
+              >
+                <span aria-hidden>←</span>
+              </button>
+              <span className="min-w-[6rem] text-center text-sm font-medium text-[var(--muted)]">
+                Page {safePage + 1} of {totalPages}
+              </span>
+              <button
+                type="button"
+                onClick={goNext}
+                disabled={safePage >= totalPages - 1}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-[var(--border)] bg-white text-[var(--foreground)] transition hover:border-[var(--foreground)]/40 hover:bg-[var(--foreground)]/5 disabled:pointer-events-none disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
+                aria-label="Next page"
+              >
+                <span aria-hidden>→</span>
+              </button>
+            </nav>
+          )}
+          <Link
+            href="/projects"
+            className="text-sm font-medium text-[var(--accent)] hover:underline"
+          >
+            View all projects here →
+          </Link>
+        </div>
       </div>
     </section>
   );
