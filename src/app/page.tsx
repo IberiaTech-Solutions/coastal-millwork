@@ -3,6 +3,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import AwardCard from "@/components/AwardCard";
 import NotableProjects from "@/components/NotableProjects";
+import { PROJECTS_GALLERY, SECTOR_LABELS } from "@/data/projects";
 
 const AWARDS = [
   { name: "Architectural Woodwork Institute Award of Excellence", image: "/images/home/AWI-Award.jpg" },
@@ -57,17 +58,8 @@ const FEATURED = [
   },
 ];
 
-const SECTORS = [
-  { label: "Hospitality & Resorts", href: "/projects" },
-  { label: "Healthcare", href: "/projects" },
-  { label: "Aviation & Transportation", href: "/projects" },
-  { label: "Higher Education", href: "/projects" },
-  { label: "Civic & Government", href: "/projects" },
-  { label: "Workplace & Corporate", href: "/projects" },
-  { label: "Senior Living", href: "/projects" },
-  { label: "Faith & Worship", href: "/projects" },
-  { label: "Event & Convention", href: "/projects" },
-];
+/** Only sectors that have at least one project in the gallery – aligned with /projects filter */
+const SECTORS = SECTOR_LABELS.filter((s) => PROJECTS_GALLERY.some((p) => p.sector === s)).map((label) => ({ label, href: "/projects" }));
 
 /** Contract value tier: 1 = >$1M (bold), 2 = >$3M (red), 3 = >$5M (orange), 4 = >$10M (green) */
 const PROJECTS: { name: string; location: string; tier: 1 | 2 | 3 | 4 }[] = [
@@ -179,7 +171,7 @@ export default function Home() {
             We are committed to &ldquo;not being the concern&rdquo; for any General Contractor or Design Team—and our track record and reputation have come from that commitment.
           </blockquote>
           <p className="mt-8 text-sm text-[var(--muted)]">
-            From medical upfits to projects with multimillion-dollar scope values.
+            From medical upfits to projects with multimillion dollar scope values.
           </p>
           <p className="mt-6">
             <Link href="/about" className="text-sm font-medium text-[var(--accent)] hover:underline">

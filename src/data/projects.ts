@@ -1,0 +1,318 @@
+/** Sectors We Serve – shared with home page and projects filter */
+export const SECTOR_LABELS = [
+  "Hospitality & Resorts",
+  "Healthcare",
+  "Aviation & Transportation",
+  "Higher Education",
+  "Civic & Government",
+  "Workplace & Corporate",
+  "Senior Living",
+  "Faith & Worship",
+  "Event & Convention",
+] as const;
+
+export type SectorLabel = (typeof SECTOR_LABELS)[number];
+
+/** Contract value tier for filtering: 0 = under $1M, 1 = >$1M, 2 = >$3M, 3 = >$5M, 4 = >$10M */
+export type ProjectTier = 0 | 1 | 2 | 3 | 4;
+
+export type ProjectDetail = {
+  slug: string;
+  title: string;
+  location: string;
+  contractValue: string;
+  /** Tier for value filter: 0 = under $1M, 1 = >$1M, 2 = >$3M, 3 = >$5M, 4 = >$10M */
+  tier: ProjectTier;
+  /** Sector for filter – must match SECTOR_LABELS */
+  sector: SectorLabel;
+  generalContractor: string;
+  architect: string;
+  /** Optional, e.g. "Stevens & Wilkinson" for courthouses */
+  courtroomDesigner?: string;
+  cmsEngineer: string;
+  summary: string[];
+  imageDir: string;
+  coverImage: string;
+  images: string[];
+};
+
+const CREDIT_ONE_DIR = "Credit One Stadium - Coastal Millwork and Supply - 1_29_2026 3-44-19 PM";
+const SPARTANBURG_DIR = "Spartanburg County Judicial Center - Coastal Millwork and Supply - 1_29_2026 3-44-30 PM";
+const CHARLESTON_AIRPORT_DIR = "Charleston International Airport - Coastal Millwork and Supply - 1_30_2026 9-45-23 AM";
+const KIAWAH_COUGAR_POINT_DIR = "Kiawah Cougar Point Clubhouse - Coastal Millwork and Supply - 1_30_2026 9-48-55 AM";
+const JERRY_RICHARDSON_DIR = "Jerry Richardson Indoor Stadium - Coastal Millwork and Supply - 1_30_2026 9-54-23 AM";
+const LEXINGTON_PAC_DIR = "Lexington Performing Arts Center - Coastal Millwork and Supply - 1_30_2026 9-55-05 AM";
+const AC_HOTEL_DIR = "AC Hotel and Level 10 Restaurant - Coastal Millwork and Supply - 1_30_2026 9-57-03 AM";
+const CONGAREE_GOLF_DIR = "Congaree Golf Club - Coastal Millwork and Supply - 1_30_2026 10-04-28 AM";
+const SCPA_DIR = "South Carolina Ports Authority - Coastal Millwork and Supply - 1_30_2026 10-06-45 AM";
+const ECVMC_DIR = "Eastern Carolina Veterinary Med Center - Coastal Millwork and Supply - 1_30_2026 10-08-30 AM";
+const LE_CREUSET_DIR = "Le Creuset Corporate Office - Coastal Millwork and Supply - 1_30_2026 10-08-37 AM";
+const USC_BEAUFORT_DIR = "USC - Beaufort - Coastal Millwork and Supply - 1_30_2026 10-08-49 AM";
+
+export const PROJECTS_GALLERY: ProjectDetail[] = [
+  {
+    slug: "credit-one-stadium",
+    title: "Credit One Stadium",
+    location: "Daniel Island, SC",
+    contractValue: "$2,498,070.00",
+    tier: 1,
+    sector: "Event & Convention",
+    generalContractor: "Choate Construction",
+    architect: "LS3P",
+    cmsEngineer: "Jay Youngs",
+    summary: [
+      "All products shop-finished by CMS",
+      "Seismic engineering calculations and stamps for all ceiling suspension-mounted features",
+      "Quartered white oak custom cabinetry @ suites",
+      "Quartered white oak, decorative ceiling & wall feature @ suites",
+      "LED lighting",
+      "Stone & quartz countertops and wall features",
+      "White oak & solid surface furniture style desk features",
+      "White oak public area wall and ceiling features throughout",
+      "White oak standing and running trim",
+      "Club ceiling feature including black tube steel in 3D boxes with integral white oak box infills",
+      "Club cable suspended, ceiling feature including white oak slats and radiuses extending 125' x 40'",
+      "Club live moss wall display including metal laminated diamond wall with white oak crossing border trim",
+    ],
+    imageDir: CREDIT_ONE_DIR,
+    coverImage: "credit-one-stadium-01.jpg",
+    images: Array.from({ length: 13 }, (_, i) => `credit-one-stadium-${String(i + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    slug: "spartanburg-county-judicial-center",
+    title: "Spartanburg County Judicial Center & Courthouse",
+    location: "Spartanburg, SC",
+    contractValue: "$5,765,872.00",
+    tier: 3,
+    sector: "Civic & Government",
+    generalContractor: "Turner Construction",
+    architect: "McMillian Pazdan Smith",
+    courtroomDesigner: "Stevens & Wilkinson",
+    cmsEngineer: "Jay Youngs",
+    summary: [
+      "All products shop-finished by CMS",
+      "Mahogany wood for all work",
+      "Mahogany columns w/ capitals & base, pilasters, and soffits",
+      "282 each mahogany door frames with transoms",
+      "Mahogany standing & running trim",
+      "Mahogany architectural millwork assemblies",
+      "Multiple mahogany reception, info, and security desks",
+      "17 Courtrooms – complete architectural courtroom furniture scope w/ bullet proof cores",
+      "Monumental stairs",
+      "4' x 32' mahogany fluted pilasters",
+      "Laminate cabinetry",
+      "Corian and stone counter and vanity tops",
+    ],
+    imageDir: SPARTANBURG_DIR,
+    coverImage: "Spartanburg-County-Judicial-Center-01.jpg",
+    images: Array.from({ length: 28 }, (_, i) => `Spartanburg-County-Judicial-Center-${String(i + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    slug: "charleston-international-airport",
+    title: "Charleston International Airport",
+    location: "Charleston, SC",
+    contractValue: "$3,726,440.00",
+    tier: 2,
+    sector: "Aviation & Transportation",
+    generalContractor: "Austin/HITT Contracting JV",
+    architect: "Fentress Architects",
+    cmsEngineer: "Jay Youngs",
+    summary: [
+      "All ticket counters, gate podiums, info desks, rental car counters, and security desks including flat and radius Corian solid surface and stainless steel panels",
+      "All full height, polymer wall panels with stainless steel dividers",
+      "Stainless steel wall base and wall panels",
+      "Stainless steel scale and conveyor shrouds",
+      "All Corian vanities and Corian clad walls",
+      "All back of house casework, decorative architectural features",
+      "Steel & Corian 8' x 32' custom conference table",
+      "The Golden Bear Restaurant",
+    ],
+    imageDir: CHARLESTON_AIRPORT_DIR,
+    coverImage: "charleston-intl-airport-01.jpg",
+    images: Array.from({ length: 13 }, (_, i) => `charleston-intl-airport-${String(i + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    slug: "kiawah-cougar-point-clubhouse",
+    title: "Kiawah Cougar Point Clubhouse",
+    location: "Kiawah, SC",
+    contractValue: "$926,740.00",
+    tier: 0,
+    sector: "Hospitality & Resorts",
+    generalContractor: "Choate Construction",
+    architect: "Robert A.M. Stern NY, NY",
+    cmsEngineer: "Jay Youngs",
+    summary: [
+      "All products shop-finished by CMS",
+      "Solid fir, acid aged, decorative & structural hand-hewn timber beams, trusses, & purlins",
+      "Alder standing & running trim",
+      "Alder architectural millwork",
+      "Alder raised panel front & back bar",
+      "Alder ceiling beams",
+      "Interior & exterior custom stain glass windows",
+      "Interior & exterior custom alder doors & door frames",
+      "Pro Shop display & retail casework, point-of-sale, standing & running trim",
+      "All stone & quartz countertops",
+      "Custom walnut vanities",
+      "Antique mirror glazing",
+      "All paint grade standing & running trim",
+    ],
+    imageDir: KIAWAH_COUGAR_POINT_DIR,
+    coverImage: "cougar-point-01.jpg",
+    images: Array.from({ length: 12 }, (_, i) => `cougar-point-${String(i + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    slug: "jerry-richardson-indoor-stadium",
+    title: "Jerry Richardson Indoor Stadium",
+    location: "Wofford College, Spartanburg, SC",
+    contractValue: "$1,066,925.00",
+    tier: 1,
+    sector: "Higher Education",
+    generalContractor: "Robins & Morton",
+    architect: "McMillan Pazdan Smith",
+    cmsEngineer: "Charlie Cottone",
+    summary: [],
+    imageDir: JERRY_RICHARDSON_DIR,
+    coverImage: "jerry-richardson-indoor-stadium-01.jpg",
+    images: Array.from({ length: 7 }, (_, i) => `jerry-richardson-indoor-stadium-${String(i + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    slug: "lexington-performing-arts-center",
+    title: "Lexington Performing Arts Center",
+    location: "Lexington, SC",
+    contractValue: "$1,265,820.00",
+    tier: 1,
+    sector: "Event & Convention",
+    generalContractor: "Thompson Turner",
+    architect: "Jumper Carter Sease",
+    cmsEngineer: "Dave Comer",
+    summary: [],
+    imageDir: LEXINGTON_PAC_DIR,
+    coverImage: "lexington-performing-arts-center-01.jpg",
+    images: Array.from({ length: 16 }, (_, i) => `lexington-performing-arts-center-${String(i + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    slug: "ac-hotel-level-10-restaurant",
+    title: "AC Hotel and Level 10 Restaurant",
+    location: "Spartanburg, SC",
+    contractValue: "$1,513,400.00",
+    tier: 1,
+    sector: "Hospitality & Resorts",
+    generalContractor: "Robins & Morton",
+    architect: "David M Schwarz Architects",
+    cmsEngineer: "Jay Youngs/Dave Comer",
+    summary: [],
+    imageDir: AC_HOTEL_DIR,
+    coverImage: "ac-hotel-level-10-restaurant-01.jpg",
+    images: [
+      "ac-hotel-level-10-restaurant-01.jpg",
+      "ac-hotel-level-10-restaurant-02.jpg",
+      "ac-hotel-level-10-restaurant-03.jpg",
+      "ac-hotel-level-10-restaurant-04.jpg",
+      "ac-hotel-level-10-restaurant-05.png",
+      "ac-hotel-level-10-restaurant-06.jpg",
+      "ac-hotel-level-10-restaurant-07.jpg",
+      "ac-hotel-level-10-restaurant-08.png",
+    ],
+  },
+  {
+    slug: "congaree-golf-club",
+    title: "The Congaree Golf Club",
+    location: "Jasper County, SC",
+    contractValue: "$1,141,725.00",
+    tier: 1,
+    sector: "Hospitality & Resorts",
+    generalContractor: "Fraser Construction",
+    architect: "Harbison Architects",
+    cmsEngineer: "Jay Youngs",
+    summary: [],
+    imageDir: CONGAREE_GOLF_DIR,
+    coverImage: "congaree-golf-club-01.jpg",
+    images: Array.from({ length: 16 }, (_, i) => `congaree-golf-club-${String(i + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    slug: "south-carolina-ports-authority",
+    title: "South Carolina Ports Authority (SCPA)",
+    location: "Mount Pleasant, SC",
+    contractValue: "$512,216.00",
+    tier: 0,
+    sector: "Civic & Government",
+    generalContractor: "Choate Construction",
+    architect: "LS3P",
+    cmsEngineer: "Charlie Cottone",
+    summary: [],
+    imageDir: SCPA_DIR,
+    coverImage: "scpa-01.jpg",
+    images: Array.from({ length: 10 }, (_, i) => `scpa-${String(i + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    slug: "eastern-carolina-veterinary-med-center",
+    title: "Eastern Carolina Veterinary Med Center",
+    location: "Wilmington, NC",
+    contractValue: "$1,010,235.00",
+    tier: 1,
+    sector: "Healthcare",
+    generalContractor: "SouthCon Building Group",
+    architect: "MW Studios",
+    cmsEngineer: "Jay Youngs / Jeremy Clow",
+    summary: [
+      "Fully-framed, structural, reception desks (two each)",
+      "Laminate & 3 Form inlay cladding",
+      "CMS provided all 3 Form postforming in-house",
+      "Solid surface countertops & face panels",
+      "In-wall brackets",
+      "Quartz countertops",
+      "ADA compliant, solid surface vanities w/ integral bowls @ restrooms",
+      "Solid surface exterior window sills",
+      "Fry Reglet reveals @ millwork inlays",
+      "Laminate base, upper, and tall cabinets",
+      "Laminate base & upper open shelving cabinets",
+      "Glass door inserts per plans",
+      "Laminate floating shelves w/ in-wall brackets",
+      "Fenix polymer casework",
+      "Wood chair rail",
+    ],
+    imageDir: ECVMC_DIR,
+    coverImage: "ECVMC-01.jpg",
+    images: Array.from({ length: 22 }, (_, i) => `ECVMC-${String(i + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    slug: "le-creuset-corporate-office",
+    title: "Le Creuset Corporate Office",
+    location: "Charleston, SC",
+    contractValue: "",
+    tier: 0,
+    sector: "Workplace & Corporate",
+    generalContractor: "HITT Contracting",
+    architect: "LS3P",
+    cmsEngineer: "Dave Comer",
+    summary: [],
+    imageDir: LE_CREUSET_DIR,
+    coverImage: "le-creuset-corp-office-01.jpg",
+    images: Array.from({ length: 7 }, (_, i) => `le-creuset-corp-office-${String(i + 1).padStart(2, "0")}.jpg`),
+  },
+  {
+    slug: "university-of-south-carolina-beaufort",
+    title: "University of South Carolina (Beaufort)",
+    location: "Beaufort, SC",
+    contractValue: "$946,655.00",
+    tier: 0,
+    sector: "Higher Education",
+    generalContractor: "Fraser Construction",
+    architect: "Liollio Architects",
+    cmsEngineer: "Dave Comer",
+    summary: [],
+    imageDir: USC_BEAUFORT_DIR,
+    coverImage: "usc-beaufort-01.jpg",
+    images: Array.from({ length: 22 }, (_, i) => `usc-beaufort-${String(i + 1).padStart(2, "0")}.jpg`),
+  },
+];
+
+export function getProjectBySlug(slug: string): ProjectDetail | undefined {
+  return PROJECTS_GALLERY.find((p) => p.slug === slug);
+}
+
+export function projectImageUrl(project: ProjectDetail, filename: string): string {
+  const base = "/images/projects";
+  const dir = encodeURIComponent(project.imageDir);
+  return `${base}/${dir}/${filename}`;
+}

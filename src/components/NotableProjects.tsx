@@ -65,10 +65,11 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
   const tierCounts = useTierCounts(projects);
   const total = projects.length;
 
-  const filtered =
+  const filtered = (
     filter === "all"
-      ? projects
-      : projects.filter((p) => p.tier === filter);
+      ? [...projects]
+      : projects.filter((p) => p.tier === filter)
+  ).sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: "base" }));
 
   return (
     <section id="projects" className="scroll-mt-24 border-b border-[var(--border)] bg-section-alt px-4 py-20 sm:py-28">
@@ -141,12 +142,12 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
                     {count > 0 && (
                       <>
                         {showLabelInside ? (
-                          <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-white drop-shadow-[0_0_1px_rgba(0,0,0,0.8)]">
-                            {count}
+                          <span className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white drop-shadow-[0_0_1px_rgba(0,0,0,0.8)]">
+                            {count} project{count !== 1 ? "s" : ""}
                           </span>
                         ) : (
-                          <span className="absolute -bottom-6 left-1/2 z-10 -translate-x-1/2 rounded bg-[var(--foreground)] px-1.5 py-0.5 text-[10px] font-semibold text-white opacity-0 shadow transition group-hover:opacity-100 group-focus:opacity-100">
-                            {count}
+                          <span className="absolute -bottom-6 left-1/2 z-10 -translate-x-1/2 rounded bg-[var(--foreground)] px-1.5 py-0.5 text-[10px] font-semibold text-white opacity-0 shadow transition group-hover:opacity-100 group-focus:opacity-100 whitespace-nowrap">
+                            {count} project{count !== 1 ? "s" : ""}
                           </span>
                         )}
                       </>
