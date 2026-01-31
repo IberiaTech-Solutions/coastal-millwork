@@ -13,7 +13,7 @@ export default function ServicesPage() {
             Design, development, submittals, production, and installation
           </h1>
           <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
-            From design through install. One team, one scope.
+            From concept to install one scope, one team.
           </p>
         </div>
       </section>

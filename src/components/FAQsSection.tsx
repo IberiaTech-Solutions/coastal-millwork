@@ -56,7 +56,7 @@ export default function FAQsSection({ groups }: FAQsSectionProps) {
             aria-label="Search FAQs"
           />
         </div>
-        <div className="space-y-24">
+        <div className="space-y-8">
           {filtered.map((group) => (
             <div key={group.title} className="faq-group">
               <header className="faq-group-header">

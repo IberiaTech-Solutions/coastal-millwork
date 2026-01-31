@@ -67,7 +67,7 @@ export default function ProductsPage() {
             Custom design, manufacture, and installation of interior finish products
           </h1>
           <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
-            From concept to install—one scope, one team.
+            From concept to install one scope, one team.
           </p>
         </div>
       </section>

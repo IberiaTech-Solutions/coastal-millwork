@@ -11,8 +11,8 @@ export default function ProjectsPage() {
           <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
             Notable and current work
           </h1>
-          <p className="mt-4 text-sm text-[var(--muted)] leading-relaxed">
-            Stadiums, judicial centers, airports, hospitality—across the Southeast and beyond.
+          <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
+            Stadiums, judicial centers, airports, hospitality across the Southeast and beyond.
           </p>
         </div>
       </section>

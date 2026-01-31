@@ -38,7 +38,7 @@ export default function AboutPage() {
           <h1 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-4xl">
             Award-winning, AWI premium-certified, full-service commercial interiors contractor
           </h1>
-          <p className="mt-5 text-base font-medium leading-relaxed text-[var(--foreground)]/90 sm:text-lg">
+          <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
             {VALUE_STATEMENT}
           </p>
         </div>

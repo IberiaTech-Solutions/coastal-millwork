@@ -11,6 +11,9 @@ const NAV_LINKS = [
   { href: "/products", label: "Products" },
   { href: "/services", label: "Services" },
   { href: "/projects", label: "Projects" },
+  { href: "/faqs", label: "FAQs" },
+  { href: "/contact", label: "Contact" },
+  { href: "/maps", label: "Maps / Directions" },
 ];
 
 const SCROLL_HIDE_THRESHOLD = 60;

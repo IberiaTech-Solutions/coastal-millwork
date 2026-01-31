@@ -68,7 +68,7 @@ export default function FAQsPage() {
             Frequently Asked Questions
           </h1>
           <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
-            Answers to common questions—so you can focus on the project.
+            Answers to common questions so you can focus on the project.
           </p>
         </div>
       </section>
