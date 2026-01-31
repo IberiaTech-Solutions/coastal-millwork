@@ -27,12 +27,12 @@ export default function AwardCard({ name, image, fullWidthImage, objectPosition 
           <>
             {fullWidthImage ? (
               <ImageReveal className="h-full w-full flex justify-center items-start bg-white">
-                {/* Same height as other cards: image at top, white bg */}
+                {/* On mobile (1 col): image full card width; on larger screens: centered contain */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={image}
                   alt={name}
-                  className="max-h-full max-w-full w-auto h-auto object-contain object-top opacity-90 transition opacity duration-200 group-hover:opacity-100"
+                  className="w-full h-auto max-h-full object-contain object-top opacity-90 transition opacity duration-200 group-hover:opacity-100 sm:w-auto sm:max-w-full"
                   onError={() => setImageError(true)}
                 />
               </ImageReveal>

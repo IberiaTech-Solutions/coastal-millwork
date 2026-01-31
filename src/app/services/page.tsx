@@ -18,9 +18,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Service rail – subheading + clickable links, active section highlighted (scroll-spy) */}
-      <ServiceRail />
-
+      {/* Service rail – heading scrolls away; nav links stick. Content sections as children so sticky parent extends down. */}
+      <ServiceRail>
       {/* 01 Design & consultation */}
       <section id="design-consultation" className="scroll-mt-24 border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
         <div className="mx-auto max-w-3xl space-y-10">
@@ -178,6 +177,7 @@ export default function ServicesPage() {
           </Link>
         </div>
       </section>
+      </ServiceRail>
     </div>
   );
 }

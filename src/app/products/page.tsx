@@ -1,9 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { PROJECTS_GALLERY, SECTOR_LABELS } from "@/data/projects";
-
-/** Only sectors that have at least one project – same as Home & Projects filter */
-const SECTORS = SECTOR_LABELS.filter((s) => PROJECTS_GALLERY.some((p) => p.sector === s)).map((label) => ({ label, href: "/projects" }));
+import SectorsWeServe from "@/components/SectorsWeServe";
 
 /** Product categories grouped for structure and scanability. */
 const PRODUCT_GROUPS: { label: string; items: string[] }[] = [
@@ -52,9 +49,8 @@ const PRODUCT_GROUPS: { label: string; items: string[] }[] = [
   },
 ];
 
-/** Visual samples: image + short caption for materials/finishes feel. */
+/** Visual samples: image + short caption for materials/finishes feel. (Executive work space is shown once in the lead section above.) */
 const VISUAL_SAMPLES = [
-  { src: "/images/products/executive-work-space_480x305.jpg", alt: "Executive work space.", caption: "Custom millwork & finishes" },
   { src: "/images/products/wells-fargo-wealth-mgmt_480x320.jpg", alt: "Wells Fargo wealth management.", caption: "Premium casework" },
   { src: "/images/products/pine-lakes-country-club_480x443.jpg", alt: "Pine Lakes Country Club.", caption: "Solid surface & millwork" },
   { src: "/images/products/beaufort-city-hall_480x360.jpg", alt: "Beaufort City Hall.", caption: "Integrated materials" },
@@ -193,27 +189,7 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Sectors We Serve – same list and styling as Home & Projects */}
-      <section id="sectors-we-serve" className="scroll-mt-24 border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="section-label text-center">Sectors We Serve</h2>
-          <hr className="rule-design rule-design--thick rule-design--center mt-4" aria-hidden />
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:gap-6">
-            {SECTORS.map(({ label, href }) => (
-              <Link
-                key={label}
-                href={href}
-                className="sector-item group flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--background)] px-4 py-3.5 text-left transition hover:border-[var(--foreground)]/40 hover:bg-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2"
-              >
-                <span className="sector-item-marker h-1 w-1 shrink-0 rounded-full bg-[var(--foreground)]/35" aria-hidden />
-                <span className="text-sm font-semibold tracking-tight text-[var(--foreground)] group-hover:text-white">
-                  {label}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <SectorsWeServe id="sectors-we-serve" />
 
       {/* CTA */}
       <section className="bg-white px-4 py-20 sm:py-24">

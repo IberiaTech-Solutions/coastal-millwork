@@ -12,7 +12,11 @@ const STEPS: { id: string; label: string }[] = [
   { id: "installation", label: "Installation" },
 ];
 
-export default function ServiceRail() {
+type ServiceRailProps = {
+  children?: React.ReactNode;
+};
+
+export default function ServiceRail({ children }: ServiceRailProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   // Sync active with URL hash on load and when hash changes (e.g. after clicking a link)
@@ -47,13 +51,19 @@ export default function ServiceRail() {
   }, []);
 
   return (
-    <section className="sticky top-[5.25rem] z-40 border-b border-[var(--border)] bg-[var(--background)] px-4 py-6 shadow-[0_1px_0_0_var(--border)] sm:top-[6.25rem] sm:py-8" aria-label="Our process">
-      <div className="mx-auto max-w-5xl">
+    <div className="border-b border-[var(--border)] bg-[var(--background)]" aria-label="Our process">
+      {/* Heading scrolls away */}
+      <div className="px-4 pt-6 pb-4 sm:pt-8 sm:pb-5">
         <p className="text-center text-[10px] font-semibold uppercase tracking-wider text-[var(--muted)]">
           Our process
         </p>
         <p className="mt-1 text-center text-xs text-[var(--muted)]">From design through install</p>
-        <nav className="service-rail service-rail--links mt-4" aria-label="Jump to process step">
+      </div>
+      {/* Nav sticks flush under header: mobile ~5rem (logo row), sm+ 5.5rem (matches body.top-bar-hidden main) */}
+      <div
+        className="sticky top-[5rem] z-40 border-b border-[var(--border)] bg-[var(--background)] px-4 py-3 shadow-[0_1px_0_0_var(--border)] sm:top-[5.5rem] sm:py-4"
+      >
+        <nav className="service-rail service-rail--links mx-auto max-w-5xl" aria-label="Jump to process step">
           {STEPS.map(({ id, label }, i) => (
             <Fragment key={id}>
               {i > 0 && <span className="service-rail-arrow" aria-hidden>→</span>}
@@ -68,6 +78,7 @@ export default function ServiceRail() {
           ))}
         </nav>
       </div>
-    </section>
+      {children}
+    </div>
   );
 }

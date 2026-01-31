@@ -7,7 +7,8 @@ import AnimateSection from "@/components/AnimateSection";
 import AnimateLine from "@/components/AnimateLine";
 import AnimateHeading from "@/components/AnimateHeading";
 import ImageReveal from "@/components/ImageReveal";
-import { PROJECTS_GALLERY, SECTOR_LABELS, projectImageUrl } from "@/data/projects";
+import { PROJECTS_GALLERY } from "@/data/projects";
+import SectorsWeServe from "@/components/SectorsWeServe";
 
 const AWARDS = [
   { name: "Architectural Woodwork Institute Award of Excellence", image: "/images/home/AWI-Award.jpg" },
@@ -61,24 +62,6 @@ const FEATURED = [
     alt: "Installation",
   },
 ];
-
-/** Sectors that have at least one project in the gallery */
-const SECTORS_WITH_PROJECTS = SECTOR_LABELS.filter((s) => PROJECTS_GALLERY.some((p) => p.sector === s)).map((label) => ({ label, href: "/projects" }));
-
-/** Sectors We Serve: sectors with projects + Faith (always show Faith) */
-const SECTORS_FOR_DISPLAY =
-  SECTORS_WITH_PROJECTS.some((s) => s.label === "Faith") ? SECTORS_WITH_PROJECTS : [...SECTORS_WITH_PROJECTS, { label: "Faith" as const, href: "/projects" }];
-
-/** Fallback image for Faith sector (Seacoast Worship Center) */
-const FAITH_SECTOR_IMAGE = `/images/projects/${encodeURIComponent("Seacoast Worship Center - Coastal Millwork and Supply")}/seacoast-01.jpg`;
-
-/** One representative project image per sector; Faith uses Seacoast image when no Faith project in gallery */
-const SECTOR_PHOTOS: { label: string; href: string; src?: string; alt?: string }[] = SECTORS_FOR_DISPLAY.map(({ label, href }) => {
-  const project = PROJECTS_GALLERY.find((p) => p.sector === label);
-  if (project) return { label, href, src: projectImageUrl(project, project.coverImage), alt: project.title };
-  if (label === "Faith") return { label, href, src: FAITH_SECTOR_IMAGE, alt: "Seacoast Worship Center" };
-  return { label, href };
-});
 
 /** Contract value tier: 1 = >$1M (bold), 2 = >$3M (red), 3 = >$5M (orange), 4 = >$10M (green) */
 const PROJECTS: { name: string; location: string; tier: 1 | 2 | 3 | 4 }[] = [
@@ -223,54 +206,7 @@ export default function Home() {
         </div>
       </AnimateSection>
 
-      {/* Sectors We Serve – photo grid (one image per sector, modern) */}
-      <AnimateSection as="section" className="border-b border-[var(--border)] bg-subtle px-4 py-16 sm:py-22" aria-label="Sectors we serve">
-        <div className="mx-auto max-w-5xl">
-          <AnimateHeading as="h2" className="section-label text-center">
-            Sectors We Serve
-          </AnimateHeading>
-          <div className="flex justify-center">
-            <AnimateLine className="!mt-0.5 !block" />
-          </div>
-          <hr className="rule-design rule-design--thick rule-design--center mt-6 mb-10" aria-hidden />
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4 lg:gap-6">
-            {SECTOR_PHOTOS.map(({ label, href, src, alt }) => (
-              <Link
-                key={label}
-                href={href}
-                className="group block overflow-hidden rounded-lg border border-[var(--border)] bg-white shadow-sm transition hover:border-[var(--foreground)]/20 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--foreground)]/20 focus:ring-offset-2"
-              >
-                <div className="aspect-[4/3] overflow-hidden bg-[var(--border)]">
-                  {src && alt ? (
-                    <Image
-                      src={src}
-                      alt={alt}
-                      width={400}
-                      height={300}
-                      className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.04]"
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-[var(--border)]/80 px-4">
-                      <span className="text-center text-xs font-semibold uppercase tracking-wider text-[var(--muted)] group-hover:text-[var(--accent)] sm:text-[11px]">
-                        {label}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <p className="px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider text-[var(--foreground)] transition group-hover:text-[var(--accent)] sm:text-[11px]">
-                  {label}
-                </p>
-              </Link>
-            ))}
-          </div>
-          <p className="mt-10 text-center">
-            <Link href="/projects" className="text-sm font-medium text-[var(--accent)] hover:underline">
-              View all projects →
-            </Link>
-          </p>
-        </div>
-      </AnimateSection>
+      <SectorsWeServe />
 
       {/* Awards – spacious, image-heavy; cooler alt tone */}
       <AnimateSection as="section" className="section-overlap-up border-b border-[var(--border)] bg-section-alt px-4 py-24 sm:py-32">
@@ -323,9 +259,8 @@ export default function Home() {
             ].map((item) => (
               <li
                 key={item}
-                className="card-float flex items-start gap-3 rounded-lg border border-[var(--border)] bg-white/90 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] backdrop-blur-sm transition hover:border-[var(--foreground)]/20"
+                className="card-float flex items-start rounded-lg border border-[var(--border)] bg-white/90 px-4 py-3.5 text-sm font-medium text-[var(--foreground)] backdrop-blur-sm transition hover:border-[var(--foreground)]/20"
               >
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--foreground)]/40" aria-hidden />
                 <span className="leading-snug">
                   {item}
                 </span>

@@ -373,14 +373,15 @@ h1, h2, h3 {
   object-position: top center;
 }
 
-/* Materials & finishes gallery – museum wall (equal ratios, consistent caption band) */
+/* Materials & finishes gallery – one row of 3 on larger screens so 3 items don’t sit 2+1 */
 .materials-gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.5rem;
 }
 @media (min-width: 640px) {
   .materials-gallery {
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
 }
@@ -984,13 +985,13 @@ h1, h2, h3 {
   user-select: none;
 }
 
-/* Service rail – single row, no scroll: compact so it all fits */
+/* Service rail – wrap on mobile so it stays in view; single row on larger screens */
 .service-rail {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0 0.35rem;
+  gap: 0.35rem 0.35rem;
   padding: 0.5rem 0;
   font-size: 0.5rem;
   font-weight: 600;
@@ -1007,6 +1008,7 @@ h1, h2, h3 {
 }
 @media (min-width: 640px) {
   .service-rail {
+    flex-wrap: nowrap;
     gap: 0 0.75rem;
     font-size: 0.625rem;
     letter-spacing: 0.12em;
