@@ -41,7 +41,7 @@ export default function Header() {
         className="overflow-hidden border-b border-[var(--border)]/60 bg-[var(--background)] transition-[max-height,opacity] duration-300 ease-out"
         style={{ maxHeight: topBarHidden ? 0 : 40, opacity: topBarHidden ? 0 : 1 }}
       >
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-1.5 px-4 py-1.5 text-[11px] tracking-tight text-[var(--muted)] lg:px-8">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-1.5 px-4 py-1.5 text-xs tracking-tight text-[var(--muted)] sm:text-[11px] lg:px-8">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <a href="/maps" className="hover:text-[var(--foreground)]">
               1025 W 5th N St, Summerville, SC 29483
@@ -88,12 +88,12 @@ export default function Header() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center text-[var(--foreground)] lg:hidden"
+          className="flex h-14 w-14 items-center justify-center text-[var(--foreground)] lg:hidden"
           onClick={() => setMenuOpen((o) => !o)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
         >
-          <span className="text-xl">{menuOpen ? "✕" : "☰"}</span>
+          <span className="text-3xl">{menuOpen ? "✕" : "☰"}</span>
         </button>
       </div>
 

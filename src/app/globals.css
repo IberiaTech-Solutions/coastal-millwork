@@ -34,6 +34,36 @@
   --font-mono: ui-monospace, monospace;
 }
 
+html {
+  scroll-padding-top: 6rem; /* matches section scroll-mt so sticky nav doesn’t cover headings */
+}
+
+/* On mobile, leave space at bottom when scrolling to anchors so the card isn’t cut off */
+@media (max-width: 639px) {
+  html {
+    scroll-padding-bottom: 2rem;
+  }
+}
+
+/* Mobile typography – meet readability standards (min 16px body, 12px+ for UI labels) */
+@media (max-width: 639px) {
+  /* Section eyebrows / labels: 11px → 12px */
+  .section-label {
+    font-size: 0.75rem;
+  }
+  /* Filter labels: 10px → 12px */
+  .filter-label {
+    font-size: 0.75rem;
+  }
+  .input-underline {
+    font-size: 1rem; /* 16px avoids iOS zoom on focus and is readable */
+  }
+  /* Form inputs: 16px on mobile avoids iOS zoom on focus (WCAG / accessibility) */
+  .form-field {
+    font-size: 1rem;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -998,6 +1028,15 @@ h1, h2, h3 {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
+}
+/* Mobile: more space between nav links; min 12px font for readability */
+@media (max-width: 639px) {
+  .service-rail {
+    gap: 0.75rem 0.75rem;
+    padding: 0.75rem 0;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+  }
 }
 @media (min-width: 400px) {
   .service-rail {

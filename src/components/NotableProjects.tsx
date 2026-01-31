@@ -97,7 +97,7 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
             <AnimateHeading className="text-2xl font-semibold tracking-[-0.025em] text-[var(--foreground)] sm:text-3xl">
               Notable & Current Projects
             </AnimateHeading>
-            <p className="mt-3 max-w-xl text-sm text-[var(--muted)]">
+            <p className="mt-3 max-w-xl text-base text-[var(--muted)] sm:text-sm">
               Over {HERO_PROJECTS_COUNT}+ architectural projects in {HERO_YEARS_COUNT}+ years. Contract scope from $1M to $10M+. Filter by scope below.
             </p>
           </div>
@@ -129,7 +129,7 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
 
           {/* Graphic bar — click a segment to filter */}
           <div className="mt-4">
-            <p className="mb-2 text-[10px] uppercase tracking-wider text-[var(--muted)]">
+            <p className="mb-2 text-xs uppercase tracking-wider text-[var(--muted)] sm:text-[10px]">
               Click a segment to filter
             </p>
             <div
@@ -164,7 +164,7 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
                             {count} project{count !== 1 ? "s" : ""}
                           </span>
                         ) : (
-                          <span className="absolute -bottom-6 left-1/2 z-10 -translate-x-1/2 rounded bg-[var(--foreground)] px-1.5 py-0.5 text-[10px] font-semibold text-white opacity-0 shadow transition group-hover:opacity-100 group-focus:opacity-100 whitespace-nowrap">
+                          <span className="absolute -bottom-6 left-1/2 z-10 -translate-x-1/2 rounded bg-[var(--foreground)] px-1.5 py-0.5 text-xs font-semibold text-white sm:text-[10px] opacity-0 shadow transition group-hover:opacity-100 group-focus:opacity-100 whitespace-nowrap">
                             {count} project{count !== 1 ? "s" : ""}
                           </span>
                         )}
@@ -191,7 +191,7 @@ export default function NotableProjects({ projects }: NotableProjectsProps) {
                   >
                     {count > 0 && (
                       <span
-                        className={`text-[11px] font-medium tabular-nums tracking-tight transition-colors ${
+                        className={`text-xs font-medium tabular-nums sm:text-[11px] tracking-tight transition-colors ${
                           labelMuted
                             ? "text-[var(--muted)]"
                             : tier === 1

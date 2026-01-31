@@ -51,7 +51,7 @@ export default function Certifications({ title = "Certifications & affiliations"
                   className="h-14 w-14 object-contain p-2 sm:h-16 sm:w-16"
                 />
               </span>
-              <span className="min-h-[2.5rem] w-full text-center text-[11px] leading-tight text-[var(--muted)] sm:min-h-[2.75rem] sm:text-xs">
+              <span className="min-h-[2.5rem] w-full text-center text-xs leading-tight text-[var(--muted)] sm:min-h-[2.75rem] sm:text-[11px]">
                 {cert.name}
               </span>
             </span>

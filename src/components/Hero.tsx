@@ -87,7 +87,7 @@ export default function Hero({
       <div className="relative flex h-full flex-col justify-center px-4 py-28 text-center">
         <div className="hero-content-load mx-auto max-w-4xl">
           {subtitle && (
-            <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/85 sm:text-[10px]">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/85 sm:text-[10px]">
               {subtitle}
             </p>
           )}
@@ -99,7 +99,7 @@ export default function Hero({
               {taglines[lineIndex]}
             </h1>
           </div>
-          <p className="hero-data-rail mt-10 text-[11px] font-medium tracking-[0.14em] text-white/85 sm:mt-12 sm:text-xs lg:mt-14">
+          <p className="hero-data-rail mt-10 text-xs font-medium tracking-[0.14em] text-white/85 sm:mt-12 lg:mt-14">
             {metric}
           </p>
         </div>

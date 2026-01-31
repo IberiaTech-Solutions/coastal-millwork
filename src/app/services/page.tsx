@@ -13,7 +13,7 @@ export default function ServicesPage() {
             Design, development, submittals, production, and installation
           </h1>
           <p className="mt-4 text-[var(--muted)] text-base sm:text-lg">
-            From design through install—one team, one scope.
+            From design through install. One team, one scope.
           </p>
         </div>
       </section>
@@ -133,10 +133,10 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 05 Project management + 06 Installation */}
-      <section className="border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
-        <div className="mx-auto max-w-3xl space-y-10">
-          <div id="project-management" className="scroll-mt-24 service-group">
+      {/* 05 Project management */}
+      <section id="project-management" className="scroll-mt-24 border-b border-[var(--border)] bg-white px-4 py-20 sm:py-24">
+        <div className="mx-auto max-w-3xl">
+          <div className="service-group">
             <div className="service-section-header">
               <div className="flex flex-wrap items-baseline gap-2">
                 <span className="step-marker" aria-hidden>05</span>
@@ -149,8 +149,13 @@ export default function ServicesPage() {
               Our project managers (PMs) are the conductors of the CMS orchestra, so to speak. Every project is assigned into a team managed by the project managers. The teams meet on each project individually once a week. The PMs are responsible for all submittal oversight, contractor collaborations/coordination, site condition management, safety SOP and compliance, and installation.
             </p>
           </div>
-          <hr className="rule-design rule-design--thick rule-design--center" aria-hidden />
-          <div id="installation" className="scroll-mt-24 service-group">
+        </div>
+      </section>
+
+      {/* 06 Installation */}
+      <section id="installation" className="scroll-mt-24 border-b border-[var(--border)] bg-subtle px-4 py-20 sm:py-24">
+        <div className="mx-auto max-w-3xl">
+          <div className="service-group">
             <div className="service-section-header">
               <div className="flex flex-wrap items-baseline gap-2">
                 <span className="step-marker" aria-hidden>06</span>

@@ -87,7 +87,7 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
                 type="button"
                 onClick={() => setValueFilter("all")}
                 aria-pressed={valueFilter === "all"}
-                className={`rounded-full border-2 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition focus:outline-none focus:ring-2 focus:ring-offset-1 ${
+                className={`rounded-full border-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider sm:text-[10px] transition focus:outline-none focus:ring-2 focus:ring-offset-1 ${
                   valueFilter === "all" ? TIER_PILL_ACTIVE.all : TIER_PILL_INACTIVE.all
                 } ${valueFilter === "all" ? "focus:ring-[var(--foreground)]" : "focus:ring-[var(--accent)]"}`}
               >
@@ -99,7 +99,7 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
                   type="button"
                   onClick={() => setValueFilter(tier)}
                   aria-pressed={valueFilter === tier}
-                  className={`rounded-full border-2 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider transition focus:outline-none focus:ring-2 focus:ring-offset-1 ${
+                  className={`rounded-full border-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider sm:text-[10px] transition focus:outline-none focus:ring-2 focus:ring-offset-1 ${
                     valueFilter === tier ? TIER_PILL_ACTIVE[tier] : TIER_PILL_INACTIVE[tier]
                   } ${valueFilter === tier ? "focus:ring-[var(--foreground)]" : "focus:ring-[var(--accent)]"}`}
                 >
@@ -129,7 +129,7 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
             </div>
           )}
           <div className="filter-bar-end ml-auto flex items-baseline gap-5 pt-0.5">
-            <span className="filter-count text-[11px] tabular-nums text-[var(--muted)]">
+            <span className="filter-count text-xs tabular-nums text-[var(--muted)] sm:text-[11px]">
               {filtered.length} project{filtered.length !== 1 ? "s" : ""}
             </span>
             <div className="relative w-28 sm:w-36">
@@ -186,7 +186,7 @@ export default function ProjectsGallery({ projects }: ProjectsGalleryProps) {
                 <h2 className="mt-0.5 text-lg font-semibold tracking-tight text-[var(--foreground)] group-hover:text-[var(--accent)] sm:text-xl">
                   {project.title}
                 </h2>
-                <p className="mt-1 text-[10px] font-medium uppercase tracking-wider text-[var(--muted)]/90">
+                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-[var(--muted)]/90 sm:text-[10px]">
                   {project.sector}
                   {scaleLabel !== "—" && (
                     <span className="ml-1.5 normal-case tracking-normal text-[var(--muted)]">

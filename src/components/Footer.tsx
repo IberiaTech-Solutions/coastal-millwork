@@ -30,7 +30,7 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)] sm:text-[11px]">
               Contact
             </h3>
             <p className="mt-5 text-sm text-[var(--foreground)]">
@@ -44,7 +44,7 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)] sm:text-[11px]">
               Links
             </h3>
             <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-[var(--muted)] sm:grid-cols-1">

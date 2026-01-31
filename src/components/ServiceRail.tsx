@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
 
 const STEPS: { id: string; label: string }[] = [
@@ -54,10 +53,10 @@ export default function ServiceRail({ children }: ServiceRailProps) {
     <div className="border-b border-[var(--border)] bg-[var(--background)]" aria-label="Our process">
       {/* Heading scrolls away */}
       <div className="px-4 pt-6 pb-4 sm:pt-8 sm:pb-5">
-        <p className="text-center text-[10px] font-semibold uppercase tracking-wider text-[var(--muted)]">
+        <p className="text-center text-xs font-semibold uppercase tracking-wider text-[var(--muted)] sm:text-[10px]">
           Our process
         </p>
-        <p className="mt-1 text-center text-xs text-[var(--muted)]">From design through install</p>
+        <p className="mt-1 text-center text-sm text-[var(--muted)] sm:text-xs">From design through install</p>
       </div>
       {/* Nav sticks flush under header: mobile ~5rem (logo row), sm+ 5.5rem (matches body.top-bar-hidden main) */}
       <div
@@ -67,13 +66,13 @@ export default function ServiceRail({ children }: ServiceRailProps) {
           {STEPS.map(({ id, label }, i) => (
             <Fragment key={id}>
               {i > 0 && <span className="service-rail-arrow" aria-hidden>→</span>}
-              <Link
+              <a
                 href={`#${id}`}
                 className="service-rail-item"
                 aria-current={activeId === id ? "true" : undefined}
               >
                 {label}
-              </Link>
+              </a>
             </Fragment>
           ))}
         </nav>

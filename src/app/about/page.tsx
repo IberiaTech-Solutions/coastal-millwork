@@ -82,7 +82,7 @@ export default function AboutPage() {
 
           {/* Layer 4 — Supporting philosophy (reflective, softer) */}
           <p className="about-philosophy">
-            Proactive management cannot be understated in our company&apos;s culture. We guarantee real success is found only in the management expertise and execution of any project. We are very proud of the high-quality products we design, fabricate and install—and that starts with how we manage every job.
+            Proactive management cannot be understated in our company&apos;s culture. We guarantee real success is found only in the management expertise and execution of any project. We are very proud of the high-quality products we design, fabricate and install. And that starts with how we manage every job.
           </p>
         </div>
       </section>
@@ -92,8 +92,8 @@ export default function AboutPage() {
         <div className="mx-auto max-w-3xl">
           <h2 className="section-label text-center">Leadership</h2>
           <hr className="rule-design rule-design--thick rule-design--center mt-4" aria-hidden />
-          <p className="mt-6 text-center text-sm text-[var(--muted)]">
-            Who leads CMS—bios and the full team on our Team page.
+          <p className="mt-6 text-center text-base text-[var(--muted)] sm:text-sm">
+            Who leads CMS. Bios and the full team on our Team page.
           </p>
           <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">
             {LEADERSHIP.map((person) => (
@@ -107,7 +107,7 @@ export default function AboutPage() {
                 <p className="mt-0.5 text-xs text-[var(--muted)]">
                   {person.title}
                 </p>
-                <p className="mt-2 text-xs font-normal leading-relaxed text-[var(--muted)]/90">
+                <p className="mt-2 text-sm font-normal leading-relaxed text-[var(--muted)]/90 sm:text-xs">
                   {person.bio}
                 </p>
               </div>
@@ -153,7 +153,7 @@ export default function AboutPage() {
           <blockquote className="about-capability-confidence mt-0">
             CMS takes great pride in tackling the most complex project designs and has never failed on any project, regardless of size, environment or complexity. We have the human resources and mechanical capabilities to perform any task required. Offering expert guidance in means and methods to achieve any design intent by incorporating pragmatic experience and AWI standards so that any functional design can handle the wear and tear of its environment for decades.
           </blockquote>
-          <p className="mt-6 max-w-2xl text-sm text-[var(--muted)] leading-relaxed">
+          <p className="mt-6 max-w-2xl text-base text-[var(--muted)] leading-relaxed sm:text-sm">
             CMS maintains a long and successful history as an active participant and premium-certified member of the AWI-QCP program, is listed as the DuPont Corian specified and preferred commercial solid surface fabricator and installer for the state of South Carolina (per Dupont Corian specifications documents).
           </p>
         </div>
@@ -175,7 +175,7 @@ export default function AboutPage() {
             </figcaption>
           </figure>
           <blockquote className="about-callout mt-10 mb-0">
-            Our shop submittals become the story for how the project flows—we use them to uncover red flags, obstacles, and expectation conflicts.
+            Our shop submittals become the story for how the project flows. We use them to uncover red flags, obstacles, and expectation conflicts.
           </blockquote>
           <p className="mt-6 text-[var(--muted)] leading-relaxed">
             They are designed to create a complete picture of our scope products and the adjacent components of an elevation.
