@@ -58,9 +58,9 @@ export default function ServiceRail({ children }: ServiceRailProps) {
         </p>
         <p className="mt-1 text-center text-sm text-[var(--muted)] sm:text-xs">From design through install</p>
       </div>
-      {/* Nav sticks flush under header: mobile ~5rem (logo row), sm+ 5.5rem (matches body.top-bar-hidden main) */}
+      {/* Nav sticks with extra top spacing: mobile 6rem, sm+ 6.5rem (clear of header) */}
       <div
-        className="sticky top-[5rem] z-40 border-b border-[var(--border)] bg-[var(--background)] px-4 py-3 shadow-[0_1px_0_0_var(--border)] sm:top-[5.5rem] sm:py-4"
+        className="sticky top-[5rem] z-40 border-b border-[var(--border)] bg-[var(--background)] px-4 pt-5 pb-3 shadow-[0_1px_0_0_var(--border)] sm:top-[6rem] sm:pt-6 sm:pb-4"
       >
         <nav className="service-rail service-rail--links mx-auto max-w-5xl" aria-label="Jump to process step">
           {STEPS.map(({ id, label }, i) => (
