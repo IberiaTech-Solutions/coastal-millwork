@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ConceptBanner from "@/components/ConceptBanner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,6 +15,10 @@ export const metadata: Metadata = {
   title: "Coastal Millwork & Supply | AWI QCP Premium Certified | Summerville, SC",
   description:
     "Award-winning, full-service commercial interior architectural woodwork and adjacent finishes contractor. Design, fabrication, and installation of custom wood, laminates, metals, glass, and stone.",
+  robots: {
+    index: false,
+    follow: false,
+  },
   icons: {
     icon: [
       { url: "/favicon.png", type: "image/png", sizes: "32x32" },
@@ -30,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="antialiased font-sans">
+        <ConceptBanner />
         <Header />
         <main className="min-h-screen pt-[120px]">{children}</main>
         <Footer />
